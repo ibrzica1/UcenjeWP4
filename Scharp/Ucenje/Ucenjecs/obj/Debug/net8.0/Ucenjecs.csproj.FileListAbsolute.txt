@@ -1,0 +1,15 @@
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\bin\Debug\net8.0\Ucenjecs.exe
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\bin\Debug\net8.0\Ucenjecs.deps.json
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\bin\Debug\net8.0\Ucenjecs.runtimeconfig.json
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\bin\Debug\net8.0\Ucenjecs.dll
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\bin\Debug\net8.0\Ucenjecs.pdb
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.AssemblyInfoInputs.cache
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.AssemblyInfo.cs
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.csproj.CoreCompileInputs.cache
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.sourcelink.json
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.dll
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\refint\Ucenjecs.dll
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.pdb
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\Ucenjecs.genruntimeconfig.cache
+C:\Users\PREDATOR\Documents\GitHub\UcenjeWP4\Scharp\Ucenje\Ucenjecs\obj\Debug\net8.0\ref\Ucenjecs.dll
