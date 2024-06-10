@@ -10,23 +10,20 @@ namespace Ucenjecs
 {
     internal class E01Vjezba
     {
-        private static string boolValNullable;
-        private static bool myBoolAsString;
-
         internal static void Izvedi()
         {
             { 
         {
+                    string phrase = "Giraffe Academy";
+                    Console.WriteLine(phrase);
 
-                    int x;
+
+                    /* int x;
                     Console.WriteLine("Unesi cijeli broj: ");
                     x = int.Parse(Console.ReadLine());
                     int modulo = x % 2;
                     x = modulo;
-                    Console.WriteLine(x == 0);
-
-
-
+                    Console.WriteLine(x == 0); */
 
 
                     /*  int xy;

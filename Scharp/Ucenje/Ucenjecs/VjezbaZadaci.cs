@@ -12,14 +12,14 @@ namespace Ucenjecs
         {
             /*    Zadatak 1   */
 
-            /* int x;
+            int x;
             Console.WriteLine("Unesi prvi cijeli broj: ");
             x = int.Parse(Console.ReadLine());
             int y;
             Console.WriteLine("Unesi drugi cijeli broj: ");
             y = int.Parse(Console.ReadLine());
             Console.Write("Zbroj dvaju brojeva: ");
-            Console.Write(x + y); */
+            Console.Write(x + y); 
 
 
             /*     Zadatak 2    */
