@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -9,15 +10,23 @@ namespace Ucenjecs
 {
     internal class E01Vjezba
     {
+        private static string boolValNullable;
+        private static bool myBoolAsString;
+
         internal static void Izvedi()
         {
             { 
         {
+
                     int x;
                     Console.WriteLine("Unesi cijeli broj: ");
                     x = int.Parse(Console.ReadLine());
-                    int modelo = x % 2;
-                    Console.WriteLine(x);
+                    int modulo = x % 2;
+                    x = modulo;
+                    Console.WriteLine(x == 0);
+
+
+
 
 
                     /*  int xy;

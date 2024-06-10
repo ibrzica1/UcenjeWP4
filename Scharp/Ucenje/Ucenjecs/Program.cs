@@ -1,7 +1,9 @@
 ﻿
 
 using Ucenjecs;
-E01Vjezba.Izvedi();
+E01Vjezba.Izvedi(); 
+/* VjezbaZadaci.Izvedi(); */
+
 
 
 
