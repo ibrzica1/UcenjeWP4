@@ -12,7 +12,7 @@ namespace Ucenjecs
         {
             /*    Zadatak 1   */
 
-            int x;
+             int x;
             Console.WriteLine("Unesi prvi cijeli broj: ");
             x = int.Parse(Console.ReadLine());
             int y;

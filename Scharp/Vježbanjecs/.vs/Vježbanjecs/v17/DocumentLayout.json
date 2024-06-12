@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{941113D2-F0E1-40FD-A9E6-114F64AF65DC}|Vje\u017Ebanje\\Vje\u017Ebanje.csproj|c:\\users\\predator\\documents\\github\\ucenjewp4\\scharp\\vje\u017Ebanjecs\\vje\u017Ebanje\\1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{941113D2-F0E1-40FD-A9E6-114F64AF65DC}|Vje\u017Ebanje\\Vje\u017Ebanje.csproj|solutionrelative:vje\u017Ebanje\\1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{941113D2-F0E1-40FD-A9E6-114F64AF65DC}|Vje\u017Ebanje\\Vje\u017Ebanje.csproj|c:\\users\\predator\\documents\\github\\ucenjewp4\\scharp\\vje\u017Ebanjecs\\vje\u017Ebanje\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{941113D2-F0E1-40FD-A9E6-114F64AF65DC}|Vje\u017Ebanje\\Vje\u017Ebanje.csproj|solutionrelative:vje\u017Ebanje\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "1.cs",
-              "DocumentMoniker": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vje\u017Ebanje\\1.cs",
-              "RelativeDocumentMoniker": "Vje\u017Ebanje\\1.cs",
-              "ToolTip": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vje\u017Ebanje\\1.cs*",
-              "RelativeToolTip": "Vje\u017Ebanje\\1.cs*",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAwwBAAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T18:16:50.967Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vje\u017Ebanje\\Program.cs",
-              "RelativeDocumentMoniker": "Vje\u017Ebanje\\Program.cs",
-              "ToolTip": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vje\u017Ebanje\\Program.cs*",
-              "RelativeToolTip": "Vje\u017Ebanje\\Program.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T18:16:01.89Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

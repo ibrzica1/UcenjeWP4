@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Vježbanje")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b96cd7caaac896c2d7e4de63245123403ab7d90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c15489281174ed1c1ac960a35d8e019ae88af704")]
 [assembly: System.Reflection.AssemblyProductAttribute("Vježbanje")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Vježbanje")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
