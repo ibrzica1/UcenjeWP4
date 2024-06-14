@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6F00049A-7620-4EE2-955D-2F2ECAEC923B}|Vjezbanjecs\\Vjezbanjecs.csproj|c:\\users\\predator\\documents\\github\\ucenjewp4\\scharp\\vje\u017Ebanjecs\\vjezbanjecs\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F00049A-7620-4EE2-955D-2F2ECAEC923B}|Vjezbanjecs\\Vjezbanjecs.csproj|solutionrelative:vjezbanjecs\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F00049A-7620-4EE2-955D-2F2ECAEC923B}|Vjezbanjecs\\Vjezbanjecs.csproj|c:\\users\\predator\\documents\\github\\ucenjewp4\\scharp\\vje\u017Ebanjecs\\vjezbanjecs\\vjezbanjecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F00049A-7620-4EE2-955D-2F2ECAEC923B}|Vjezbanjecs\\Vjezbanjecs.csproj|solutionrelative:vjezbanjecs\\vjezbanjecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Vjezbanjecs.cs",
+              "DocumentMoniker": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vjezbanjecs\\Vjezbanjecs.cs",
+              "RelativeDocumentMoniker": "Vjezbanjecs\\Vjezbanjecs.cs",
+              "ToolTip": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vjezbanjecs\\Vjezbanjecs.cs*",
+              "RelativeToolTip": "Vjezbanjecs\\Vjezbanjecs.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T06:47:23.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vjezbanjecs\\Program.cs",
+              "RelativeDocumentMoniker": "Vjezbanjecs\\Program.cs",
+              "ToolTip": "C:\\Users\\PREDATOR\\Documents\\GitHub\\UcenjeWP4\\Scharp\\Vje\u017Ebanjecs\\Vjezbanjecs\\Program.cs",
+              "RelativeToolTip": "Vjezbanjecs\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T06:45:28.249Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
