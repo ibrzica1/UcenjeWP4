@@ -1,1 +1,1 @@
-﻿Console.WriteLine("ccc");
+﻿Console.WriteLine(5<=10);
