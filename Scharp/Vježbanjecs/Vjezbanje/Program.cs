@@ -89,7 +89,7 @@ password = Console.ReadLine();
 Console.WriteLine((password== "sgcj3257!!%") ? "Dobro došli"
     : "Kriva lozinka"); */
 
-int age;
+/*int age;
 string gender;
 Console.WriteLine("Unesi godine: ");
 age = int.Parse(Console.ReadLine());
@@ -111,7 +111,11 @@ else if (age >= 16 && gender == "z")
 else if (age <= 16 && gender == "z")
 {
     Console.WriteLine("Gospođica");
-};
+}; */
+
+
+
+
 
 
 
