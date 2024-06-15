@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ucenjecs
 {
-    internal class E03Z2
+    internal class E01Z5
     {
         public static void Izvedi()
         {
 
-
         }
-            
-            
-            
-     }
+    }
 }
