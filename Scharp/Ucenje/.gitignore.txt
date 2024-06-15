@@ -1,3 +1,0 @@
-Ucenjecs/bin
-Ucenjecs/obj
-.vs
