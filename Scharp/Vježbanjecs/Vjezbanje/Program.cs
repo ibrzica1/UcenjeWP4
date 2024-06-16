@@ -113,33 +113,16 @@ else if (age <= 16 && gender == "z")
     Console.WriteLine("Gospođica");
 }; */
 
+/* int i;
+for (i = 0; i<10; i++)
+{
+    Console.WriteLine(i);
+} */
 
 
+using Vjezbanje;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Class1.Izvedi();
 
 
 
