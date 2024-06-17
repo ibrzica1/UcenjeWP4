@@ -9,11 +9,7 @@ namespace Vjezbanje
     internal class Class1
     { public static void Izvedi()
         {
-            for (int i = 10; i < 10; i--)
-            {
-                Console.WriteLine(i);
-            }
-
+            Console.WriteLine("hello");
         }
     }
 }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vjezbanjecs
+namespace KucaVjezbanje
 {
-    internal class Class1
+    internal class Vj1
     {
+        public static void Izvedi()
+        {
+
+        }
     }
 }
