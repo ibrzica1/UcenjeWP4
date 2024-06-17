@@ -1,5 +1,4 @@
-
-/Scharp/Ucenje/Ucenjecs/obj
-/Scharp/Ucenje/Ucenjecs/obj/Debug
-/Scharp/Ucenje/WebAPI/bin
-/Scharp/Ucenje/WebAPI/obj
+Scharp/Ucenje/.vs
+Scharp/Ucenje/WebAPI/bin
+Scharp/Ucenje/WebAPI/obj
+Scharp/Vježbanjecs/.vs
