@@ -7,7 +7,7 @@ go
 
 use vozac_efikasnost;
 
-create table tura(
+create table ture(
 tura_id int not null primary key identity(1,1),
 relacija varchar(50) not null,
 datum datetime not null,
@@ -30,16 +30,16 @@ create table vozaci(
 vozac_id int not null primary key identity(1,1),
 ime varchar(20) not null,
 prezime varchar(20) not null,
-godina_rodenja datetime null,
+datum_rodenja datetime null,
 istek_ugovora datetime not null
 );
 
 
-alter table tura add foreign key (kamion_id) references kamioni(kamion_id);
-alter table tura add foreign key (vozac_id)  references vozaci(vozac_id);
+alter table ture add foreign key (kamion_id) references kamioni(kamion_id);
+alter table ture add foreign key (vozac_id)  references vozaci(vozac_id);
 
 
-insert into vozaci (ime,prezime,godina_rodenja,istek_ugovora) values 
+insert into vozaci (ime,prezime,datum_rodenja,istek_ugovora) values 
 ('Ivan','Šućur','1984-04-25','2026-06-28'),
 ('Antonio','Šulmajster','1984-07-22','2025-01-05'),
 ('Ivan','Matković','1965-02-16','2025-03-14'),
@@ -58,7 +58,7 @@ prosjecna_potrosnja_goriva) values
 ('OS8847EH','Volvo FH460',2012,26.90
 );
 
-insert into tura (relacija,datum,udaljenost,
+insert into ture (relacija,datum,udaljenost,
 prijedeni_km,potrosnja_goriva,kamion_id,vozac_id) values
 ('osijek-zagreb','2024-03-15',223.34,230.12,68.20,6,1),
 ('osijek-split','2024-04-16',687.09,695.55,215.55,3,1),
