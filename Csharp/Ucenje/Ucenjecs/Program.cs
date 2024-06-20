@@ -1,7 +1,9 @@
 ﻿
 
 using Ucenjecs;
-E05Z3.Izvedi();
+
+E06ForPetlja.Izvedi();
+//E05Z3.Izvedi();
 //E05Z2.Izvedi();
 //E03Z4.Izvedi();
 //E03Z3.Izvedi();
