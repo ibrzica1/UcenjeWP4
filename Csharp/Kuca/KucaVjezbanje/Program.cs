@@ -1,6 +1,9 @@
 ﻿using KucaVjezbanje;
 
-Vj15.Izvedi();
+Vj18.Izvedi();
+/* Vj17.Izvedi(); */
+/* Vj16.Izvedi(); */
+/* Vj15.Izvedi(); */
 /* Vj14.Izvedi(); */
 /* Vj13.Izvedi(); */
 /* Vj12.Izvedi(); */
