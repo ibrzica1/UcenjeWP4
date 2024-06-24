@@ -95,45 +95,41 @@ namespace KucaVjezbanje
             }
             Console.WriteLine(min); */
 
-           /* int brojparnih = 0;
-            int brojneparnih = 0;
-            for (int i = 0; i < niz.Length; i++)
-            {
-                if (niz[i] % 2 == 0)
-                {
-                    brojparnih = i++;
-                }
-                else
-                {
-                    brojneparnih = i++;
-                }
-            }
-            Console.WriteLine(brojparnih);
-            Console.WriteLine(brojneparnih); */
+            /* int brojparnih = 0;
+             int brojneparnih = 0;
+             for (int i = 0; i < niz.Length; i++)
+             {
+                 if (niz[i] % 2 == 0)
+                 {
+                     brojparnih+=1;
+                 }
+                 else
+                 {
+                     brojneparnih+=1;
+                 }
+             }
+             Console.WriteLine(brojparnih);
+             Console.WriteLine(brojneparnih); */
 
+
+
+            int brojprim = 0;
             int zbrojprim = 0;
-            int[] brojevi = { 2, 3, 4, 5, 6, 7, 8, 9, };
-            for (int i = 0; i < niz.Length; i++)
+            for (int i = 1; i < niz.Length; i++)
             {
-                for (int j = 0; j< brojevi.Length; j++)
+                for (int j = 1; j < niz.Length; j++)
                 {
-                    if (niz[i] % brojevi[j] == 0 & niz[i] > 10)
+                    if (niz[i] % j == 0)
                     {
                         zbrojprim++;
                     }
                 }
             }
-            Console.WriteLine(zbrojprim);
-
-            int a = 0;
-            for (int k = 0; a < 10; k++)
+            if (zbrojprim == 2)
             {
-                if ( k % 2 ==0)
-                {
-                    a += k;
-                }
-                Console.WriteLine(a);
+                brojprim++;
             }
+            Console.WriteLine(brojprim);
 
 
 
