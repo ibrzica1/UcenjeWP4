@@ -1,8 +1,10 @@
 ﻿
 
 using Ucenjecs;
-
-E06ForPetlja.Izvedi();
+E12Rekurzija.Izvedi();
+//E11Z1.Izvedi();
+//E11Metode.Izvedi();
+//E06ForPetlja.Izvedi();
 //E05Z3.Izvedi();
 //E05Z2.Izvedi();
 //E03Z4.Izvedi();
