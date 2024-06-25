@@ -113,23 +113,51 @@ namespace KucaVjezbanje
 
 
 
-            int brojprim = 0;
-            int zbrojprim = 0;
-            for (int i = 1; i < niz.Length; i++)
+            /*  int brojprim = 0;
+             int zbrojprim = 0;
+             for (int i = 1; i < niz.Length; i++)
+             {
+                 if (niz[i] % i == 0)
+                     {
+                         zbrojprim++;
+                     }
+                     if (zbrojprim == 2)
+                     {
+                         brojprim++;
+                     }
+             }  
+
+             Console.WriteLine(brojprim); */
+
+            /*  string rijec = "osijek";
+            for (int i = 0; i < rijec.Length; i++)
             {
-                for (int j = 1; j < niz.Length; j++)
+                Console.Write(rijec[i]);
+            }
+
+            foreach (var slovo in rijec)
+            {
+                Console.Write("     " + slovo);
+            }   */
+
+
+            int[] brojevi = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+            int zbroj = 0;
+            int prim = 0;
+
+            for (int i = 0; i < brojevi.Length; i++)
+            {
+                if (brojevi[i] % i == 0)
                 {
-                    if (niz[i] % j == 0)
-                    {
-                        zbrojprim++;
-                    }
+                    zbroj++;
+                }
+                if (zbroj == 2)
+                {
+                    prim++;
                 }
             }
-            if (zbrojprim == 2)
-            {
-                brojprim++;
-            }
-            Console.WriteLine(brojprim);
+            Console.WriteLine(prim);
+
 
 
 
