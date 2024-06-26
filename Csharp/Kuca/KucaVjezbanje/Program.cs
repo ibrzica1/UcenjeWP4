@@ -1,8 +1,8 @@
 ﻿using KucaVjezbanje;
 using UcenjeCS;
 
-
-Vj21.Izvedi(); 
+CiklicnaTablica.Izvedi();
+/* Vj21.Izvedi(); */ 
 /* Vj20.Izvedi(); */
 /* Vj19.Izvedi(); */
 /* Vj18.Izvedi(); */
