@@ -10,9 +10,18 @@ namespace Ucenjecs
     {
         public static void Izvedi()
         {
-            LosaMetoda();
+            Console.WriteLine();
+            // LosaMetoda();
         }
 
+        private static int zbroj(int broj)
+        {
+            if (broj == 0) 
+            {
+                return broj;
+            }
+            return broj + zbroj(broj - 1);
+        }
 
         static void LosaMetoda()
         {
