@@ -31,13 +31,18 @@ namespace KucaVjezbanje
             {
                 nZensko++;
             }
-            for (int i = ZajednickoIme[0]; i < ZajednickoIme[nZajednicko]; i++)
+
+            for (int i = 0; i <= ZajednickoIme.Length; i++)
             {
-                if (ZajednickoIme[0] == ZajednickoIme[1-20])
+                while (ZajednickoIme[0] == ZajednickoIme[i])
                 {
                     n1++;
                 }
+                break;
             }
+            
+
+
             Console.WriteLine(ZajednickoIme);
             Console.WriteLine(n1);
             Console.WriteLine(ZajednickoIme[2]);
