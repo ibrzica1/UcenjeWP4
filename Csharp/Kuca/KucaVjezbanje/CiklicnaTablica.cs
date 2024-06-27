@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KucaVjezbanje
 {
-    internal class Vj22
+    internal class CiklicnaTablica
     {
         public static void Izvedi()
         {
@@ -35,6 +35,7 @@ namespace KucaVjezbanje
                     Console.Write(tablica[i,j]);
                 }
             }
+
             
             
         }
