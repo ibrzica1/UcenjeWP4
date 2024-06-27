@@ -1,7 +1,12 @@
 ﻿
 
 using Ucenjecs;
-E12Rekurzija.Izvedi();
+using Ucenjecs.E13KlasaObjekt;
+
+
+
+Ucenjecs.E13KlasaObjekt.Program.Izvedi();
+//E12Rekurzija.Izvedi();
 //E11Z1.Izvedi();
 //E11Metode.Izvedi();
 //E06ForPetlja.Izvedi();
