@@ -1,7 +1,7 @@
 ﻿using KucaVjezbanje;
 
 
-LJubavni_Kalkulator.Izvedi();
+LJubavni_Kalkulator.Izvedi(); 
 /* CiklicnaTablica.Izvedi(); */
 /* Vj21.Izvedi(); */
 /* Vj20.Izvedi(); */
