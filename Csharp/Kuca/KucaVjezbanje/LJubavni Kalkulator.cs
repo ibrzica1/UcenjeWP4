@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +12,9 @@ namespace KucaVjezbanje
     {
         public static void Izvedi()
         {
-            
+            Console.WriteLine("Unesi ime muške osobe: ");
             string Musko = Console.ReadLine();
+            Console.WriteLine("Unesi ime ženske osobe: ");
             string Zensko = Console.ReadLine();
             string Zajednicko = Musko + Zensko;
             char[] ZajednickoIme = Zajednicko.ToCharArray();
@@ -106,6 +108,61 @@ namespace KucaVjezbanje
                 n9 = ZajednickoIme.Count(c => c == ZajednickoIme[9]);
                 broj.Add(n9);
             }
+            if (n10 < nZajednicko)
+            {
+                n10 = ZajednickoIme.Count(c => c == ZajednickoIme[10]);
+                broj.Add(n10);
+            }
+            if (n11 < nZajednicko)
+            {
+                n11 = ZajednickoIme.Count(c => c == ZajednickoIme[11]);
+                broj.Add(n11);
+            }
+            if (n12 < nZajednicko)
+            {
+                n12 = ZajednickoIme.Count(c => c == ZajednickoIme[12]);
+                broj.Add(n12);
+            }
+            if (n13 < nZajednicko)
+            {
+                n13 = ZajednickoIme.Count(c => c == ZajednickoIme[13]);
+                broj.Add(n13);
+            }
+            if (n14 < nZajednicko)
+            {
+                n14 = ZajednickoIme.Count(c => c == ZajednickoIme[14]);
+                broj.Add(n14);
+            }
+            if (n15 < nZajednicko)
+            {
+                n15 = ZajednickoIme.Count(c => c == ZajednickoIme[15]);
+                broj.Add(n15);
+            }
+            if (n16 < nZajednicko)
+            {
+                n16 = ZajednickoIme.Count(c => c == ZajednickoIme[16]);
+                broj.Add(n16);
+            }
+            if (n17 < nZajednicko)
+            {
+                n17 = ZajednickoIme.Count(c => c == ZajednickoIme[17]);
+                broj.Add(n17);
+            }
+            if (n18 < nZajednicko)
+            {
+                n18 = ZajednickoIme.Count(c => c == ZajednickoIme[18]);
+                broj.Add(n18);
+            }
+            if (n19 < nZajednicko)
+            {
+                n19 = ZajednickoIme.Count(c => c == ZajednickoIme[19]);
+                broj.Add(n19);
+            }
+            if (n20 < nZajednicko)
+            {
+                n20 = ZajednickoIme.Count(c => c == ZajednickoIme[20]);
+                broj.Add(n20);
+            }
 
             List<int>broj1 = new List<int>();
             List<int>broj2 = new List<int>();
@@ -122,9 +179,7 @@ namespace KucaVjezbanje
             {
                 n++;
             }
-            int srednji = n / 2 + 1;
             int count = n / 2;
-            int suma = 0;
             int m0 = 0;
             int m1 = 1;
             int m2 = 2;
@@ -248,30 +303,28 @@ namespace KucaVjezbanje
             }
             if (n > 2 && n % 2 == 1)
             {
-                broj1.Add(broj[srednji]);
+                m20 = broj[count];
+                broj1.Add(m20);
             }
-
             int[] niz = broj1.ToArray();
-            int num = 0;
-            StringBuilder sb = new StringBuilder();
-            foreach (int single  in niz)
-            {
-                string oneNum = single.ToString();
-                sb.Append(oneNum);
-            }
-            string final = sb.ToString();
-            num = Convert.ToInt32(final);
-            niz = num.ToString().Select(t=>int.Parse(t.ToString())).ToArray();
-            broj1 = ((int[])niz).ToList();
+                int num = 0;
+                StringBuilder sb = new StringBuilder();
+                foreach (int single in niz)
+                {
+                    string oneNum = single.ToString();
+                    sb.Append(oneNum);
+                }
+                string final = sb.ToString();
+                num = Convert.ToInt32(final);
+                niz = num.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+                broj1 = ((int[])niz).ToList();
 
             int c1 = 0;
             for (int i = 0; i < broj1.Count; i++)
             {
                 c1++;
             }
-            int srednji1 = c1 / 2 + 1;
             int count1 = c1 / 2;
-            int suma1 = 0;
             int k0 = 0;
             int k1 = 1;
             int k2 = 2;
@@ -396,31 +449,38 @@ namespace KucaVjezbanje
             }
             if (c1 > 2 && c1 % 2 == 1)
             {
-                broj2.Add(broj1[srednji1]);
+                k20 = broj1[count1];
+                broj2.Add(k20);
             }
-
-            int[] niz1 = broj2.ToArray();
-            int num1 = 0;
-            StringBuilder sb1 = new StringBuilder();
-            foreach (int single1 in niz1)
+            if (c1 > 2)
             {
-                string oneNum1 = single1.ToString();
-                sb1.Append(oneNum1);
+                int[] niz1 = broj2.ToArray();
+                int num1 = 0;
+                StringBuilder sb1 = new StringBuilder();
+                foreach (int single1 in niz1)
+                {
+                    string oneNum1 = single1.ToString();
+                    sb1.Append(oneNum1);
+                }
+                string final1 = sb1.ToString();
+                num1 = Convert.ToInt32(final1);
+                niz1 = num1.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+                broj2 = ((int[])niz1).ToList();
             }
-            string final1 = sb1.ToString();
-            num1 = Convert.ToInt32(final);
-            niz1 = num1.ToString().Select(t => int.Parse(t.ToString())).ToArray();
-            broj2 = ((int[])niz1).ToList();
-
+            else
+            {
+                Console.WriteLine(Zensko + " i " + Musko + " su " + broj1[0] + broj1[1]
+                    + " posto kompatibilni.");
+                return;
+                
+            }
 
             int c2 = 0;
             for (int i = 0; i < broj2.Count; i++)
             {
                 c2++;
             }
-            int srednji2 = c2 / 2 + 1;
             int count2 = c2 / 2;
-            int suma2 = 0;
             int a0 = 0;
             int a1 = 1;
             int a2 = 2;
@@ -545,31 +605,38 @@ namespace KucaVjezbanje
             }
             if (c2 > 2 && c2 % 2 == 1)
             {
-                broj3.Add(broj2[srednji2]);
+                a20 = broj2[count2];
+                broj3.Add(a20);
             }
-
-            int[] niz2 = broj3.ToArray();
-            int num2 = 0;
-            StringBuilder sb2 = new StringBuilder();
-            foreach (int single2 in niz2)
+            if (c2 > 2)
             {
-                string oneNum2 = single2.ToString();
-                sb2.Append(oneNum2);
+                int[] niz2 = broj3.ToArray();
+                int num2 = 0;
+                StringBuilder sb2 = new StringBuilder();
+                foreach (int single2 in niz2)
+                {
+                    string oneNum2 = single2.ToString();
+                    sb2.Append(oneNum2);
+                }
+                string final2 = sb2.ToString();
+                num2 = Convert.ToInt32(final2);
+                niz2 = num2.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+                broj3 = ((int[])niz2).ToList();
             }
-            string final2 = sb2.ToString();
-            num2 = Convert.ToInt32(final);
-            niz2 = num2.ToString().Select(t => int.Parse(t.ToString())).ToArray();
-            broj3 = ((int[])niz2).ToList();
-
+            else
+            {
+                Console.WriteLine(Zensko + " i " + Musko + " su " + broj2[0] + broj2[1]
+                    + " posto kompatibilni.");
+                
+                return;
+            }
 
             int c3 = 0;
             for (int i = 0; i < broj3.Count; i++)
             {
                 c3++;
             }
-            int srednji3 = c3 / 2 + 1;
             int count3 = c3 / 2;
-            int suma3 = 0;
             int b0 = 0;
             int b1 = 1;
             int b2 = 2;
@@ -694,31 +761,37 @@ namespace KucaVjezbanje
             }
             if (c3 > 2 && c3 % 2 == 1)
             {
-                broj4.Add(broj3[srednji3]);
+                b20 = broj3[count3];
+                broj4.Add(b20);
             }
-
-            int[] niz3 = broj4.ToArray();
-            int num3 = 0;
-            StringBuilder sb3 = new StringBuilder();
-            foreach (int single3 in niz3)
+            if (c3 > 2)
             {
-                string oneNum3 = single3.ToString();
-                sb3.Append(oneNum3);
+                int[] niz3 = broj4.ToArray();
+                int num3 = 0;
+                StringBuilder sb3 = new StringBuilder();
+                foreach (int single3 in niz3)
+                {
+                    string oneNum3 = single3.ToString();
+                    sb3.Append(oneNum3);
+                }
+                string final3 = sb3.ToString();
+                num3 = Convert.ToInt32(final3);
+                niz3 = num3.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+                broj4 = ((int[])niz3).ToList();
             }
-            string final = sb3.ToString();
-            num3 = Convert.ToInt32(final);
-            niz3 = num3.ToString().Select(t => int.Parse(t.ToString())).ToArray();
-            broj4 = ((int[])niz3).ToList();
-
+            else
+            {
+                Console.WriteLine(Zensko + " i " + Musko + " su " + broj3[0] + broj3[1]
+                    + " posto kompatibilni.");
+                return;
+            }
 
             int c5 = 0;
             for (int i = 0; i < broj4.Count; i++)
             {
                 c5++;
             }
-            int srednji5 = c5 / 2 + 1;
             int count5 = c5 / 2;
-            int suma5 = 0;
             int e0 = 0;
             int e1 = 1;
             int e2 = 2;
@@ -843,31 +916,38 @@ namespace KucaVjezbanje
             }
             if (c5 > 2 && c5 % 2 == 1)
             {
-                broj6.Add(broj5[srednji5]);
+                e20 = broj5[count5];
+                broj6.Add(e20);
             }
 
-            int[] niz4 = broj5.ToArray();
-            int num4 = 0;
-            StringBuilder sb4 = new StringBuilder();
-            foreach (int single4 in niz4)
+            if (c5 > 2)
             {
-                string oneNum4 = single4.ToString();
-                sb4.Append(oneNum4);
+                int[] niz4 = broj5.ToArray();
+                int num4 = 0;
+                StringBuilder sb4 = new StringBuilder();
+                foreach (int single4 in niz4)
+                {
+                    string oneNum4 = single4.ToString();
+                    sb4.Append(oneNum4);
+                }
+                string final4 = sb4.ToString();
+                num4 = Convert.ToInt32(final4);
+                niz4 = num4.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+                broj5 = ((int[])niz4).ToList();
             }
-            string final4 = sb4.ToString();
-            num4 = Convert.ToInt32(final4);
-            niz4 = num4.ToString().Select(t => int.Parse(t.ToString())).ToArray();
-            broj5 = ((int[])niz4).ToList();
-
+            else
+            {
+                Console.WriteLine(Zensko + " i " + Musko + " su " + broj4[0] + broj4[1]
+                    + " posto kompatibilni.");
+                return;
+            }
 
             int c6 = 0;
             for (int i = 0; i < broj5.Count; i++)
             {
                 c6++;
             }
-            int srednji6 = c6 / 2 + 1;
             int count6 = c6 / 2;
-            int suma6 = 0;
             int f0 = 0;
             int f1 = 1;
             int f2 = 2;
@@ -992,22 +1072,31 @@ namespace KucaVjezbanje
             }
             if (c6 > 2 && c6 % 2 == 1)
             {
-                broj7.Add(broj6[srednji6]);
+                f20 = broj6[count6];
+                broj7.Add(f20);
             }
 
-            int[] niz5 = broj6.ToArray();
-            int num5 = 0;
-            StringBuilder sb5 = new StringBuilder();
-            foreach (int single5 in niz5)
+            if (c6 > 2)
             {
-                string oneNum5 = single5.ToString();
-                sb5.Append(oneNum5);
+                int[] niz5 = broj6.ToArray();
+                int num5 = 0;
+                StringBuilder sb5 = new StringBuilder();
+                foreach (int single5 in niz5)
+                {
+                    string oneNum5 = single5.ToString();
+                    sb5.Append(oneNum5);
+                }
+                string final5 = sb5.ToString();
+                num5 = Convert.ToInt32(final5);
+                niz5 = num5.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+                broj6 = ((int[])niz5).ToList();
             }
-            string final5 = sb5.ToString();
-            num5 = Convert.ToInt32(final5);
-            niz5 = num5.ToString().Select(t => int.Parse(t.ToString())).ToArray();
-            broj6 = ((int[])niz5).ToList();
-
+            else
+            {
+                Console.WriteLine(Zensko + " i " + Musko + " su " + broj5[0] + broj5[1]
+                    + " posto kompatibilni.");
+                return;
+            }
 
         }
     }
