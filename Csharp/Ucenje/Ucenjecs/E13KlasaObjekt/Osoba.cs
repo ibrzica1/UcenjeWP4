@@ -10,6 +10,8 @@ namespace Ucenjecs.E13KlasaObjekt
     {
         public string? Ime { get; set; }
         public string? Prezime { get; set; }
+        public int? Sifra { get; set; }
+        public Mjesto mjesto { get; set; }
 
         public string ImePrezime()
         {

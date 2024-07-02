@@ -8,5 +8,8 @@ namespace Ucenjecs
 {
     internal class Zupanija
     {
+        public string Naziv
+        { get; set; }
+        public string Drzava { get; set; }
     }
 }

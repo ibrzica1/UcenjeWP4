@@ -28,6 +28,11 @@ namespace Ucenjecs.E13KlasaObjekt
             var direktor = new Osoba { Prezime = "Kas" };
 
             Console.WriteLine(direktor.Ime?.ToUpper());
+            Osoba o = new()
+            {
+                Ime = "Ana",
+                Prezime = "Kiš"
+            };
 
 
 
