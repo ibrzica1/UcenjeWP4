@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KucaVjezbanje
 {
@@ -17,7 +18,7 @@ namespace KucaVjezbanje
              * doktora. Napiši program koji izračunava broj liječenih i neliječenih
              * pacijenata u određenom periodu. */
 
-            Console.WriteLine("Koliko dana?: ");
+           /* Console.WriteLine("Koliko dana?: ");
             int n = int.Parse(Console.ReadLine());
             int lijeceni = 0;
             int nelijeceni = 0;
@@ -45,7 +46,30 @@ namespace KucaVjezbanje
             }
             Console.WriteLine(lijeceni);
             Console.WriteLine(nelijeceni);
-            Console.WriteLine(doktori);
+            Console.WriteLine(doktori);     */
+
+            List<int> lista = new List<int>();
+            List<int> lista2 = new List<int>();
+            lista.Add(6);
+            lista.Add(11);
+            lista.Add(22);
+            lista.Add(18);
+            int broj = 0;
+            int[] array = lista.ToArray();
+            StringBuilder sb = new StringBuilder();
+            foreach (int single in array)
+            {
+                string oneNum = single.ToString();
+                sb.Append(oneNum);
+            }
+            string final = sb.ToString();
+            broj = Convert.ToInt32(final);
+           int[] array5 = broj.ToString().Select(t => int.Parse(t.ToString())).ToArray();
+            lista2 = ((int[])array5).ToList();
+
+
+
+
 
         }
     }

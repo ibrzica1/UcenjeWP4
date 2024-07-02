@@ -1,8 +1,9 @@
 ﻿using KucaVjezbanje;
-using UcenjeCS;
 
-CiklicnaTablica.Izvedi();
-/* Vj21.Izvedi(); */ 
+
+LJubavni_Kalkulator.Izvedi(); 
+/* CiklicnaTablica.Izvedi(); */
+/* Vj21.Izvedi(); */
 /* Vj20.Izvedi(); */
 /* Vj19.Izvedi(); */
 /* Vj18.Izvedi(); */
