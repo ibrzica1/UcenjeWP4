@@ -5,7 +5,11 @@ using Ucenjecs.E13KlasaObjekt;
 
 
 
-Ucenjecs.E13KlasaObjekt.Program.Izvedi();
+
+new Ucenjecs.E15RadSaStringovima.Program();
+//new Ucenjecs.E13Nasljedivanje.Program();
+
+//Ucenjecs.E13KlasaObjekt.Program.Izvedi();
 //E12Rekurzija.Izvedi();
 //E11Z1.Izvedi();
 //E11Metode.Izvedi();
