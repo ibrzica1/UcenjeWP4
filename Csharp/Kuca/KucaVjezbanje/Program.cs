@@ -1,8 +1,14 @@
-﻿using KucaVjezbanje;
+﻿
 
 
-LJubavni_Kalkulator.Izvedi(); 
-/* CiklicnaTablica.Izvedi(); */
+
+
+using KucaVjezbanje;
+
+new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
+/*Vj22.Izvedi();
+ /* LJubavni_Kalkulator.Izvedi(); */ 
+/* CiklicnaTablica.Izvedi();  */ 
 /* Vj21.Izvedi(); */
 /* Vj20.Izvedi(); */
 /* Vj19.Izvedi(); */
@@ -11,7 +17,7 @@ LJubavni_Kalkulator.Izvedi();
 /* Vj16.Izvedi(); */
 /* Vj15.Izvedi(); */
 /* Vj14.Izvedi(); */
-/* Vj13.Izvedi(); */
+/* Vj13.Izvedi(); */ 
 /* Vj12.Izvedi(); */
 /* Vj11.Izvedi(); */
 /* Vj10.Izvedi(); */
@@ -24,3 +30,37 @@ LJubavni_Kalkulator.Izvedi();
 /* Vj3.Izvedi(); */
 /* Vj2.Izvedi(); */
 /* Vj1.Izvedi(); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

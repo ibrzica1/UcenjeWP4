@@ -66,6 +66,11 @@ namespace KucaVjezbanje
             broj = Convert.ToInt32(final);
            int[] array5 = broj.ToString().Select(t => int.Parse(t.ToString())).ToArray();
             lista2 = ((int[])array5).ToList();
+            Console.WriteLine(lista[1]);
+            Console.WriteLine(lista2[1]);
+            Console.WriteLine(array[1]);
+            Console.WriteLine(array5[1]);
+            Console.WriteLine(broj);
 
 
 
