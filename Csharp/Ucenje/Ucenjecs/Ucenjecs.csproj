@@ -11,4 +11,9 @@
     <Folder Include="E18KonzolnaAplikacija\Model\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Faker.Net" Version="2.0.163" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>

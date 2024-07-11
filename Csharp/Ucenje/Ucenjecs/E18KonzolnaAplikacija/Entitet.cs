@@ -10,4 +10,10 @@ namespace Ucenjecs.E18KonzolnaAplikacija.Model
     {
         public int? Sifra { get; set; }
     }
+    public override string ToString()
+    {
+        return "Sifra=" + Sifra + " ,Naziv=" + Naziv + ", Trajanje=" + Trajanje + ", Cijena=" + Cijena +
+            ", IzvodiSeOd=" + IzvodiSeOd + ", Verificiran=" + Verificiran;
+    }
+
 }
