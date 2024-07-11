@@ -8,5 +8,7 @@ namespace Ucenjecs.E13KlasaObjekt
 {
     internal class Mjesto
     {
+        public string? Naziv { get; set; }
+        public string? PostanskiBroj { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace Ucenjecs
 {
     internal class Drzava
     {
+        public string Naziv { get; set; }
     }
 }
