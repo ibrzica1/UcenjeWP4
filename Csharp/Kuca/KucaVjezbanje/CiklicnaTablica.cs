@@ -17,27 +17,24 @@ namespace KucaVjezbanje
             int stupac = int.Parse(Console.ReadLine());
             int redak = int.Parse(Console.ReadLine());
             int redovi = redak * redak;
+            int[] brojevi = new int[redovi];
             int[,] tablica = new int[stupac,redak];
             int maxRedak = redak - 1;
             int maxStupac = stupac - 1;
             int niz = 0;
-            int maxNiz = 0;
-            tablica[maxStupac, maxRedak] = 1;
-            tablica[maxStupac, maxRedak - 1] = 2;
+
 
             for (int i = 0; i < stupac; i++)
             {
-                Console.Write("\n");
-                for (int j = 0; j < redak; j++)
+
+                 Console.Write("\n");
+                for (int j = 0;j < redak; j++)
                 {
-                    niz += 1;
-                    maxNiz = niz;
+                    tablica[i,j] = niz+=1;
                     Console.Write(tablica[i,j]);
-                }
+                } 
             }
 
-            
-            
         }
     }
 }
