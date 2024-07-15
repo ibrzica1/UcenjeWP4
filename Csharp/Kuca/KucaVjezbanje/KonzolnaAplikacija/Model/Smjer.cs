@@ -14,6 +14,11 @@ namespace KucaVjezbanje.KonzolnaAplikacija.Model
         public DateTime? IzvodiSeOd { get; set; }
         public bool? Verificiran { get; set; }
 
+        public override string ToString()
+        {
+            return "Sifra=" + Sifra + ", Naziv=" +  Naziv + ", Trajanje=" + Trajanje + ", Cijena=" + Cijena
+                + ", IzvodiSeOd=" + IzvodiSeOd + ", Verificiran=" + Verificiran;
+        }
 
     }
 }

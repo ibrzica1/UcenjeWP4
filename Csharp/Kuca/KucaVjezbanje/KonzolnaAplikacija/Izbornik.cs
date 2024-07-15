@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,17 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 {
     internal class Izbornik
     {
-        public ObradaSmjer ObradaSmjer { get; set; } = new ObradaSmjer();
+        public ObradaSmjer ObradaSmjer { get; set; }
+        public ObradaPolaznik ObradaPolaznik { get; set; } 
+        public ObradaGrupa ObradaGrupa { get; set; } 
+        
 
         public Izbornik() 
         {
+            Pomocno.DEV = true;
+            ObradaSmjer = new ObradaSmjer();
+            ObradaGrupa = new ObradaGrupa(this);
+            ObradaPolaznik = new ObradaPolaznik();
             PozdravnaPoruka();
             PrikaziIzbornik();
 
@@ -38,12 +46,29 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     ObradaSmjer.PrikaziIzbornik();
                     PrikaziIzbornik();
                     break;
+                case 2:
+                    Console.Clear();
+                    ObradaPolaznik.PrikaziIzbornik();
+                    PrikaziIzbornik();
+                    break;
 
                 case 4:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
+                    SpremiPodatke();
                     break;
 
             }
+
+        }
+
+        private void SpremiPodatke()
+        {
+            if (Pomocno.DEV)
+            {
+                return;
+            }
+
+            Console.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
 
         }
 
