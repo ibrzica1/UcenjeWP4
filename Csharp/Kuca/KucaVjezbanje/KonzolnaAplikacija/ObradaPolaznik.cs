@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,12 +58,50 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     UnosNovogPolaznika();
                     PrikaziIzbornik();
                     break;
+                    case 3:
+                    PromjeniPodatkePolaznika();
+                    PrikaziIzbornik();
+                    break;
+                    case 4:
+                    ObrisiPolaznika();
+                    PrikaziIzbornik();
+                    break;
                     case 5:
                     Console.Clear();
                     break;
 
 
             }
+
+
+        }
+
+        private void ObrisiPolaznika()
+        {
+            PrikaziPolaznike();
+            var odabrani = Polaznici[
+                Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za brisanje"
+                , 1, Polaznici.Count)
+                ];
+            if(Pomocno.UcitajBool("Dali sigurno želiš izbrisati"  + odabrani.Ime + 
+                " " + odabrani.Prezime + "? DA/NE", "da"))
+            {
+                Polaznici.Remove(odabrani);
+            }
+        }
+
+        private void PromjeniPodatkePolaznika()
+        {
+            PrikaziPolaznike();
+            var odabrani = Polaznici[
+                Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu"
+                , 1, Polaznici.Count)
+                ];
+            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šiftu smjera", 1, int.MaxValue);
+            odabrani.Ime = Pomocno.UcitajString("Unesi ime polaznika", 50, true);
+            odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true);
+            odabrani.Email = Pomocno.UcitajString("Unesi email polaznika", 50, true);
+            odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika", 50, true);
 
 
         }

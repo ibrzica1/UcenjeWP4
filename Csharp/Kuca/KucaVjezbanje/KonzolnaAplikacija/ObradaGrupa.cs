@@ -47,12 +47,48 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     UnosNoveGrupe();
                     PrikaziIzbornik();
                     break;
+                case 3:
+                    PromjeniPodatkeGrupe();
+                    PrikaziIzbornik();
+                    break;
+                case 4:
+                    ObrisiGrupu();
+                    PrikaziIzbornik();
+                    break;
                 case 5:
                     Console.Clear();
                     break;
 
 
             }
+
+        }
+
+        private void ObrisiGrupu()
+        {
+            PrikaziGrupe();
+            var g = Grupa[Pomocno.UcitajRasponBroja(
+                "Odaberi redni broj grupe za brisanje", 1, Grupa.Count) - 1];
+            if(Pomocno.UcitajBool("Jesi li siguran da želiš obrisati" + g.Naziv
+                 + "? DA/NE", "da"))
+            {
+                Grupa.Remove(g);
+            }
+        }
+
+        private void PromjeniPodatkeGrupe()
+        {
+            PrikaziGrupe();
+            var g = Grupa[Pomocno.UcitajRasponBroja(
+                "Odaberi redni broj grupe za promjenu", 1, Grupa.Count) - 1];
+            g.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru grupe", 1, int.MaxValue);
+            g.Naziv = Pomocno.UcitajString("Unesi naziv grupe", 50, true);
+            Izbornik.ObradaSmjer.PrikaziSmjerove();
+            g.Smjer = Izbornik.ObradaSmjer.Smjerovi[Pomocno.UcitajRasponBroja
+                ("Odaberi redni broj smjera", 0, Izbornik.ObradaSmjer.Smjerovi.Count) - 1];
+            g.Predavac = Pomocno.UcitajString("Unesi ime i prezime predavača", 50, true);
+            g.MaksimalnoPolaznika = Pomocno.UcitajRasponBroja("Unesi maksimalno polaznika", 1, 30);
+            g.Polaznici = UcitajPolaznike();
 
         }
 

@@ -54,23 +54,13 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
                 case 4:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
-                    SpremiPodatke();
                     break;
 
             }
 
         }
 
-        private void SpremiPodatke()
-        {
-            if (Pomocno.DEV)
-            {
-                return;
-            }
-
-            Console.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
-
-        }
+        
 
         private void PozdravnaPoruka()
         {

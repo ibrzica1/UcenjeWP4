@@ -13,8 +13,5 @@ namespace KucaVjezbanje.KonzolnaAplikacija.Model
         public string? OIB { get; set; }
         public string? Email { get; set; }
 
-
-
-
     }
 }

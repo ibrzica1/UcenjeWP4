@@ -53,11 +53,46 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     UnosNovogSmjera();
                     PrikaziIzbornik();
                     break;
+                case 3:
+                    PromjeniPostojeciSmjer();
+                    PrikaziIzbornik();
+                    break;
+                case 4:
+                    ObrisiPostojeciSmjer();
+                    PrikaziIzbornik();
+                    break;
                 case 5:
                     Console.Clear();
                     break;
 
             }
+        }
+
+        private void ObrisiPostojeciSmjer()
+        {
+            PrikaziSmjerove();
+            var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj smjera za brisanje",
+                1, Smjerovi.Count) - 1];
+
+            if(Pomocno.UcitajBool("Sigurno obrisati" + odabrani.Naziv + "? (DA/NE)", "da"))
+            {
+                Smjerovi.Remove(odabrani);
+            }
+        }
+
+        private void PromjeniPostojeciSmjer()
+        {
+            //Domača zadača prikaži staru vrijednost smjera
+            PrikaziSmjerove();
+            var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj smjera za promjenu",
+                1, Smjerovi.Count) - 1];
+            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru smjera", 1, int.MaxValue);
+            odabrani.Naziv = Pomocno.UcitajString("Unesi naziv smjera", 50, true);
+            odabrani.Trajanje = Pomocno.UcitajRasponBroja("Unesi trajanje smjera", 1, 500);
+            odabrani.Cijena = Pomocno.UcitajDecimalniBroj("Unesi cijenu smjera", 0, 10000);
+            odabrani.IzvodiSeOd = Pomocno.UcitajDatum("Unesi datum od kada se izvodi smjer", true);
+            odabrani.Verificiran = Pomocno.UcitajBool("Da li je smjer verificiran (DA/NE)", "da");
+
         }
 
         public void PrikaziSmjerove()
