@@ -8,8 +8,12 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 {
     internal class Izbornik
     {
+
+        public ObradaTure ObradaTure { get; set; }
+
         public Izbornik() 
         {
+            ObradaTure = new ObradaTure();
             PozdravnaPoruka();
             PrikaziIzbornik();
         
@@ -31,8 +35,13 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             {
                 case 1:
                     Console.Clear();
+                    ObradaTure.PrikaziIzbornik();
+                    PrikaziIzbornik();
+                    break;
 
-
+                case 4:
+                    Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
+                    break;
             }
 
         }

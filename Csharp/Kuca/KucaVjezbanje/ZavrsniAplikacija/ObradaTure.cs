@@ -10,6 +10,11 @@ namespace KucaVjezbanje.ZavrsniAplikacija
     internal class ObradaTure
     {
         public List<Ture> Tura {  get; set; }
+        public ObradaTure()
+        {
+            Tura = new List<Ture>();
+
+        }
 
 
         public void PrikaziIzbornik()
@@ -31,8 +36,17 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     PrikaziTure();
                     PrikaziIzbornik();
                     break;
+                
                 case 2:
                     UnosNoveTure();
+                    PrikaziIzbornik();
+                    break;
+                case 3:
+                    PromjeniPodatkeTure();
+                    PrikaziIzbornik();
+                    break;
+                case 4:
+                    ObrisiTuru();
                     PrikaziIzbornik();
                     break;
 
@@ -40,8 +54,40 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
         }
 
+        private void ObrisiTuru()
+        {
+            PrikaziTure();
+            var odabrani = Tura[Pomocno.UcitajRasponBroja
+                ("Unesi redni broj ture za brisanje", 1, Tura.Count) - 1];
+
+        }
+
+        private void PromjeniPodatkeTure()
+        {
+            PrikaziTure();
+            var odabrani = Tura[Pomocno.UcitajRasponBroja
+                ("Odaberi redni broj ture", 1, Tura.Count) - 1];
+            odabrani.Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture", 1, int.MaxValue);
+            odabrani.Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue);
+            odabrani.Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue);
+            odabrani.Datum = Pomocno.UcitajDatum("Unesi datum početka ture i datum zavšetka ture");
+            odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue);
+        }
+
         private void UnosNoveTure()
         {
+            Console.WriteLine("******************************************");
+            Console.WriteLine("****  Unesite tražene podatke o turi  ****");
+            Tura.Add(new Ture()
+            {
+                Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture",1,int.MaxValue),
+                Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre",0,float.MaxValue),
+                Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara",0,float.MaxValue),
+                Datum = Pomocno.UcitajDatum("Unesi datum početka ture i datum zavšetka ture"),
+                Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva",0,float.MaxValue),
+
+
+            });
 
 
         }
@@ -50,9 +96,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             Console.WriteLine("***********************");
             Console.WriteLine("** Ture u aplikaciji **");
+            int rb = 0;
             foreach (var s in Tura)
             {
-                Console.WriteLine("Tura ID " + s.Tura_ID + ", datum: " + s.Datum);
+                Console.WriteLine(++rb + "Tura ID " + s.Tura_ID + ", datum: " + s.Datum);
             }
             Console.WriteLine("***********************");
         }
