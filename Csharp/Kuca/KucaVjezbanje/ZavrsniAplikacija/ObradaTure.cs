@@ -49,6 +49,9 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     ObrisiTuru();
                     PrikaziIzbornik();
                     break;
+                case 5:
+                    Console.Clear();
+                    break;
 
 
             }
@@ -59,7 +62,11 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             PrikaziTure();
             var odabrani = Tura[Pomocno.UcitajRasponBroja
                 ("Unesi redni broj ture za brisanje", 1, Tura.Count) - 1];
+            if(Pomocno.UcitajBool("Sigurno obrisati turu" + odabrani.Tura_ID + "? (DA/NE)","da"))
+            {
 
+                Tura.Remove(odabrani);
+            }
         }
 
         private void PromjeniPodatkeTure()
@@ -70,7 +77,8 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             odabrani.Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture", 1, int.MaxValue);
             odabrani.Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue);
             odabrani.Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue);
-            odabrani.Datum = Pomocno.UcitajDatum("Unesi datum početka ture i datum zavšetka ture");
+            odabrani.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture");
+            odabrani.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture");
             odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue);
         }
 
@@ -83,7 +91,8 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture",1,int.MaxValue),
                 Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre",0,float.MaxValue),
                 Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara",0,float.MaxValue),
-                Datum = Pomocno.UcitajDatum("Unesi datum početka ture i datum zavšetka ture"),
+                Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture"),
+                Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture"),
                 Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva",0,float.MaxValue),
 
 
@@ -99,7 +108,8 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             int rb = 0;
             foreach (var s in Tura)
             {
-                Console.WriteLine(++rb + "Tura ID " + s.Tura_ID + ", datum: " + s.Datum);
+                Console.WriteLine(++rb + "Tura ID " + s.Tura_ID + ", datum početka: " + s.Datum_Pocetak
+                    + ", datum zavšetka: " + s.Datum_Zavsetak);
             }
             Console.WriteLine("***********************");
         }
