@@ -10,7 +10,9 @@ namespace KucaVjezbanje
     internal class Vj22
     { public static void Izvedi()
         {
-           
+            string r;
+            r = Console.ReadLine().ToUpper();
+            Console.WriteLine(r);
 
         }
 
