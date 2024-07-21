@@ -49,6 +49,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 Console.WriteLine("Format unosa je yyyy-MM-dd, za današnji datum {0}",
                     DateTime.Now.ToString("yyyy-MM-dd"));
                 Console.WriteLine(poruka + ": ");
+                
                 datum = DateTime.Parse(Console.ReadLine());
                 return datum;
             }

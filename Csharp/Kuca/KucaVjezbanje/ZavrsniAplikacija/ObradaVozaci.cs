@@ -1,4 +1,5 @@
 ﻿using KucaVjezbanje.ZavrsniAplikacija.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,11 +52,26 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 5:
                     Console.Clear();
+                    SpremiPodatke();
                     break;
 
 
             }
 
+
+        }
+
+        private void SpremiPodatke()
+            
+        {
+            
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Vozaci.json"));
+            
+            outputFile.WriteLine(JsonConvert.SerializeObject(Vozac));
+            outputFile.Close();
 
         }
 
@@ -110,7 +126,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             int rb = 0;
             foreach(var v in Vozac)
             {
-                Console.Write(++rb + ". Vozac_ID: " + v.Vozac_ID + " Ime: "
+                Console.WriteLine(++rb + ". Vozac_ID: " + v.Vozac_ID + " Ime: "
                     + v.Ime + " Prezime: " + v.Prezime );
 
             }

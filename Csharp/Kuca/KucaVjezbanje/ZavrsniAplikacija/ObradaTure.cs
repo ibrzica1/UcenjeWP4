@@ -80,6 +80,9 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             odabrani.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture");
             odabrani.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture");
             odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue);
+            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue);
+            odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, int.MaxValue);
+
         }
 
         private void UnosNoveTure()
@@ -88,13 +91,14 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             Console.WriteLine("****  Unesite tražene podatke o turi  ****");
             Tura.Add(new Ture()
             {
-                Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture",1,int.MaxValue),
-                Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre",0,float.MaxValue),
-                Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara",0,float.MaxValue),
+                Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture", 1, int.MaxValue),
+                Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue),
+                Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue),
                 Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture"),
                 Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture"),
-                Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva",0,float.MaxValue),
-
+                Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue),
+                Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue),
+                Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača",1, int.MaxValue)
 
             });
 
