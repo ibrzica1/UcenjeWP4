@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using KucaVjezbanje.ZavrsniAplikacija.Model;
+using KucaVjezbanje.ZavrsniAplikacija;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KucaVjezbanje.KonzolnaAplikacija.Model;
 
 namespace KucaVjezbanje.KonzolnaAplikacija
 {
@@ -16,14 +19,27 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
         public Izbornik() 
         {
-            Pomocno.DEV = true;
+            /*Pomocno.DEV = true;*/
             ObradaSmjer = new ObradaSmjer();
             ObradaGrupa = new ObradaGrupa(this);
             ObradaPolaznik = new ObradaPolaznik();
+            UcitajPodatke();
             PozdravnaPoruka();
             PrikaziIzbornik();
 
 
+        }
+
+        private void UcitajPodatke()
+        {
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (File.Exists(Path.Combine(docPath, "Smjerovi.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Smjerovi.json"));
+                ObradaSmjer.Smjerovi = JsonConvert.DeserializeObject<List<Smjer>>(file.ReadToEnd());
+            }
         }
 
         private void PrikaziIzbornik()
@@ -54,19 +70,29 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
                 case 4:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
+                    SpremiPodatke();
                     break;
 
             }
 
         }
 
-        
+        private void SpremiPodatke()
+        {
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Smjerovi.json"));
+            outputFile.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
+            outputFile.Close();
+        }
 
         private void PozdravnaPoruka()
         {
             Console.WriteLine("********************************");
             Console.WriteLine("***Edunova Console App v 1.0 ***");
             Console.WriteLine("********************************");
+
+           
         }
     }
 }
