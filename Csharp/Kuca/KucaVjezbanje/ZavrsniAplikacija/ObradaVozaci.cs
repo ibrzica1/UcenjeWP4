@@ -10,9 +10,9 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 {
     internal class ObradaVozaci
     {
-        public List<Vozaci> Vozac { get; set; }
+        internal List<Vozaci> Vozac { get; set; }
 
-        public ObradaVozaci() 
+        internal ObradaVozaci() 
         {
          Vozac = new List<Vozaci>();
         
@@ -40,14 +40,17 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 2:
                     UnosNovogVazaca();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 3:
                     IzmjenaPodatakaVozaca();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 4:
                     IzbrisiVozaca();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 5:
@@ -99,7 +102,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             odabrani.Istek_Ugovora = Pomocno.UcitajIstekUgovora("Unesi istek ugovora");
 
         }
-
+        
         private void UnosNovogVazaca()
         {
             Console.WriteLine("**************************************");
@@ -107,7 +110,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             Console.WriteLine("                                      ");
             Vozac.Add(new()
             {
-                Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača",1,int.MaxValue),
+                Vozac_ID = KontrolaSifre("Unesi šifru vozača",1,int.MaxValue),
                 Ime = Pomocno.UcitajString("Unesi ime vozača",50),
                 Prezime = Pomocno.UcitajString("Unesi prezime vozača",50),
                 Datum_rodenja = Pomocno.UcitajDatumRođenja("Unesi datum rođenja"),
@@ -118,6 +121,40 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         }
 
+        private int? KontrolaSifre(string poruka, int min, int max)
+        {
+            int b;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka + ": ");
+                    b = int.Parse(Console.ReadLine());
+                    var staro = Vozac[b];
+
+                    if (b < min || b > max)
+                    {
+                        throw new Exception();
+                    }
+                    foreach (var p in Vozac)
+                    {
+                        if (p.Vozac_ID == b)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    return b;
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti u rasponu " +
+                        "{0} do {1} ili već postoji", min, max);
+                }
+
+            }
+        }
+
         private void PrikaziVozace()
         {
             Console.WriteLine("***************************");
@@ -126,8 +163,8 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             int rb = 0;
             foreach(var v in Vozac)
             {
-                Console.WriteLine(++rb + ". Vozac_ID: " + v.Vozac_ID + " Ime: "
-                    + v.Ime + " Prezime: " + v.Prezime );
+                Console.WriteLine(++rb + ". Vozac_ID: " + v.Vozac_ID + ", Ime: "
+                    + v.Ime + ", Prezime: " + v.Prezime );
 
             }
             Console.WriteLine("                            ");

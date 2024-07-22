@@ -1,15 +1,11 @@
 ﻿using KucaVjezbanje.ZavrsniAplikacija.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace KucaVjezbanje.ZavrsniAplikacija
 {
     internal class ObradaKamioni
     {
-        public List<Kamioni> Kamion {  get; set; }
+        public List<Kamioni> Kamion { get; set; }
 
         public ObradaKamioni()
         {
@@ -29,7 +25,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberi stavku izbornika",1,5))
+            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika", 1, 5))
             {
                 case 1:
                     PrikaziKamione();
@@ -37,23 +33,38 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 2:
                     UnosNovogKamiona();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 3:
                     IzmjenaPodatakaKamiona();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 4:
                     IzbrisiKamion();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 5:
                     Console.Clear();
+                    SpremiPodatke();
                     break;
 
 
 
             }
+        }
+
+        private void SpremiPodatke()
+        {
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Kamioni.json"));
+
+            outputFile.WriteLine(JsonConvert.SerializeObject(Kamion));
+            outputFile.Close();
         }
 
         private void IzbrisiKamion()
@@ -68,25 +79,61 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             PrikaziKamione();
             var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj kamiona", 1, Kamion.Count) - 1];
-                odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue);
-                odabrani.Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila", 1, 12);
-                odabrani.Marka = Pomocno.UcitajString("Unesi marku vozila", 30);
-                odabrani.Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje");
-                odabrani.Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva", 0, float.MaxValue);
+            var staro = odabrani;
+            Console.WriteLine(staro.Kamion_ID);
+            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue);
+            odabrani.Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila", 1, 12);
+            odabrani.Marka = Pomocno.UcitajString("Unesi marku vozila", 30);
+            odabrani.Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje");
+            odabrani.Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva", 0, float.MaxValue);
         }
 
         private void UnosNovogKamiona()
         {
             Kamion.Add(new Kamioni()
             {
-                Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona",1,int.MaxValue),
-                Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila",1,12),
-                Marka = Pomocno.UcitajString("Unesi marku vozila",30),
+                Kamion_ID = KontrolaSifra("Unesi šifru kamiona", 1, int.MaxValue),
+                Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila", 1, 12),
+                Marka = Pomocno.UcitajString("Unesi marku vozila", 30),
                 Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje"),
-                Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva",0,float.MaxValue)
+                Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva", 0, float.MaxValue)
 
             }
                 );
+        }
+
+        private int? KontrolaSifra(string poruka, int min, int max)
+        {
+            int b;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka + ": ");
+                    b = int.Parse(Console.ReadLine());
+                    var staro = Kamion[b];
+
+                    if (b < min || b > max)
+                    {
+                        throw new Exception();
+                    }
+                    foreach (var p in Kamion)
+                    {
+                        if (p.Kamion_ID == b)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    return b;
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti u rasponu " +
+                        "{0} do {1} ili već postoji", min, max);
+                }
+
+            }
         }
 
         private void PrikaziKamione()
@@ -95,9 +142,9 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             Console.WriteLine("*** Kamioni u aplikaciji ***");
             Console.WriteLine("                            ");
             int rb = 0;
-            foreach(var kamion in Kamion)
+            foreach (var kamion in Kamion)
             {
-                Console.WriteLine(++rb + ". " + kamion.Marka + " " + kamion.Reg_Oznaka);
+                Console.WriteLine(++rb + ". Marka: " + kamion.Marka + ", Registracija: " + kamion.Reg_Oznaka);
             }
             Console.WriteLine("                            ");
             Console.WriteLine("****************************");

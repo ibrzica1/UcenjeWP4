@@ -1,4 +1,5 @@
 ﻿using KucaVjezbanje.ZavrsniAplikacija.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 {
     internal class ObradaTure
     {
-        public List<Ture> Tura {  get; set; }
+        public List<Ture> Tura { get; set; }
+
         public ObradaTure()
         {
             Tura = new List<Ture>();
@@ -30,58 +32,108 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberi stavku izbornika",1,5))
+            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika", 1, 5))
             {
                 case 1:
                     PrikaziTure();
                     PrikaziIzbornik();
                     break;
-                
+
                 case 2:
                     UnosNoveTure();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 3:
                     PromjeniPodatkeTure();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 4:
                     ObrisiTuru();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 5:
                     Console.Clear();
+                   SpremiPodatke();
                     break;
 
 
             }
         }
 
+       private void SpremiPodatke()
+        {
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Ture.json"));
+            outputFile.WriteLine(JsonConvert.SerializeObject(Tura));
+            outputFile.Close();
+        }
+       
         private void ObrisiTuru()
         {
             PrikaziTure();
             var odabrani = Tura[Pomocno.UcitajRasponBroja
                 ("Unesi redni broj ture za brisanje", 1, Tura.Count) - 1];
-            if(Pomocno.UcitajBool("Sigurno obrisati turu" + odabrani.Tura_ID + "? (DA/NE)","da"))
+            if (Pomocno.UcitajBool("Sigurno obrisati turu" + odabrani.Tura_ID + "? (DA/NE)", "da"))
             {
-
+                
                 Tura.Remove(odabrani);
             }
         }
 
-        private void PromjeniPodatkeTure()
+        public void PromjeniPodatkeTure()
         {
             PrikaziTure();
             var odabrani = Tura[Pomocno.UcitajRasponBroja
                 ("Odaberi redni broj ture", 1, Tura.Count) - 1];
             odabrani.Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture", 1, int.MaxValue);
+           //odabrani.Tura_ID = KontrolaSifre("Unesi ID ture",1, int.MaxValue);
+            odabrani.Relacija = Pomocno.UcitajString("Unesi relaciju ture", 30);
             odabrani.Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue);
             odabrani.Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue);
             odabrani.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture");
             odabrani.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture");
             odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue);
             odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue);
-            odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, int.MaxValue);
+            odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, int.MaxValue); 
+
+        }
+
+        private int? KontrolaSifre(string poruka, int min, int max)
+        {
+            int b;
+            while (true)
+            {  
+                try
+                {
+                    Console.WriteLine(poruka + ": ");
+                    b = int.Parse(Console.ReadLine());
+                    var staro = Tura[b];
+                    
+                    if (b < min || b > max)
+                    {
+                        throw new Exception();
+                    }
+                    foreach ( var p in Tura)
+                    {
+                        if(p.Tura_ID == b)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    return b;
+
+                }
+                catch 
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti u rasponu " +
+                        "{0} do {1} ili već postoji", min, max);
+                }
+                
+            }
 
         }
 
@@ -89,9 +141,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             Console.WriteLine("******************************************");
             Console.WriteLine("****  Unesite tražene podatke o turi  ****");
-            Tura.Add(new Ture()
+            Tura.Add(new()
             {
-                Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture", 1, int.MaxValue),
+                Tura_ID = KontrolaSifre("Unesi ID ture", 1, int.MaxValue),
+                Relacija = Pomocno.UcitajString("Unesi relaciju ture",30),
                 Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue),
                 Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue),
                 Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture"),
@@ -112,10 +165,11 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             int rb = 0;
             foreach (var s in Tura)
             {
-                Console.WriteLine(++rb + "Tura ID " + s.Tura_ID + ", datum početka: " + s.Datum_Pocetak
-                    + ", datum zavšetka: " + s.Datum_Zavsetak);
+                Console.WriteLine(++rb + ". " + "Tura ID: " + s.Tura_ID + "  Relacija: " + s.Relacija + "  datum početka: " + s.Datum_Pocetak
+                    );
             }
             Console.WriteLine("***********************");
         }
     }
 }
+

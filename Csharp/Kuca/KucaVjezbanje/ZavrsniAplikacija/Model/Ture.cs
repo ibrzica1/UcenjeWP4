@@ -9,6 +9,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija.Model
     internal class Ture
     {
         public int? Tura_ID { get; set; }
+        public string? Relacija { get; set; }
         public double? Prijedeni_Km { get; set; }
         public double? Udaljenost { get; set; }
         public DateTime? Datum_Pocetak { get; set; }

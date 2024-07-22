@@ -26,7 +26,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
 
         }
-
+        
         private void UcitajPodatke()
         {
             string docPath =
@@ -44,6 +44,12 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
                 ObradaVozaci.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
                 file.Close();   
+            }
+            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
+                ObradaKamioni.Kamion = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
+                file.Close();
             }
         }
 
@@ -78,22 +84,12 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 4:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
-                    SpremiPodatke();
                     break;
             }
 
         }
 
-        private void SpremiPodatke()
-        {
-            /*Console.WriteLine(JsonConvert.SerializeObject(ObradaTure.Tura));*/
-            string docPath =
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath,"Ture.json"));
-            outputFile.WriteLine(JsonConvert.SerializeObject(ObradaTure.Tura));
-            outputFile.Close();
-        }
-
+       
         private void PozdravnaPoruka()
         {
             Console.WriteLine("****************************");

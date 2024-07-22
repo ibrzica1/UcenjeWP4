@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KucaVjezbanje.ZavrsniAplikacija.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,14 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 {
     public class Pomocno
     {
-
-
-
-
+        ObradaVozaci Vozac { get; set; }
+        public Pomocno() 
+        {
+            Vozac = new ObradaVozaci();
+        }
+        
+        
+        
         internal static DateTime? UcitajDatumRođenja(string poruka)
         {
             DateTime rodenje;
@@ -27,9 +32,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     if (rodenje > DateTime.Now.AddDays(-6570))
                     {
                         throw new Exception();
-
+                        
                     }
                     return rodenje;
+                    
                 }
                 catch
                 {
@@ -40,7 +46,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
         }
 
-        public static DateTime? UcitajDatumTura(string poruka)
+        internal static DateTime? UcitajDatumTura(string poruka)
         {
 
             DateTime datum;
@@ -122,6 +128,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                         throw new Exception();
                     }
                     return b;
+                    
 
                 }
                 catch

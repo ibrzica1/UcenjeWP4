@@ -48,6 +48,11 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
         }
 
+        internal static DateTime? UcitajDatumTura(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static float? UcitajDecimalniBroj(string poruka, int min, float max)
         {
             float b;
