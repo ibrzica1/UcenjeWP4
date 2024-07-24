@@ -56,12 +56,42 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     PrikaziIzbornik();
                     break;
                 case 5:
+                    ObrisiPolaznikaGrupe();
+                    PrikaziIzbornik();
+                    break;
+                case 6:
                     Console.Clear();
                     break;
 
 
             }
 
+        }
+
+        private void ObrisiPolaznikaGrupe()
+        {
+            PrikaziGrupe();
+            var OdabranaGrupa = Grupa[Pomocno.UcitajRasponBroja(
+                "Unesi redni broj grupe za brisanje polaznika:", 1, Grupa.Count)];
+            List<Polaznik> Odabrani = new List<Polaznik>();
+            int rb = 0;
+            foreach(var g in OdabranaGrupa.Polaznici)
+            {
+                Odabrani.Add(g);
+            }
+            foreach(var b in Odabrani)
+            {
+                Console.WriteLine(++rb + ": " + b.Ime + " " + b.Prezime
+                     + ", OIB: " + b.OIB);
+            }
+            var obrisani = Odabrani[Pomocno.UcitajRasponBroja(
+                "Unesi redni broj polaznika za brisanje: ",1,Odabrani.Count)];
+            if(Pomocno.UcitajBool("Jesi li siguran da želiš obrisati " + obrisani.Ime
+                 + " " + obrisani.Prezime + "? DA/NE", "da"))
+            {
+                Odabrani.Remove(obrisani);
+            }
+                
         }
 
         private void ObrisiGrupu()
