@@ -1,4 +1,6 @@
 ﻿using KucaVjezbanje.KonzolnaAplikacija.Model;
+using KucaVjezbanje.ZavrsniAplikacija.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +65,21 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     break;
                 case 5:
                     Console.Clear();
+                    SpremiPodatke();
                     break;
 
             }
+        }
+
+        private void SpremiPodatke()
+        {
+            string docPath =
+               Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Smjerovi.json"));
+
+            outputFile.WriteLine(JsonConvert.SerializeObject(Smjerovi));
+            outputFile.Close();
         }
 
         private void ObrisiPostojeciSmjer()

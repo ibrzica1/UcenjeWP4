@@ -1,4 +1,6 @@
 ﻿using KucaVjezbanje.KonzolnaAplikacija.Model;
+using KucaVjezbanje.ZavrsniAplikacija.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
     {
         public List<Grupa>Grupa { get; set; }
         private Izbornik Izbornik;
+        private ObradaPolaznik ObradaPolaznik;
 
         public ObradaGrupa()
         {
@@ -30,7 +33,8 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("2. Unos nove grupe");
             Console.WriteLine("3. Promjena podataka postojeće grupe");
             Console.WriteLine("4. Brisanje grupe");
-            Console.WriteLine("5. Povratak na glavni izbornik");
+            Console.WriteLine("5. Brisanje Polaznika grupe");
+            Console.WriteLine("6. Povratak na glavni izbornik");
             OdabirOpcijeIzbornika();
 
         }
@@ -45,22 +49,27 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     break;
                 case 2:
                     UnosNoveGrupe();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 3:
                     PromjeniPodatkeGrupe();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 4:
                     ObrisiGrupu();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 5:
                     ObrisiPolaznikaGrupe();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 6:
                     Console.Clear();
+                    SpremiPodatke();
                     break;
 
 
@@ -68,11 +77,22 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
         }
 
+        private void SpremiPodatke()
+        {
+            string docPath =
+               Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Grupe.json"));
+
+            outputFile.WriteLine(JsonConvert.SerializeObject(Grupa));
+            outputFile.Close();
+        }
+
         private void ObrisiPolaznikaGrupe()
         {
             PrikaziGrupe();
             var OdabranaGrupa = Grupa[Pomocno.UcitajRasponBroja(
-                "Unesi redni broj grupe za brisanje polaznika:", 1, Grupa.Count)];
+                "Unesi redni broj grupe za brisanje polaznika:", 1, Grupa.Count)-1];
             List<Polaznik> Odabrani = new List<Polaznik>();
             int rb = 0;
             foreach(var g in OdabranaGrupa.Polaznici)
@@ -85,7 +105,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                      + ", OIB: " + b.OIB);
             }
             var obrisani = Odabrani[Pomocno.UcitajRasponBroja(
-                "Unesi redni broj polaznika za brisanje: ",1,Odabrani.Count)];
+                "Unesi redni broj polaznika za brisanje: ",1,Odabrani.Count)-1];
             if(Pomocno.UcitajBool("Jesi li siguran da želiš obrisati " + obrisani.Ime
                  + " " + obrisani.Prezime + "? DA/NE", "da"))
             {
@@ -143,9 +163,15 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         private List<Polaznik> UcitajPolaznike()
         {
             List<Polaznik> lista = new List<Polaznik>();
-            while(Pomocno.UcitajBool("Za unos polaznika unesi DA", "da"))
+            if(Pomocno.UcitajBool("Za unos polaznika unesi DA", "da"))
             {
                 Izbornik.ObradaPolaznik.PrikaziPolaznike();
+                var odabrani = Izbornik.ObradaPolaznik.Polaznici[Pomocno.UcitajRasponBroja("Unesi redni broj polaznika" +
+                    "za unošenjeu grupu", 1, int.MaxValue)];
+                lista.Add(odabrani);
+                UcitajPolaznike();
+                   
+                 
             }
 
             return lista;

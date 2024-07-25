@@ -1,4 +1,6 @@
 ﻿using KucaVjezbanje.KonzolnaAplikacija.Model;
+using KucaVjezbanje.ZavrsniAplikacija.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,24 +58,39 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     break;
                     case 2:
                     UnosNovogPolaznika();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                     case 3:
                     PromjeniPodatkePolaznika();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                     case 4:
                     ObrisiPolaznika();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                     case 5:
                     Console.Clear();
+                    SpremiPodatke();
                     break;
 
 
             }
 
 
+        }
+
+        private void SpremiPodatke()
+        {
+            string docPath =
+               Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Polaznik.json"));
+
+            outputFile.WriteLine(JsonConvert.SerializeObject(Polaznici));
+            outputFile.Close();
         }
 
         private void ObrisiPolaznika()
@@ -95,7 +112,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             PrikaziPolaznike();
             var odabrani = Polaznici[
                 Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu"
-                , 1, Polaznici.Count)
+                , 1, Polaznici.Count)-1
                 ];
             odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šiftu smjera", 1, int.MaxValue);
             odabrani.Ime = Pomocno.UcitajString("Unesi ime polaznika", 50, true);

@@ -39,8 +39,22 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             {
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Smjerovi.json"));
                 ObradaSmjer.Smjerovi = JsonConvert.DeserializeObject<List<Smjer>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Polaznik.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Polaznik.json"));
+                ObradaPolaznik.Polaznici = JsonConvert.DeserializeObject<List<Polaznik>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Grupe.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Grupe.json"));
+                ObradaGrupa.Grupa = JsonConvert.DeserializeObject<List<Grupa>>(file.ReadToEnd());
+                file.Close();
             }
         }
+
 
         private void PrikaziIzbornik()
         {
@@ -67,24 +81,20 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     ObradaPolaznik.PrikaziIzbornik();
                     PrikaziIzbornik();
                     break;
-
+                case 3:
+                    Console.Clear();
+                    ObradaGrupa.PrikaziIzbornik();
+                    PrikaziIzbornik();
+                    break;
                 case 4:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
-                    SpremiPodatke();
                     break;
 
             }
 
         }
 
-        private void SpremiPodatke()
-        {
-            string docPath =
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Smjerovi.json"));
-            outputFile.WriteLine(JsonConvert.SerializeObject(ObradaSmjer.Smjerovi));
-            outputFile.Close();
-        }
+        
 
         private void PozdravnaPoruka()
         {
