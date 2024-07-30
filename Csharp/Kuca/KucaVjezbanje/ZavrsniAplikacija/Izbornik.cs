@@ -53,13 +53,14 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
         }
 
-        private void PrikaziIzbornik()
+        public void PrikaziIzbornik()
         {
             Console.WriteLine("Glavni izbornik");
             Console.WriteLine("1. Ture");
             Console.WriteLine("2. Vozači");
             Console.WriteLine("3. Kamioni");
-            Console.WriteLine("4. Izađi iz programa");
+            Console.WriteLine("4. Statistika");
+            Console.WriteLine("5. Izađi iz programa");
             OdabirOpcijeIzbornika();
         }
 
@@ -83,6 +84,9 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     PrikaziIzbornik();
                     break;
                 case 4:
+                    Console.Clear();
+                    break;
+                case 5:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
                     break;
             }

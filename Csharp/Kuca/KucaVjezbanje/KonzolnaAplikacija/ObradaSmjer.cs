@@ -53,14 +53,17 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     break;
                 case 2:
                     UnosNovogSmjera();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 3:
                     PromjeniPostojeciSmjer();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 4:
                     ObrisiPostojeciSmjer();
+                    SpremiPodatke();
                     PrikaziIzbornik();
                     break;
                 case 5:

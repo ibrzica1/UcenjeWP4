@@ -79,13 +79,11 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             PrikaziKamione();
             var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj kamiona", 1, Kamion.Count) - 1];
-            var staro = odabrani;
-            Console.WriteLine(staro.Kamion_ID);
-            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue);
-            odabrani.Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila", 1, 12);
-            odabrani.Marka = Pomocno.UcitajString("Unesi marku vozila", 30);
-            odabrani.Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje");
-            odabrani.Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva", 0, float.MaxValue);
+            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona",odabrani.Kamion_ID, 1, int.MaxValue);
+            odabrani.Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila",odabrani.Reg_Oznaka, 1, 12);
+            odabrani.Marka = Pomocno.UcitajString("Unesi marku vozila",odabrani.Marka, 30);
+            odabrani.Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje",odabrani.Godina_Proizvodnje);
+            odabrani.Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva",odabrani.Prosjecna_Potrosnja_Goriva, 0, float.MaxValue);
         }
 
         private void UnosNovogKamiona()

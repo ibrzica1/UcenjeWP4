@@ -92,17 +92,20 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void IzmjenaPodatakaVozaca()
         {
-            PrikaziVozace();
-            var odabrani = Vozac[Pomocno.UcitajRasponBroja
-                ("Odaberi redni broj vozača", 1, Vozac.Count) - 1];
-            odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, int.MaxValue);
-            odabrani.Ime = Pomocno.UcitajString("Unesi ime vozača", 50);
-            odabrani.Prezime = Pomocno.UcitajString("Unesi prezime vozača", 50);
-            odabrani.Datum_rodenja = Pomocno.UcitajDatumRođenja("Unesi datum rođenja");
-            odabrani.Istek_Ugovora = Pomocno.UcitajIstekUgovora("Unesi istek ugovora");
-
+           
+                PrikaziVozace();
+                var odabrani = Vozac[Pomocno.UcitajRasponBroja
+                    ("Odaberi redni broj vozača", 1, Vozac.Count) - 1];
+                odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača", odabrani.Vozac_ID, 1, int.MaxValue);
+            
+                odabrani.Ime = Pomocno.UcitajString("Unesi ime vozača",odabrani.Ime, 50);
+                odabrani.Prezime = Pomocno.UcitajString("Unesi prezime vozača",odabrani.Prezime, 50);
+                odabrani.Datum_rodenja = Pomocno.UcitajDatumRođenja("Unesi datum rođenja",odabrani.Datum_rodenja);
+                odabrani.Istek_Ugovora = Pomocno.UcitajIstekUgovora("Unesi istek ugovora",odabrani.Istek_Ugovora);
+           
         }
-        
+
+
         private void UnosNovogVazaca()
         {
             Console.WriteLine("**************************************");
