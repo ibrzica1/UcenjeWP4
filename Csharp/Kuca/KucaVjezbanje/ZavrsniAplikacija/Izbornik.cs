@@ -10,12 +10,14 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 {
     internal class Izbornik
     {
+        public ObradaStatistika ObradaStatistika { get; set; }
         public ObradaKamioni ObradaKamioni { get; set; }
         public ObradaVozaci ObradaVozaci { get; set; }
         public ObradaTure ObradaTure { get; set; }
 
         public Izbornik() 
         {
+            ObradaStatistika = new ObradaStatistika();  
             ObradaKamioni = new ObradaKamioni();
             ObradaVozaci = new ObradaVozaci();
             ObradaTure = new ObradaTure();
@@ -85,6 +87,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 4:
                     Console.Clear();
+                    ObradaStatistika.PrikaziIzbornik();
                     break;
                 case 5:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
