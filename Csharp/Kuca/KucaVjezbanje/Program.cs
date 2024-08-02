@@ -5,11 +5,12 @@
 
 using KucaVjezbanje;
 
-new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
+//new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
 //new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
 /*Vj22.Izvedi();*/
- /* LJubavni_Kalkulator.Izvedi(); */ 
-/* CiklicnaTablica.Izvedi();  */ 
+/* LJubavni_Kalkulator.Izvedi(); */
+/* CiklicnaTablica.Izvedi();  */
+Vj23.Izvedi();
 /* Vj21.Izvedi(); */
 /* Vj20.Izvedi(); */
 /* Vj19.Izvedi(); */
