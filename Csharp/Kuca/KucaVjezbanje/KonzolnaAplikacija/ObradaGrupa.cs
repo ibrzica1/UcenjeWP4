@@ -159,15 +159,15 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
             Grupa.Add(g);
         }
-
+        List<Polaznik> lista = new List<Polaznik>();
         private List<Polaznik> UcitajPolaznike()
         {
-            List<Polaznik> lista = new List<Polaznik>();
+            
             if(Pomocno.UcitajBool("Za unos polaznika unesi DA", "da"))
             {
                 Izbornik.ObradaPolaznik.PrikaziPolaznike();
                 var odabrani = Izbornik.ObradaPolaznik.Polaznici[Pomocno.UcitajRasponBroja("Unesi redni broj polaznika" +
-                    "za unošenjeu grupu", 1, int.MaxValue)];
+                    "za unošenje u grupu", 1, int.MaxValue)];
                 lista.Add(odabrani);
                 UcitajPolaznike();
                    
@@ -188,6 +188,14 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     " (" + g.Smjer?.Naziv + ")");
             }
             Console.WriteLine("********************");
+        }
+        public void BrojPolaznikaGrupe()
+        {
+            int rb = 0;
+            foreach (var g in Grupa)
+            {
+                Console.WriteLine(++rb + " " + g.Polaznici);
+            }
         }
     }
 }

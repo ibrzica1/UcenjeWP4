@@ -14,12 +14,14 @@ namespace KucaVjezbanje.KonzolnaAplikacija
     {
         public ObradaSmjer ObradaSmjer { get; set; }
         public ObradaPolaznik ObradaPolaznik { get; set; } 
-        public ObradaGrupa ObradaGrupa { get; set; } 
-        
+        public ObradaGrupa ObradaGrupa { get; set; }
+        public ObradaStatistika ObradaStatistika { get; set; }
+
 
         public Izbornik() 
         {
             /*Pomocno.DEV = true;*/
+            ObradaStatistika = new ObradaStatistika();
             ObradaSmjer = new ObradaSmjer();
             ObradaGrupa = new ObradaGrupa(this);
             ObradaPolaznik = new ObradaPolaznik();
@@ -62,7 +64,8 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("1. Smjerovi");
             Console.WriteLine("2. Polaznici");
             Console.WriteLine("3. Grupe");
-            Console.WriteLine("4. Izlaz iz programa");
+            Console.WriteLine("4. Statistika");
+            Console.WriteLine("5. Izlaz iz programa");
             OdabirOpcijeIzbornika();
 
         }
@@ -87,6 +90,10 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     PrikaziIzbornik();
                     break;
                 case 4:
+                    Console.Clear();
+                    ObradaStatistika.PrikaziIzbornik();
+                    break;
+                case 5:
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja!");
                     break;
 
