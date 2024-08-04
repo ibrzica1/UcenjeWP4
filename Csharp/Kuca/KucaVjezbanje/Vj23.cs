@@ -10,7 +10,7 @@ namespace KucaVjezbanje
     {
         public static void Izvedi()
         {
-            static int printNatural(int stval, int ctr)
+            /* static int printNatural(int stval, int ctr)
             {
                 if (ctr<1)
                 {
@@ -22,7 +22,9 @@ namespace KucaVjezbanje
             }
             int ctr = Convert.ToInt32(Console.ReadLine());
             printNatural(1, ctr);
-            Console.Write("\n\n");
+            Console.Write("\n\n");  */
+
+
         }
         
         
