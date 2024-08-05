@@ -35,13 +35,14 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("4. Brisanje grupe");
             Console.WriteLine("5. Brisanje Polaznika grupe");
             Console.WriteLine("6. Povratak na glavni izbornik");
+            Console.WriteLine("7. Broj polaznika grupe");
             OdabirOpcijeIzbornika();
 
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 5))
+            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 7))
             {
                 case 1:
                     PrikaziGrupe();
@@ -70,6 +71,9 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 case 6:
                     Console.Clear();
                     SpremiPodatke();
+                    break;
+                    case 7:
+                    BrojPolaznikaGrupe();
                     break;
 
 
@@ -192,10 +196,16 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         public void BrojPolaznikaGrupe()
         {
             int rb = 0;
-            foreach (var g in Grupa)
+
+            for (int i = 0; i < Grupa.Count; i++)
             {
-                Console.WriteLine(++rb + " " + g.Polaznici);
+                var g = Grupa[i];
+                for (int j = 0; j < g.Polaznici.Count; j++)
+                {
+                    ++rb;
+                }
             }
+            Console.WriteLine("Sveukupno polaznika u svim grupama je " + rb);
         }
     }
 }

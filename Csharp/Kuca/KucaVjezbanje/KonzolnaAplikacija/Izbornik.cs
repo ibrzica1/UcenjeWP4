@@ -41,6 +41,14 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             {
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Smjerovi.json"));
                 ObradaSmjer.Smjerovi = JsonConvert.DeserializeObject<List<Smjer>>(file.ReadToEnd());
+                
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Smjerovi.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Smjerovi.json"));
+                ObradaStatistika.Smjer = JsonConvert.DeserializeObject<List<Smjer>>(file.ReadToEnd());
+
                 file.Close();
             }
             if (File.Exists(Path.Combine(docPath, "Polaznik.json")))
@@ -53,8 +61,17 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             {
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Grupe.json"));
                 ObradaGrupa.Grupa = JsonConvert.DeserializeObject<List<Grupa>>(file.ReadToEnd());
+               
                 file.Close();
             }
+            if (File.Exists(Path.Combine(docPath, "Grupe.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Grupe.json"));
+                ObradaStatistika.Grupa = JsonConvert.DeserializeObject<List<Grupa>>(file.ReadToEnd());
+
+                file.Close();
+            }
+
         }
 
 
