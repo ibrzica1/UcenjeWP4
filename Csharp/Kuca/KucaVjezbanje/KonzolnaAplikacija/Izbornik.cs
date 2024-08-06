@@ -57,6 +57,12 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 ObradaPolaznik.Polaznici = JsonConvert.DeserializeObject<List<Polaznik>>(file.ReadToEnd());
                 file.Close();
             }
+            if (File.Exists(Path.Combine(docPath, "Polaznik.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Polaznik.json"));
+                ObradaStatistika.Polaznici = JsonConvert.DeserializeObject<List<Polaznik>>(file.ReadToEnd());
+                file.Close();
+            }
             if (File.Exists(Path.Combine(docPath, "Grupe.json")))
             {
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Grupe.json"));
@@ -89,7 +95,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,4))
+            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,5))
             {
                 case 1:
                     Console.Clear();

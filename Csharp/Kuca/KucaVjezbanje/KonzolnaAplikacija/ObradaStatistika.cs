@@ -31,6 +31,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("1. Ukupno polaznika na svim grupama");
             Console.WriteLine("2. Prosječan broj polaznika u grupama");
             Console.WriteLine("3. Ukupan prihod po smjerovima");
+            Console.WriteLine("4. Prosječan iznos po polazniku");
             OdabirOpcijeIzbornika();
         }
         private void OdabirOpcijeIzbornika()
@@ -49,9 +50,49 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     UkupanPrihodSmjerovi();
                     PrikaziIzbornik();
                     break;
+                case 4:
+                    PrihodPoPolazniku();
+                    PrikaziIzbornik();
+                    break;
 
 
             }
+        }
+
+        private void PrihodPoPolazniku()
+        {
+            var PolaznikPrihodi = new Dictionary<Polaznik, float?>();
+            foreach (var polaznik in Polaznici )
+            {
+                PolaznikPrihodi[polaznik] = 0;
+            }
+
+            foreach (var grupa in Grupa )
+            {
+                if (grupa.Smjer != null && grupa.Polaznici != null)
+                {
+                    float cijenaPoPolazniku = grupa.Smjer.Cijena.GetValueOrDefault();
+                    foreach (var polaznik in grupa.Polaznici)
+                    {
+                        if (PolaznikPrihodi.ContainsKey(polaznik))
+                        {
+                            PolaznikPrihodi[polaznik] += cijenaPoPolazniku;
+                        }
+                        else
+                        {
+                            PolaznikPrihodi[polaznik] = cijenaPoPolazniku;
+                        }
+
+                    }
+                }
+            }
+            int rb = 0;
+            Console.WriteLine("Prosječan iznos plačen po polazniku: ");
+            foreach (var iznos in PolaznikPrihodi)
+            {
+                if (iznos.Key.Ime && iznos.Key.Prezime == )
+            }
+            //Console.WriteLine($"Šifra: {iznos.Key.Sifra} {iznos.Key.Ime} {iznos.Key.Prezime}: {iznos.Value} eur");
         }
 
         private void UkupanPrihodSmjerovi()
