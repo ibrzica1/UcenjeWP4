@@ -133,13 +133,17 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             PrikaziGrupe();
             var g = Grupa[Pomocno.UcitajRasponBroja(
                 "Odaberi redni broj grupe za promjenu", 1, Grupa.Count) - 1];
-            g.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru grupe", 1, int.MaxValue);
-            g.Naziv = Pomocno.UcitajString("Unesi naziv grupe", 50, true);
+            g.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru grupe ("
+                + g.Sifra + "): ",g.Sifra, 1, int.MaxValue);
+            g.Naziv = Pomocno.UcitajString("Unesi naziv grupe ("
+                + g.Naziv + "): ",g.Naziv, 50, true);
             Izbornik.ObradaSmjer.PrikaziSmjerove();
             g.Smjer = Izbornik.ObradaSmjer.Smjerovi[Pomocno.UcitajRasponBroja
-                ("Odaberi redni broj smjera", 0, Izbornik.ObradaSmjer.Smjerovi.Count) - 1];
-            g.Predavac = Pomocno.UcitajString("Unesi ime i prezime predavača", 50, true);
-            g.MaksimalnoPolaznika = Pomocno.UcitajRasponBroja("Unesi maksimalno polaznika", 1, 30);
+                ("Odaberi redni broj smjera (" + g.Smjer + "): ", 0, Izbornik.ObradaSmjer.Smjerovi.Count) - 1];
+            g.Predavac = Pomocno.UcitajString("Unesi ime i prezime predavača (" 
+                + g.Predavac + "): ",g.Predavac, 50, true);
+            g.MaksimalnoPolaznika = Pomocno.UcitajRasponBroja("Unesi maksimalno polaznika (" 
+                + g.MaksimalnoPolaznika + "): ",g.MaksimalnoPolaznika, 1, 30);
             g.Polaznici = UcitajPolaznike();
 
         }
@@ -150,7 +154,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("Unesite tražene podatke o grupi");
 
             Grupa g = new Grupa();
-            g.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru grupe", 1, int.MaxValue);
+            g.Sifra = KontrolaSifra("Unesi šifru grupe", 1, int.MaxValue);
                 g.Naziv = Pomocno.UcitajString("Unesi naziv grupe", 50, true);
             Izbornik.ObradaSmjer.PrikaziSmjerove();
             g.Smjer = Izbornik.ObradaSmjer.Smjerovi[Pomocno.UcitajRasponBroja
@@ -161,6 +165,40 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
             Grupa.Add(g);
         }
+
+        private int? KontrolaSifra(string poruka, int min, int max)
+        {
+            int b;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka + ": ");
+                    b = int.Parse(Console.ReadLine());
+
+                    if (b < min || b > max)
+                    {
+                        throw new Exception();
+                    }
+                    foreach (var p in Grupa)
+                    {
+                        if (p.Sifra == b)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    return b;
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti u rasponu " +
+                        "{0} do {1} ili već postoji", min, max);
+                }
+
+            }
+        }
+
         List<Polaznik> lista = new List<Polaznik>();
         private List<Polaznik> UcitajPolaznike()
         {

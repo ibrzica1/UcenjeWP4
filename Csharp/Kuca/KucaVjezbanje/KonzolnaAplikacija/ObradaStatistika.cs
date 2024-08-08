@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,6 +33,8 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("2. Prosječan broj polaznika u grupama");
             Console.WriteLine("3. Ukupan prihod po smjerovima");
             Console.WriteLine("4. Prosječan iznos po polazniku");
+            Console.WriteLine("5. Razlika između najranijeg i najkasnijeg početka grupe");
+            Console.WriteLine("6. Povratak na izbornik");
             OdabirOpcijeIzbornika();
         }
         private void OdabirOpcijeIzbornika()
@@ -54,18 +57,40 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     PrihodPoPolazniku();
                     PrikaziIzbornik();
                     break;
+                case 5:
+                    RazlikaPočetkaGrupe();
+                    PrikaziIzbornik();
+                    break;
+                case 6:
+                    Console.Clear();
+                    
+                    break;
 
 
             }
         }
 
+        private void RazlikaPočetkaGrupe()
+        {
+            List<DateTime?> lista = new List<DateTime?>();
+            
+            foreach (var datum in Grupa)
+            {
+                lista.Add(datum.Smjer.IzvodiSeOd);
+            }
+            DateTime? min = lista.Where(d => d.HasValue).Min();
+            DateTime? max = lista.Where(d => d.HasValue).Max();
+            TimeSpan razlika = max.Value - min.Value;
+
+            Console.WriteLine("Razlika između najranijeg početka grupe " + min?.ToString("dd.MM.yyyy")
+                + " i najkasnijeg početka grupe " + max?.ToString("dd.MM.yyyy") + " je " + razlika.Days + " dana.");
+
+        }
+
         private void PrihodPoPolazniku()
         {
             var PolaznikPrihodi = new Dictionary<Polaznik, float?>();
-            foreach (var polaznik in Polaznici )
-            {
-                PolaznikPrihodi[polaznik] = 0;
-            }
+           
 
             foreach (var grupa in Grupa )
             {
@@ -82,17 +107,18 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                         {
                             PolaznikPrihodi[polaznik] = cijenaPoPolazniku;
                         }
-
                     }
+                    
                 }
+                
             }
             int rb = 0;
             Console.WriteLine("Prosječan iznos plačen po polazniku: ");
             foreach (var iznos in PolaznikPrihodi)
             {
-                if (iznos.Key.Ime && iznos.Key.Prezime == )
+                Console.WriteLine($"Šifra: {iznos.Key.Sifra} {iznos.Key.Ime} {iznos.Key.Prezime}: {iznos.Value} eur");
             }
-            //Console.WriteLine($"Šifra: {iznos.Key.Sifra} {iznos.Key.Ime} {iznos.Key.Prezime}: {iznos.Value} eur");
+            
         }
 
         private void UkupanPrihodSmjerovi()

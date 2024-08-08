@@ -103,12 +103,18 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             PrikaziSmjerove();
             var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj smjera za promjenu",
                 1, Smjerovi.Count) - 1];
-            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru smjera", 1, int.MaxValue);
-            odabrani.Naziv = Pomocno.UcitajString("Unesi naziv smjera", 50, true);
-            odabrani.Trajanje = Pomocno.UcitajRasponBroja("Unesi trajanje smjera", 1, 500);
-            odabrani.Cijena = Pomocno.UcitajDecimalniBroj("Unesi cijenu smjera", 0, 10000);
-            odabrani.IzvodiSeOd = Pomocno.UcitajDatum("Unesi datum od kada se izvodi smjer", true);
-            odabrani.Verificiran = Pomocno.UcitajBool("Da li je smjer verificiran (DA/NE)", "da");
+            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru smjera " +
+                "(" + odabrani.Sifra + "): ",odabrani.Sifra, 1, int.MaxValue);
+            odabrani.Naziv = Pomocno.UcitajString("Unesi naziv smjera " +
+                "(" + odabrani.Naziv + "): ",odabrani.Naziv, 50, true);
+            odabrani.Trajanje = Pomocno.UcitajRasponBroja("Unesi trajanje smjera " +
+                "(" + odabrani.Trajanje + "): ",odabrani.Trajanje, 1, 500);
+            odabrani.Cijena = Pomocno.UcitajDecimalniBroj("Unesi cijenu smjera " +
+                "(" + odabrani.Cijena + "): ",odabrani.Cijena, 0, 10000);
+            odabrani.IzvodiSeOd = Pomocno.UcitajDatum("Unesi datum od kada se izvodi smjer " +
+                "(" + odabrani.IzvodiSeOd + "): ",odabrani.IzvodiSeOd, true);
+            odabrani.Verificiran = Pomocno.UcitajBool("Da li je smjer verificiran (DA/NE) " +
+                "(" + odabrani.Verificiran + "): ",odabrani.Verificiran, "da");
 
         }
 

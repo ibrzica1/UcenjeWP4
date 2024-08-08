@@ -114,11 +114,16 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 Pomocno.UcitajRasponBroja("Odaberi redni broj polaznika za promjenu"
                 , 1, Polaznici.Count)-1
                 ];
-            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šiftu smjera", 1, int.MaxValue);
-            odabrani.Ime = Pomocno.UcitajString("Unesi ime polaznika", 50, true);
-            odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true);
-            odabrani.Email = Pomocno.UcitajString("Unesi email polaznika", 50, true);
-            odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika", 50, true);
+            odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šiftu smjera " +
+                "(" + odabrani.Sifra + "): ",odabrani.Sifra, 1, int.MaxValue);
+            odabrani.Ime = Pomocno.UcitajString("Unesi ime polaznika " +
+                "(" + odabrani.Ime + "): ",odabrani.Ime, 50, true);
+            odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika " +
+                "(" + odabrani.Prezime + "): ",odabrani.Prezime, 50, true);
+            odabrani.Email = Pomocno.UcitajString("Unesi email polaznika " +
+                "(" + odabrani.Email + "): ",odabrani.Email, 50, true);
+            odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika " +
+                "(" + odabrani.OIB + "): ",odabrani.OIB, 50, true);
 
 
         }
