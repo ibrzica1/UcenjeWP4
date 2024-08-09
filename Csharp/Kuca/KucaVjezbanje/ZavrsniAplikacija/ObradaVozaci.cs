@@ -158,7 +158,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
         }
 
-        private void PrikaziVozace()
+        public void PrikaziVozace()
         {
             Console.WriteLine("***************************");
             Console.WriteLine("*** Vozači u aplikaciji ***");
