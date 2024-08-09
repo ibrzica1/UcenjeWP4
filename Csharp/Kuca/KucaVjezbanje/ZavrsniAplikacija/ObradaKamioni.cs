@@ -109,7 +109,6 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 {
                     Console.WriteLine(poruka + ": ");
                     b = int.Parse(Console.ReadLine());
-                    var staro = Kamion[b];
 
                     if (b < min || b > max)
                     {
@@ -134,7 +133,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
         }
 
-        private void PrikaziKamione()
+        public void PrikaziKamione()
         {
             Console.WriteLine("****************************");
             Console.WriteLine("*** Kamioni u aplikaciji ***");
