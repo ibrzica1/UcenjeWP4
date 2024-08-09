@@ -20,7 +20,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             ObradaStatistika = new ObradaStatistika();  
             ObradaKamioni = new ObradaKamioni();
             ObradaVozaci = new ObradaVozaci();
-            ObradaTure = new ObradaTure();
+            ObradaTure = new ObradaTure(this);
             UcitajPodatke();
             PozdravnaPoruka();
             PrikaziIzbornik();
@@ -41,16 +41,42 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 file.Close();
                 
             }
+            
+            if (File.Exists(Path.Combine(docPath, "Ture.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Ture.json"));
+                ObradaStatistika.Tura = JsonConvert.DeserializeObject<List<Ture>>(file.ReadToEnd());
+                file.Close();
+
+            }
             if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
             {
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
                 ObradaVozaci.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
                 file.Close();   
             }
+            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
+                ObradaTure.Vozaci = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
+                ObradaStatistika.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
+                file.Close();
+            }
             if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
             {
                 StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
                 ObradaKamioni.Kamion = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
+                ObradaTure.Kamioni = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
                 file.Close();
             }
         }
@@ -68,7 +94,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,4))
+            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,5))
             {
                 case 1:
                     Console.Clear();
