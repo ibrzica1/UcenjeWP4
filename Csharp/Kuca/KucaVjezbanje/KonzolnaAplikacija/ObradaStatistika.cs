@@ -89,36 +89,21 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
         private void PrihodPoPolazniku()
         {
-            var PolaznikPrihodi = new Dictionary<Polaznik, float?>();
-           
+           float? cijena = 0;
+            int polaznici = 0;
+            float? prosjek = 0;
 
             foreach (var grupa in Grupa )
             {
-                if (grupa.Smjer != null && grupa.Polaznici != null)
-                {
-                    float cijenaPoPolazniku = grupa.Smjer.Cijena.GetValueOrDefault();
-                    foreach (var polaznik in grupa.Polaznici)
-                    {
-                        if (PolaznikPrihodi.ContainsKey(polaznik))
-                        {
-                            PolaznikPrihodi[polaznik] += cijenaPoPolazniku;
-                        }
-                        else
-                        {
-                            PolaznikPrihodi[polaznik] = cijenaPoPolazniku;
-                        }
-                    }
-                    
-                }
                 
+                foreach (var polaznik in grupa.Polaznici)
+                {
+                    polaznici++;
+                    cijena += grupa.Smjer.Cijena;
+                }
             }
-            int rb = 0;
-            Console.WriteLine("Prosječan iznos plačen po polazniku: ");
-            foreach (var iznos in PolaznikPrihodi)
-            {
-                Console.WriteLine($"Šifra: {iznos.Key.Sifra} {iznos.Key.Ime} {iznos.Key.Prezime}: {iznos.Value} eur");
-            }
-            
+            prosjek = cijena / polaznici;
+            Console.WriteLine("Prosječan prihod po polazniku je " + prosjek + " eura");
         }
 
         private void UkupanPrihodSmjerovi()
