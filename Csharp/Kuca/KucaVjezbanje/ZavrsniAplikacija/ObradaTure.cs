@@ -11,13 +11,22 @@ namespace KucaVjezbanje.ZavrsniAplikacija
     internal class ObradaTure
     {
         public List<Ture> Tura { get; set; }
-        
+        public Izbornik Izbornik { get; set; }
+        public List<Kamioni> Kamioni { get; set; }
+        public List<Vozaci> Vozaci { get; set; }
 
         public ObradaTure()
         {
+            Vozaci = new List<Vozaci>();
+            Kamioni = new List<Kamioni>();
             Tura = new List<Ture>();
 
         }
+        public ObradaTure(Izbornik izbornik) : this()
+        {
+            this.Izbornik = izbornik;
+        }
+
 
 
         public void PrikaziIzbornik()
@@ -97,8 +106,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             odabrani.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture",odabrani.Datum_Pocetak);
             odabrani.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture",odabrani.Datum_Zavsetak);
             odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva",odabrani.Potrosnja_Goriva, 0, float.MaxValue);
-            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona",odabrani.Kamion_ID, 1, int.MaxValue);
-            odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača",odabrani.Vozac_ID, 1, int.MaxValue); 
+            Izbornik.ObradaKamioni.PrikaziKamione();
+            odabrani.Kamion = Kamioni[Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, Kamioni.Count)-1];
+            Izbornik.ObradaVozaci.PrikaziVozace();
+            odabrani.Vozac = Vozaci[Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, Vozaci.Count)-1]; 
 
         }
 
@@ -111,7 +122,6 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 {
                     Console.WriteLine(poruka + ": ");
                     b = int.Parse(Console.ReadLine());
-                    var staro = Tura[b];
                     
                     if (b < min || b > max)
                     {
@@ -141,19 +151,21 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             Console.WriteLine("******************************************");
             Console.WriteLine("****  Unesite tražene podatke o turi  ****");
-            Tura.Add(new()
-            {
-                Tura_ID = KontrolaSifre("Unesi ID ture", 1, int.MaxValue),
-                Relacija = Pomocno.UcitajString("Unesi relaciju ture",30),
-                Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue),
-                Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue),
-                Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture"),
-                Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture"),
-                Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue),
-                Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, int.MaxValue),
-                Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača",1, int.MaxValue)
+            Ture g = new Ture();
 
-            });
+            g.Tura_ID = KontrolaSifre("Unesi ID ture", 1, int.MaxValue);
+            g.Relacija = Pomocno.UcitajString("Unesi relaciju ture", 30);
+            g.Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre", 0, float.MaxValue);
+            g.Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara", 0, float.MaxValue);
+            g.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture");
+            g.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture");
+            g.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva", 0, float.MaxValue);
+            Izbornik.ObradaKamioni.PrikaziKamione();
+            g.Kamion = Kamioni[Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, Kamioni.Count)-1];
+            Izbornik.ObradaVozaci.PrikaziVozace();
+            g.Vozac = Vozaci[Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, Vozaci.Count)-1];
+
+           Tura.Add(g);
 
 
         }
