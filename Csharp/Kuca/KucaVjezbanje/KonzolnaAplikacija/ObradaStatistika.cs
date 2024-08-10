@@ -10,6 +10,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 {
     internal class ObradaStatistika
     {
+        public Izbornik Izbornik { get; set; }
         public List<Smjer> Smjer { get; set; }
         public List<Grupa> Grupa { get; set; }
         public List<Polaznik> Polaznici { get; set; }
@@ -23,6 +24,11 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             ObradaGrupa = new ObradaGrupa();
             ObradaPolaznik = new ObradaPolaznik();
 
+
+        }
+        public ObradaStatistika(Izbornik izbornik) : this()
+        {
+            this.Izbornik = izbornik;
 
         }
         public void PrikaziIzbornik()
@@ -63,7 +69,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     break;
                 case 6:
                     Console.Clear();
-                    
+                    Izbornik.PrikaziIzbornik();
                     break;
 
 
