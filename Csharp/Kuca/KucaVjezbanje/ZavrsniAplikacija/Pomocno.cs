@@ -61,6 +61,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     Console.WriteLine(poruka + " Format unosa je yyyy-MM-dd, za današnji datum {0}",
                         DateTime.Now.ToString("yyyy-MM-dd"));
                     rodenje = Console.ReadLine();
+                    if (rodenje.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (rodenje.Length == 0)
                     {
                         return stara;
@@ -111,6 +115,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 Console.WriteLine(poruka + ": ");
 
                 datum = Console.ReadLine();
+                if (datum.ToLower() == "q")
+                {
+                    return null;
+                }
                 if (datum.Length == 0)
                 {
                     return stara;
@@ -155,6 +163,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 {
                     Console.WriteLine(poruka + ": ");
                     b = Console.ReadLine();
+                    if (b.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (b.Length == 0)
                     {
                         return stara;
@@ -214,6 +226,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     Console.WriteLine(poruka + " Format unosa je yyyy-MM-dd, za današnji datum {0}",
                         DateTime.Now.ToString("yyyy-MM-dd"));
                     Istek = Console.ReadLine();
+                    if (Istek.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (Istek.Length == 0)
                     {
                         return stara;
@@ -271,11 +287,9 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 {
                     Console.WriteLine(poruka + " ( " + stara + " ): ");
                     b = Console.ReadLine();
-                    if (b == "q")
+                    if (b.ToLower() == "q")
                     {
-                        int a = int.Parse(b);
-                        a = -1;
-                        return a;
+                        return null;
                     }
                     if (b.Length == 0)
                     {
@@ -336,6 +350,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 {
                     Console.WriteLine(poruka + ": ");
                     s = Console.ReadLine().Trim();
+                    if (s.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (s.Length == 0)
                     {
                         return stara;
@@ -397,6 +415,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     Console.WriteLine("Upiši registraciju u formatu OS 123 AB");
                     Console.WriteLine(poruka + ": ");
                     r = Console.ReadLine().ToUpper();
+                    if (r.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (r.Length == 0)
                     {
                         return stara;
@@ -448,6 +470,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 {
                     Console.WriteLine(poruka + ": ");
                     p = Console.ReadLine();
+                    if (p.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if ( p.Length == 0)
                     {
                         return stara;
