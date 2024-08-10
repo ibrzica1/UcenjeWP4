@@ -96,13 +96,21 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 PrikaziVozace();
                 var odabrani = Vozac[Pomocno.UcitajRasponBroja
                     ("Odaberi redni broj vozača", 1, Vozac.Count) - 1];
-                odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača", odabrani.Vozac_ID, 1, int.MaxValue);
-            
-                odabrani.Ime = Pomocno.UcitajString("Unesi ime vozača",odabrani.Ime, 50);
-                odabrani.Prezime = Pomocno.UcitajString("Unesi prezime vozača",odabrani.Prezime, 50);
-                odabrani.Datum_rodenja = Pomocno.UcitajDatumRođenja("Unesi datum rođenja",odabrani.Datum_rodenja);
-                odabrani.Istek_Ugovora = Pomocno.UcitajIstekUgovora("Unesi istek ugovora",odabrani.Istek_Ugovora);
-           
+                odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača",
+                    odabrani.Vozac_ID, 1, int.MaxValue);
+            if (odabrani.Vozac_ID == null) { return; }
+            odabrani.Ime = Pomocno.UcitajString("Unesi ime vozača (" + odabrani.Ime + ")",
+                    odabrani.Ime, 50);
+            if (odabrani.Ime == null) { return; }
+            odabrani.Prezime = Pomocno.UcitajString("Unesi prezime vozača (" + odabrani.Prezime + ")",
+                    odabrani.Prezime, 50);
+            if (odabrani.Prezime == null) { return; }
+            odabrani.Datum_rodenja = Pomocno.UcitajDatumRođenja("Unesi datum rođenja (" + odabrani.Datum_rodenja + ")",
+                    odabrani.Datum_rodenja);
+            if (odabrani.Datum_rodenja == null) { return; }
+            odabrani.Istek_Ugovora = Pomocno.UcitajIstekUgovora("Unesi istek ugovora (" + odabrani.Istek_Ugovora + ")",
+                    odabrani.Istek_Ugovora);
+            if (odabrani.Istek_Ugovora == null) { return; }
         }
 
 
