@@ -104,18 +104,23 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj smjera za promjenu",
                 1, Smjerovi.Count) - 1];
             odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru smjera " +
-                "(" + odabrani.Sifra + "): ",odabrani.Sifra, 1, int.MaxValue);
+                "(" + odabrani.Sifra + ") ",odabrani.Sifra, 1, int.MaxValue);
+            if (odabrani.Sifra == null) { return; }
             odabrani.Naziv = Pomocno.UcitajString("Unesi naziv smjera " +
                 "(" + odabrani.Naziv + "): ",odabrani.Naziv, 50, true);
+            if (odabrani.Naziv == null) { return; }
             odabrani.Trajanje = Pomocno.UcitajRasponBroja("Unesi trajanje smjera " +
-                "(" + odabrani.Trajanje + "): ",odabrani.Trajanje, 1, 500);
+                "(" + odabrani.Trajanje + ") ",odabrani.Trajanje, 1, 500);
+            if (odabrani.Trajanje == null) { return; }
             odabrani.Cijena = Pomocno.UcitajDecimalniBroj("Unesi cijenu smjera " +
-                "(" + odabrani.Cijena + "): ",odabrani.Cijena, 0, 10000);
+                "(" + odabrani.Cijena + ") ",odabrani.Cijena, 0, 10000);
+            if (odabrani.Cijena == null) { return; }
             odabrani.IzvodiSeOd = Pomocno.UcitajDatum("Unesi datum od kada se izvodi smjer " +
-                "(" + odabrani.IzvodiSeOd + "): ",odabrani.IzvodiSeOd, true);
+                "(" + odabrani.IzvodiSeOd + ") ",odabrani.IzvodiSeOd, true);
+            if (odabrani.IzvodiSeOd == null) { return; }
             odabrani.Verificiran = Pomocno.UcitajBool("Da li je smjer verificiran (DA/NE) " +
-                "(" + odabrani.Verificiran + "): ",odabrani.Verificiran, "da");
-
+                "(" + odabrani.Verificiran + ") ",odabrani.Verificiran, "da");
+            if (odabrani.Verificiran == null) { return; }
         }
 
         public void PrikaziSmjerove()
