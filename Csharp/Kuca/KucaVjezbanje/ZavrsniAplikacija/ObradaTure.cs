@@ -99,18 +99,33 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             PrikaziTure();
             var odabrani = Tura[Pomocno.UcitajRasponBroja
                 ("Odaberi redni broj ture", 1, Tura.Count) - 1];
-            odabrani.Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture",odabrani.Tura_ID, 1, int.MaxValue);
-            odabrani.Relacija = Pomocno.UcitajString("Unesi relaciju ture",odabrani.Relacija, 30);
-            odabrani.Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre",odabrani.Prijedeni_Km, 0, float.MaxValue);
-            odabrani.Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara",odabrani.Udaljenost, 0, float.MaxValue);
-            odabrani.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture",odabrani.Datum_Pocetak);
-            odabrani.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture",odabrani.Datum_Zavsetak);
-            odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva",odabrani.Potrosnja_Goriva, 0, float.MaxValue);
+            odabrani.Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture",
+                odabrani.Tura_ID, 1, int.MaxValue);
+            if (odabrani.Tura_ID == null) { return; }
+            odabrani.Relacija = Pomocno.UcitajString("Unesi relaciju ture (" + odabrani.Relacija + ")",
+                odabrani.Relacija, 30);
+            if (odabrani.Relacija == null) { return; }
+            odabrani.Prijedeni_Km = Pomocno.UcitajDecimalniBroj("Unesi prijeđene kilometre (" + odabrani.Prijedeni_Km + ")",
+                odabrani.Prijedeni_Km, 0, float.MaxValue);
+            if (odabrani.Prijedeni_Km == null) { return; }
+            odabrani.Udaljenost = Pomocno.UcitajDecimalniBroj("Unesi udaljenost između utovara i istovara (" + odabrani.Udaljenost + ")",
+                odabrani.Udaljenost, 0, float.MaxValue);
+            if (odabrani.Udaljenost == null) { return; }
+            odabrani.Datum_Pocetak = Pomocno.UcitajDatumTura("Unesi datum početka ture (" + odabrani.Datum_Pocetak + ")",
+                odabrani.Datum_Pocetak);
+            if (odabrani.Datum_Pocetak == null) { return; }
+            odabrani.Datum_Zavsetak = Pomocno.UcitajDatumTura("Unesi datum zavšetka ture (" + odabrani.Datum_Zavsetak + ")",
+                odabrani.Datum_Zavsetak);
+            if (odabrani.Datum_Zavsetak == null) { return; }
+            odabrani.Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi količinu potrošenog goriva (" + odabrani.Potrosnja_Goriva + ")",
+                odabrani.Potrosnja_Goriva, 0, float.MaxValue);
+            if (odabrani.Potrosnja_Goriva == null) { return; }
             Izbornik.ObradaKamioni.PrikaziKamione();
             odabrani.Kamion = Kamioni[Pomocno.UcitajRasponBroja("Unesi šifru kamiona", 1, Kamioni.Count)-1];
+            if (odabrani.Kamion == null) { return; }
             Izbornik.ObradaVozaci.PrikaziVozace();
-            odabrani.Vozac = Vozaci[Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, Vozaci.Count)-1]; 
-
+            odabrani.Vozac = Vozaci[Pomocno.UcitajRasponBroja("Unesi šifru vozača", 1, Vozaci.Count)-1];
+            if (odabrani.Vozac == null) { return; }
         }
 
         private int? KontrolaSifre(string poruka, int min, int max)
