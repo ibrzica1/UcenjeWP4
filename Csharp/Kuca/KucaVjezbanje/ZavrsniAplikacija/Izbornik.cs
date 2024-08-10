@@ -17,68 +17,13 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public Izbornik() 
         {
-            ObradaStatistika = new ObradaStatistika();  
+            ObradaStatistika = new ObradaStatistika(this);  
             ObradaKamioni = new ObradaKamioni();
             ObradaVozaci = new ObradaVozaci();
             ObradaTure = new ObradaTure(this);
             UcitajPodatke();
             PozdravnaPoruka();
             PrikaziIzbornik();
-            
-
-
-        }
-        
-        private void UcitajPodatke()
-        {
-            string docPath =
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            if(File.Exists(Path.Combine(docPath, "Ture.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Ture.json"));
-                ObradaTure.Tura = JsonConvert.DeserializeObject<List<Ture>>(file.ReadToEnd());
-                file.Close();
-                
-            }
-            
-            if (File.Exists(Path.Combine(docPath, "Ture.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Ture.json"));
-                ObradaStatistika.Tura = JsonConvert.DeserializeObject<List<Ture>>(file.ReadToEnd());
-                file.Close();
-
-            }
-            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
-                ObradaVozaci.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
-                file.Close();   
-            }
-            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
-                ObradaTure.Vozaci = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
-                file.Close();
-            }
-            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
-                ObradaStatistika.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
-                file.Close();
-            }
-            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
-                ObradaKamioni.Kamion = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
-                file.Close();
-            }
-            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
-            {
-                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
-                ObradaTure.Kamioni = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
-                file.Close();
-            }
         }
 
         public void PrikaziIzbornik()
@@ -119,15 +64,71 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
                     break;
             }
-
         }
-
        
         private void PozdravnaPoruka()
         {
             Console.WriteLine("****************************");
             Console.WriteLine("****  Vozač Efikasnost  ****");
             Console.WriteLine("*******  Aplikacija  *******");
+        }
+
+        private void UcitajPodatke()
+        {
+            string docPath =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (File.Exists(Path.Combine(docPath, "Ture.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Ture.json"));
+                ObradaTure.Tura = JsonConvert.DeserializeObject<List<Ture>>(file.ReadToEnd());
+                file.Close();
+
+            }
+
+            if (File.Exists(Path.Combine(docPath, "Ture.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Ture.json"));
+                ObradaStatistika.Tura = JsonConvert.DeserializeObject<List<Ture>>(file.ReadToEnd());
+                file.Close();
+
+            }
+            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
+                ObradaVozaci.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
+                ObradaTure.Vozaci = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Vozaci.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Vozaci.json"));
+                ObradaStatistika.Vozac = JsonConvert.DeserializeObject<List<Vozaci>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
+                ObradaKamioni.Kamion = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
+                ObradaTure.Kamioni = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
+                file.Close();
+            }
+            if (File.Exists(Path.Combine(docPath, "Kamioni.json")))
+            {
+                StreamReader file = File.OpenText(Path.Combine(docPath, "Kamioni.json"));
+                ObradaStatistika.Kamion = JsonConvert.DeserializeObject<List<Kamioni>>(file.ReadToEnd());
+                file.Close();
+            }
         }
     }
 }
