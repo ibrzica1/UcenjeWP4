@@ -5,8 +5,8 @@
 
 using KucaVjezbanje;
 
-new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
-//new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
+//new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
+new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
 /* CiklicnaTablica.Izvedi();  */
