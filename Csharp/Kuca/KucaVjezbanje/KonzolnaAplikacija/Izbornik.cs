@@ -21,15 +21,13 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         public Izbornik() 
         {
             /*Pomocno.DEV = true;*/
-            ObradaStatistika = new ObradaStatistika();
+            ObradaStatistika = new ObradaStatistika(this);
             ObradaSmjer = new ObradaSmjer();
             ObradaGrupa = new ObradaGrupa(this);
             ObradaPolaznik = new ObradaPolaznik();
             UcitajPodatke();
             PozdravnaPoruka();
             PrikaziIzbornik();
-
-
         }
 
         private void UcitajPodatke()
@@ -81,7 +79,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         }
 
 
-        private void PrikaziIzbornik()
+        public void PrikaziIzbornik()
         {
             Console.WriteLine("Glavni izbornik");
             Console.WriteLine("1. Smjerovi");
