@@ -115,17 +115,20 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 , 1, Polaznici.Count)-1
                 ];
             odabrani.Sifra = Pomocno.UcitajRasponBroja("Unesi šiftu smjera " +
-                "(" + odabrani.Sifra + "): ",odabrani.Sifra, 1, int.MaxValue);
+                "(" + odabrani.Sifra + ") ",odabrani.Sifra, 1, int.MaxValue);
+            if (odabrani.Sifra == null) { return; }
             odabrani.Ime = Pomocno.UcitajString("Unesi ime polaznika " +
                 "(" + odabrani.Ime + "): ",odabrani.Ime, 50, true);
+            if (odabrani.Ime == null) { return; }
             odabrani.Prezime = Pomocno.UcitajString("Unesi prezime polaznika " +
                 "(" + odabrani.Prezime + "): ",odabrani.Prezime, 50, true);
+            if (odabrani.Prezime == null) { return; }
             odabrani.Email = Pomocno.UcitajString("Unesi email polaznika " +
                 "(" + odabrani.Email + "): ",odabrani.Email, 50, true);
+            if (odabrani.Email == null) { return; }
             odabrani.OIB = Pomocno.UcitajString("Unesi OIB polaznika " +
                 "(" + odabrani.OIB + "): ",odabrani.OIB, 50, true);
-
-
+            if (odabrani.OIB == null) { return; }
         }
 
         private void UnosNovogPolaznika()
