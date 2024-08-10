@@ -79,11 +79,24 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             PrikaziKamione();
             var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj kamiona", 1, Kamion.Count) - 1];
-            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona",odabrani.Kamion_ID, 1, int.MaxValue);
-            odabrani.Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila",odabrani.Reg_Oznaka, 1, 12);
-            odabrani.Marka = Pomocno.UcitajString("Unesi marku vozila",odabrani.Marka, 30);
-            odabrani.Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje",odabrani.Godina_Proizvodnje);
-            odabrani.Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva",odabrani.Prosjecna_Potrosnja_Goriva, 0, float.MaxValue);
+            odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona",
+                odabrani.Kamion_ID, 1, int.MaxValue);
+            if (odabrani.Kamion_ID == null) { return; }
+            odabrani.Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila (" + odabrani.Reg_Oznaka + ")",
+                odabrani.Reg_Oznaka, 1, 12);
+            if (odabrani.Reg_Oznaka == null) { return; }
+            odabrani.Marka = Pomocno.UcitajString("Unesi marku vozila (" + odabrani.Marka + ")",
+                odabrani.Marka, 30);
+            if (odabrani.Marka == null) { return; }
+            odabrani.Istek_Reg = Pomocno.UcitajDatumTura("Unesi datum isteka registracije (" + odabrani.Istek_Reg + ")",
+                odabrani.Istek_Reg);
+            if (odabrani.Istek_Reg == null) { return; }
+            odabrani.Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje (" + odabrani.Godina_Proizvodnje + ")",
+                odabrani.Godina_Proizvodnje);
+            if (odabrani.Godina_Proizvodnje == null) { return; }
+            odabrani.Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva (" + odabrani.Prosjecna_Potrosnja_Goriva + ")",
+                odabrani.Prosjecna_Potrosnja_Goriva, 0, float.MaxValue);
+            if (odabrani.Prosjecna_Potrosnja_Goriva == null) { return; }
         }
 
         private void UnosNovogKamiona()
@@ -93,6 +106,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 Kamion_ID = KontrolaSifra("Unesi šifru kamiona", 1, int.MaxValue),
                 Reg_Oznaka = Pomocno.UcitajRegistraciju("Unesi registarsku oznaku vozila", 1, 12),
                 Marka = Pomocno.UcitajString("Unesi marku vozila", 30),
+                Istek_Reg = Pomocno.UcitajDatumTura("Unesi datum isteka registracije"),
                 Godina_Proizvodnje = Pomocno.UcitajGodinaProizvodnje("Unesi godinu proizvodnje"),
                 Prosjecna_Potrosnja_Goriva = Pomocno.UcitajDecimalniBroj("Unesi prosječnu potrošnju goriva", 0, float.MaxValue)
 
