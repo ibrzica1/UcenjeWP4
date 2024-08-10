@@ -134,16 +134,21 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             var g = Grupa[Pomocno.UcitajRasponBroja(
                 "Odaberi redni broj grupe za promjenu", 1, Grupa.Count) - 1];
             g.Sifra = Pomocno.UcitajRasponBroja("Unesi šifru grupe ("
-                + g.Sifra + "): ",g.Sifra, 1, int.MaxValue);
+                + g.Sifra + ") ",g.Sifra, 1, int.MaxValue);
+            if (g.Sifra == null) { return; }
             g.Naziv = Pomocno.UcitajString("Unesi naziv grupe ("
                 + g.Naziv + "): ",g.Naziv, 50, true);
+            if (g.Sifra == null) { return; }
             Izbornik.ObradaSmjer.PrikaziSmjerove();
             g.Smjer = Izbornik.ObradaSmjer.Smjerovi[Pomocno.UcitajRasponBroja
-                ("Odaberi redni broj smjera (" + g.Smjer + "): ", 0, Izbornik.ObradaSmjer.Smjerovi.Count) - 1];
+                ("Odaberi redni broj smjera (" + g.Smjer + ") ", 0, Izbornik.ObradaSmjer.Smjerovi.Count) - 1];
+            if (g.Smjer == null) { return; }
             g.Predavac = Pomocno.UcitajString("Unesi ime i prezime predavača (" 
                 + g.Predavac + "): ",g.Predavac, 50, true);
+            if (g.Predavac == null) { return; }
             g.MaksimalnoPolaznika = Pomocno.UcitajRasponBroja("Unesi maksimalno polaznika (" 
-                + g.MaksimalnoPolaznika + "): ",g.MaksimalnoPolaznika, 1, 30);
+                + g.MaksimalnoPolaznika + ") ",g.MaksimalnoPolaznika, 1, 30);
+            if (g.MaksimalnoPolaznika == null) { return; }
             g.Polaznici = UcitajPolaznike();
 
         }
