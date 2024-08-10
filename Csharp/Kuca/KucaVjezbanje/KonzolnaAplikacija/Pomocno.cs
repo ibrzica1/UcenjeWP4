@@ -23,7 +23,11 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         internal static bool? UcitajBool(string poruka, bool? stara, string thrueValue)
         {
             Console.Write(poruka + ": ");
-            string b = Console.ReadLine(); 
+            string b = Console.ReadLine();
+            if (b.ToLower() == "q")
+            {
+                return null;
+            }
             if (b.Length == 0)
             {
                 return stara;
@@ -79,6 +83,10 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     }
                     Console.Write(poruka + ": ");
                     d1 = Console.ReadLine();
+                    if (d1.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (d1.Length == 0)
                     {
                         return stara;
@@ -133,6 +141,10 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 {
                     Console.Write(poruka + ": ");
                     b1 = Console.ReadLine();
+                    if (b1.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (b1.Length == 0)
                     {
                         return stara;
@@ -187,6 +199,10 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 {
                     Console.Write(poruka + ": ");
                     b1 = Console.ReadLine();
+                    if (b1.ToLower() == "q")
+                    {
+                        return null;
+                    }
                     if (b1.Length == 0)
                     {
                         return stara;
@@ -234,6 +250,10 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             {
                 Console.WriteLine(poruka);
                 s = Console.ReadLine().Trim();
+                if (s.ToLower() == "q")
+                {
+                    return null;
+                }
                 if (s.Length== 0)
                 {
                     return stara;
