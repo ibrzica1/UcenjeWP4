@@ -6,7 +6,10 @@
 using KucaVjezbanje;
 
 //new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
-new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
+//new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
+LjubavniKalkulator_SusjedniBrojevi.Izvedi();
+//LjubavniKalkulator_Petlja.Izvedi();
+//Ljubavni_KalkulatorRekurzija.Izvedi();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
 /* CiklicnaTablica.Izvedi();  */
