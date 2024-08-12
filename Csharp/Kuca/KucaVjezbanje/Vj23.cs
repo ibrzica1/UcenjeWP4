@@ -23,7 +23,11 @@ namespace KucaVjezbanje
             int ctr = Convert.ToInt32(Console.ReadLine());
             printNatural(1, ctr);
             Console.Write("\n\n");  */
+            int duzina = 8;
+            for (int i = 0; i < duzina; i++)
+            {
 
+            }
 
         }
         
