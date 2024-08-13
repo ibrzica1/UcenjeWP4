@@ -17,9 +17,9 @@
             bool brojevi = UcitajBool("Uključeni brojevi? DA/NE", "da");
             bool interZnakovi = UcitajBool("Uključeni interpunkcijski znakovi? DA/NE", "da");
             if (brojevi == true) { startBroj = UcitajBool("Lozinka počinje sa brojem? DA/NE", "da"); }
-            if (interZnakovi == true) { startZnak = UcitajBool("Lozinka počinje sa interpunkcijskim znakom? DA/NE", "da"); }
+            if (interZnakovi == true && startBroj == false) { startZnak = UcitajBool("Lozinka počinje sa interpunkcijskim znakom? DA/NE", "da"); }
             if (brojevi == true) { endBroj = UcitajBool("Lozinka završava sa brojem? DA/NE", "da"); }
-            if (interZnakovi == true) { endZnak = UcitajBool("Lozinka završava sa interpunkcijskim znakom? DA/NE", "da"); }
+            if (interZnakovi == true && endBroj == false) { endZnak = UcitajBool("Lozinka završava sa interpunkcijskim znakom? DA/NE", "da"); }
             bool ponavljanje = UcitajBool("Lozinka ima ponavljajuće znakove? DA/NE", "da");
             int kolicina = UcitajBroj("Broj lozinki koje je potrebno generirati?", 1, int.MaxValue);
 
@@ -60,10 +60,17 @@
             }
 
             List<char> LozinkaFinal = new List<char>();
+            int rb = 0;
 
             for (int i = 0; i < kolicina; i++)
             {
-                while (true)
+                bool istina = false;
+
+                if (ponavljanje == false)
+                {
+                    istina = true;
+                }
+                while (istina)
                 {
                     try
                     {
@@ -88,25 +95,42 @@
                         {
                             LozinkaFinal[duzina - 1] = znakovi[Random.Shared.Next(intiger.Length - 1)];
                         }
-                        for (int k = 0; k < LozinkaFinal.Count - 1; k++)
+                        if (LozinkaFinal.Distinct().Count() != LozinkaFinal.Count)
                         {
-                            for (int l = 0; l < LozinkaFinal.Count; l++)
-                            {
-                                if (LozinkaFinal[k] == LozinkaFinal[l+1])
-                                {
-                                    throw new Exception();
-                                }
-                                
-                            }
+                            throw new Exception();
                         }
-                        continue;
+                        istina = false;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-
+                        LozinkaFinal.Clear();
                     }
                 }
-                
+                if (ponavljanje == true)
+                {
+                    for (int j = 0; j < duzina; j++)
+                    {
+                        LozinkaFinal.Add(lozinka[Random.Shared.Next(lozinka.Count - 1)]);
+                    }
+
+                    if (startBroj == true)
+                    {
+                        LozinkaFinal[0] = intiger[Random.Shared.Next(intiger.Length - 1)];
+                    }
+                    if (startZnak == true)
+                    {
+                        LozinkaFinal[0] = znakovi[Random.Shared.Next(znakovi.Length - 1)];
+                    }
+                    if (endBroj == true)
+                    {
+                        LozinkaFinal[duzina - 1] = intiger[Random.Shared.Next(intiger.Length - 1)];
+                    }
+                    if (endZnak == true)
+                    {
+                        LozinkaFinal[duzina - 1] = znakovi[Random.Shared.Next(intiger.Length - 1)];
+                    }
+                }
+                Console.Write(++rb + ". ");
                 foreach (var item in LozinkaFinal)
                 {
                     Console.Write(item);
