@@ -20,40 +20,67 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziIzbornik()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za rad sa vozačima");
-            Console.WriteLine("1. Pregled svih vozača");
-            Console.WriteLine("2. Unos novog vozača");
-            Console.WriteLine("3. Pormjena podataka postoječeg vozača");
-            Console.WriteLine("4. Brisanje vozača");
-            Console.WriteLine("5. Povratak na glavni izbornik");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("1.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pregled svih vozača");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("2.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pregled pojedinog vozača");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("3.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Unos novog vozača");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("4.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Promjena podataka postoječeg vozača");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("5.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Brisanje vozača");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("6.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Povratak na glavni izbornik");
+            Console.WriteLine();
             OdabirOpcijeIzbornika();
 
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberi stavku izbornika",1,5))
+            
+            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika",1,6))
             {
                 case 1:
                     PrikaziVozace();
                     PrikaziIzbornik();
                     break;
                 case 2:
+                    PrikaziPojedinogVozaca();
+                    PrikaziIzbornik();
+                    break;
+                case 3:
                     UnosNovogVazaca();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 3:
+                case 4:
                     IzmjenaPodatakaVozaca();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 4:
+                case 5:
                     IzbrisiVozaca();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 5:
+                case 6:
                     Console.Clear();
                     SpremiPodatke();
                     break;
@@ -62,6 +89,35 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
 
 
+        }
+
+        private void PrikaziPojedinogVozaca()
+        {
+            PrikaziVozace();
+            var odabrani = Vozac[Pomocno.UcitajRasponBroja("Odaberi redni broj vozača kojeg želiš vidjeti",1,Vozac.Count)];
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Vozac ID:      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Vozac_ID);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Ime:           ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Ime);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Prezime:       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Prezime);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Datum rođenja: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Datum_rodenja?.ToString("yyyy.MM.dd"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Istek ugovora: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Istek_Ugovora?.ToString("yyyy.MM.dd"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
 
         private void SpremiPodatke()
@@ -80,6 +136,16 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void IzbrisiVozaca()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("************************************************");
+            Console.Write("***********      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Izbriši vozača");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("      ***********");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             PrikaziVozace();
             var odabrani = Vozac[Pomocno.UcitajRasponBroja
                 ("Odaberi redni broj vozača za brisanje", 1, Vozac.Count) - 1];
@@ -92,8 +158,17 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void IzmjenaPodatakaVozaca()
         {
-           
-                PrikaziVozace();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("************************************************");
+            Console.Write("*********** ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Izmjeni podatke o vozaču");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" ***********");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            PrikaziVozace();
                 var odabrani = Vozac[Pomocno.UcitajRasponBroja
                     ("Odaberi redni broj vozača", 1, Vozac.Count) - 1];
                 odabrani.Vozac_ID = Pomocno.UcitajRasponBroja("Unesi šifru vozača",
@@ -116,9 +191,16 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void UnosNovogVazaca()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("**************************************");
-            Console.WriteLine("*** Unesi tražene podatke o vozaču ***");
-            Console.WriteLine("                                      ");
+            Console.Write("*** ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Unesi tražene podatke o vozaču");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" ***");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             Vozac.Add(new()
             {
                 Vozac_ID = KontrolaSifre("Unesi šifru vozača",1,int.MaxValue),
@@ -168,20 +250,41 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziVozace()
         {
-            Console.WriteLine("***************************");
-            Console.WriteLine("*** Vozači u aplikaciji ***");
-            Console.WriteLine("                           ");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.Write("********       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Vozači u aplikaciji");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("       ********");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
             int rb = 0;
-            foreach(var v in Vozac)
+            foreach (var v in Vozac)
             {
-                Console.WriteLine(++rb + ". Vozac_ID: " + v.Vozac_ID + ", Ime: "
-                    + v.Ime + ", Prezime: " + v.Prezime );
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(". Vozac_ID: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(v.Vozac_ID);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" Ime: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(v.Ime);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(", Prezime: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(v.Prezime);
+                Console.ForegroundColor = ConsoleColor.White;
 
             }
-            Console.WriteLine("                            ");
-            Console.WriteLine("****************************");
-
-
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
     }
 }
