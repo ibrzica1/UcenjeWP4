@@ -14,39 +14,65 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziIzbornik()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za rad sa kamionima");
-            Console.WriteLine("1. Pregled svih kamiona");
-            Console.WriteLine("2. Unos novog kamiona");
-            Console.WriteLine("3. Promjena podataka postoječeg kamiona");
-            Console.WriteLine("4. Izbriši kamion");
-            Console.WriteLine("5. Povratak na glavni izbornik");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("1.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pregled svih kamiona");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("2.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pregled pojedinog kamiona");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("3.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Unos novog kamiona");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("4.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Promjena podataka postoječeg kamiona");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("5.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Brisanje kamiona");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("6.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Povratak na glavni izbornik");
+            Console.WriteLine();
             OdabirOpcijeIzbornika();
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika", 1, 5))
+            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika", 1, 6))
             {
                 case 1:
                     PrikaziKamione();
                     PrikaziIzbornik();
                     break;
                 case 2:
+                    PregledPojedinogKamiona();
+                    PrikaziIzbornik();
+                    break;
+                case 3:
                     UnosNovogKamiona();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 3:
+                case 4:
                     IzmjenaPodatakaKamiona();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 4:
+                case 5:
                     IzbrisiKamion();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 5:
+                case 6:
                     Console.Clear();
                     SpremiPodatke();
                     break;
@@ -54,6 +80,39 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
 
             }
+        }
+
+        private void PregledPojedinogKamiona()
+        {
+            PrikaziKamione();
+            var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj vozača kojeg želiš vidjeti", 1, Kamion.Count-1)];
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Kamion ID:      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Kamion_ID);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Marka:           ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Marka);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Godina proizvodnje:       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Godina_Proizvodnje);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Registarska oznaka: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Reg_Oznaka);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Istek registracije: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Istek_Reg?.ToString("yyyy.MM.dd"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Prosječna potrošnja goriva: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Prosjecna_Potrosnja_Goriva);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
 
         private void SpremiPodatke()
@@ -69,6 +128,16 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void IzbrisiKamion()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("************************************************");
+            Console.Write("***********      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Izbriši kamion");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("      ***********");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             PrikaziKamione();
             var odabrani = Kamion[Pomocno.UcitajRasponBroja
                 ("Odaberi redni broj kamiona za brisanje", 1, Kamion.Count) - 1];
@@ -77,6 +146,16 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void IzmjenaPodatakaKamiona()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.Write("*********** ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Izmjeni podatke o kamionu");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" ***********");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             PrikaziKamione();
             var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj kamiona", 1, Kamion.Count) - 1];
             odabrani.Kamion_ID = Pomocno.UcitajRasponBroja("Unesi šifru kamiona",
@@ -101,6 +180,16 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void UnosNovogKamiona()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***************************************");
+            Console.Write("*** ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Unesi tražene podatke o kamionu");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" ***");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             Kamion.Add(new Kamioni()
             {
                 Kamion_ID = KontrolaSifra("Unesi šifru kamiona", 1, int.MaxValue),
@@ -149,16 +238,35 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziKamione()
         {
-            Console.WriteLine("****************************");
-            Console.WriteLine("*** Kamioni u aplikaciji ***");
-            Console.WriteLine("                            ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("************************************************");
+            Console.Write("********      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Kamioni u aplikaciji");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("      ********");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             int rb = 0;
             foreach (var kamion in Kamion)
             {
-                Console.WriteLine(++rb + ". Marka: " + kamion.Marka + ", Registracija: " + kamion.Reg_Oznaka);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Marka: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(kamion.Marka);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" Registracija: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(kamion.Reg_Oznaka);
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.WriteLine("                            ");
-            Console.WriteLine("****************************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
     }
 }
