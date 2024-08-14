@@ -4,7 +4,7 @@
     {
         public static void Izvedi()
         {
-
+            
             PozdravnaPoruka();
 
             bool startBroj = false;
@@ -130,7 +130,10 @@
                         LozinkaFinal[duzina - 1] = znakovi[Random.Shared.Next(intiger.Length - 1)];
                     }
                 }
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.White;
                 foreach (var item in LozinkaFinal)
                 {
                     Console.Write(item);
@@ -191,9 +194,19 @@
 
         private static void PozdravnaPoruka()
         {
+            
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("***************************");
-            Console.WriteLine("***  Generator Lozinki  ***");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("***  ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Generator Lozinki");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("  ***");
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("***************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\n");
         }
 
 
