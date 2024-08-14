@@ -13,7 +13,7 @@ GeneratorLozinki.Izvedi();
 //Ljubavni_KalkulatorRekurzija.Izvedi();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
-/* CiklicnaTablica.Izvedi();  */
+//CiklicnaTablica.Izvedi();  
 //Vj23.Izvedi();
 /* Vj21.Izvedi(); */
 /* Vj20.Izvedi(); */
