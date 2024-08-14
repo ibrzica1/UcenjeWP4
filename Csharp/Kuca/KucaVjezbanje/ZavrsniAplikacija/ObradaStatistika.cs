@@ -30,14 +30,38 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         }
         public void PrikaziIzbornik()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za statistiku");
-            Console.WriteLine("1. Efikasnost vozača");
-            Console.WriteLine("2. Poredak vozača po efikasnosti");
-            Console.WriteLine("3. Efikasnost ture");
-            Console.WriteLine("4. Poredak tura po efikasnosti");
-            Console.WriteLine("5. Pogledaj kojem vozaču uskoro ističe ugovor");
-            Console.WriteLine("6. Pogledaj kojem kamionu ističe registracija");
-            Console.WriteLine("7. Povratak na izbornik");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("1.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Efikasnost vozača");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("2.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Poredak vozača po efikasnosti");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("3.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Efikasnost ture");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("4.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Poredak ture po efikasnosti");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("5.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pogledaj kojem vozaču ističe ugovor");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("6.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pogledaj kojem kamionu ističe registracija");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("7.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Povratak na izbornik");
+            Console.WriteLine();
             OdabirOpcijeIzbornika();
 
         }
@@ -81,36 +105,91 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         {
             int rb = 0;
             var IstekReg = from entry in Kamion orderby entry.Istek_Reg ascending select entry;
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("************************************************************************");
+            Console.Write("**************             ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Istek Registracije");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("             **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             foreach ( var item in IstekReg )
             {
                 var dana = item.Istek_Reg - DateTime.Now;
-                Console.WriteLine(++rb + ". " + item.Marka + " " + item.Reg_Oznaka + 
-                    ": Ističe " + item.Istek_Reg?.ToString("yyyy.MM.dd") + ", za " +
-                    dana?.ToString("ddd") + " dana.");
-                
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(item.Marka);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" Registracija: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(item.Reg_Oznaka);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" Ističe ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(item.Istek_Reg?.ToString("yyyy.MM.dd"));
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" za ");
+                if (dana.Value.TotalDays < 90)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(dana?.ToString("ddd"));
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                if (dana.Value.TotalDays > 90)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(dana?.ToString("ddd"));
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.WriteLine(" dana.");
             }
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("************************************************************************");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
 
         private void IsticeUgovor()
         {
-            var IsticeUgovor = new List<Vozaci>();
-            foreach (var item in Vozac)
-            {
-                if (item.Istek_Ugovora < DateTime.Now.AddDays(365))
-                {
-                    IsticeUgovor.Add(item);
-                }
-            }
             int rb = 0;
-            
-            var IstekUgovor = from entry in IsticeUgovor orderby entry.Istek_Ugovora ascending select entry;
+            var IstekUgovor = from entry in Vozac orderby entry.Istek_Ugovora ascending select entry;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine();
+            Console.WriteLine("*************************************************");
+            Console.Write("**********        ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Istek ugovora");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("        **********");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             foreach (var item in IstekUgovor)
             {
                 var dana = item.Istek_Ugovora - DateTime.Now;
-                Console.WriteLine(++rb + ". " + item.Ime + " " + item.Prezime + 
-                    ": Za " + dana?.ToString("ddd") + 
-                    " dana (" + item.Istek_Ugovora?.ToString("yyyy.MM.dd") + ").");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(item.Ime + " " + item.Prezime + ": ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write("(" + item.Istek_Ugovora?.ToString("yyyy.MM.dd") + ")");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" za ");
+                if (dana.Value.Days < 365)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(dana?.ToString("ddd"));
+                }
+                if (dana.Value.TotalDays > 365)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(dana?.ToString("ddd"));
+                }
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(" dana.");
             }
             Console.WriteLine();
         }
@@ -137,11 +216,42 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
             var TopLjestvica = from entry in LjestvicaVozaci orderby entry.Value ascending select entry;
             int rb = 0;
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Ljestvica vozača po efikasnost: ");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
             foreach (var unos in TopLjestvica)
             {
-                Console.WriteLine(++rb + ". " + $"{unos.Key} : {unos.Value?.ToString("#.##")} ");
-                   
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"{unos.Key}  ");
+
+                if (rb == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                if (rb == TopLjestvica.Count())
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                if (unos.Value < 0 && rb != 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                if (unos.Value > 0 && rb != TopLjestvica.Count())
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
             Console.WriteLine();
         }
@@ -169,40 +279,104 @@ namespace KucaVjezbanje.ZavrsniAplikacija
            
             var TopLjestvica = from entry in LjestvicaTure orderby entry.Value ascending select entry;
             int rb = 0;
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;   
             Console.WriteLine("Ljestvica tura po efikasnost: ");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
             foreach (var unos in TopLjestvica)
             {
-                Console.WriteLine(++rb + ". " + $"{unos.Key.Relacija} " +
-                    $"{unos.Key.Datum_Pocetak?.ToString("yyyy.MM.dd")}: {unos.Value?.ToString("#.##")} ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write($"{unos.Key.Relacija} ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"{unos.Key.Datum_Pocetak?.ToString("yyyy.MM.dd")}"); 
+                
+                 if (rb == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                 if (rb == TopLjestvica.Count())
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                if (unos.Value < 0 && rb != 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                if (unos.Value > 0 && rb != TopLjestvica.Count())
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($" {unos.Value?.ToString("#.##")} ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
 
         public void PrikaziVozace()
         {
-            Console.WriteLine("***************************");
-            Console.WriteLine("*** Vozači u aplikaciji ***");
-            Console.WriteLine("                           ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.Write("********       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Vozači u aplikaciji");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("       ********");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
             int rb = 0;
             foreach (var v in Vozac)
             {
-                Console.WriteLine(++rb + ". Vozac_ID: " + v.Vozac_ID + ", Ime: "
-                    + v.Ime + ", Prezime: " + v.Prezime);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Vozac_ID: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(v.Vozac_ID);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" Ime: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(v.Ime);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(", Prezime: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(v.Prezime);
+                Console.ForegroundColor = ConsoleColor.White;
 
             }
-            Console.WriteLine("                            ");
-            Console.WriteLine("****************************");
-
-
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
         private void EfikasnostVozaca()
         {
-           PrikaziVozace();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.Write("********       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Efikasnost odabranog vozača");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("       ********");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            PrikaziVozace();
 
             double? razlikaKM = 0;
             double? gorivoPros = 0;
 
             var odabrani = Vozac[Pomocno.UcitajRasponBroja("Unesi redni broj vozača kojeg želiš pogledati", 1, Vozac.Count) - 1];
+            Console.WriteLine();
             foreach (var item in Tura)
             {
                 if(item.Vozac.Vozac_ID == odabrani.Vozac_ID)
@@ -214,39 +388,177 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 
             }
             double? index = gorivoPros + razlikaKM;
-            Console.WriteLine("Vozać " + odabrani.Ime + " " + odabrani.Prezime + ":");
-            Console.WriteLine("Efikasnost prijeđenih kilometara " + razlikaKM?.ToString("#.##") + "km.");
-            Console.WriteLine("Efikasnost potrošnje goriva " + gorivoPros?.ToString("#.##") + " litara.");
-            Console.WriteLine("Index efikasnosti " + index?.ToString("#.##"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Vozać:                           ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Ime + " " + odabrani.Prezime);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Efikasnost prijeđenih kilometara ");
+            if (razlikaKM < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(razlikaKM?.ToString("#.##"));
+            }
+            if (razlikaKM > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(razlikaKM?.ToString("#.##"));
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" km");
+            Console.Write("Efikasnost potrošnje goriva      ");
+            if (gorivoPros < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(gorivoPros?.ToString("#.##"));
+            }
+            if (gorivoPros > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(gorivoPros?.ToString("#.##"));
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" litara");
+            Console.Write("Index efikasnosti                ");
+            if (index < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(index?.ToString("#.##"));
+            }
+            if (index > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(index?.ToString("#.##"));
+            }
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
 
         public void PrikaziTure()
         {
-            Console.WriteLine("***********************");
-            Console.WriteLine("** Ture u aplikaciji **");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.Write("**************             ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Ture u aplikaciji");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("             **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             int rb = 0;
             foreach (var s in Tura)
             {
-                Console.WriteLine(++rb + ". " + "Tura ID: " + s.Tura_ID + "  Relacija: " + s.Relacija + "  datum početka: " + s.Datum_Pocetak
-                    );
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Tura ID: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(s.Tura_ID);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("  Relacija: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(s.Relacija);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("  datum početka: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(s.Datum_Pocetak?.ToString("yyyy.MM.dd"));
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.WriteLine("***********************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
         private void EfikasnostTure()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.Write("**************         ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Efikasnost odabrane ture");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("          **************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+
             PrikaziTure();
             var odabrani = Tura[Pomocno.UcitajRasponBroja("Unesi redni broj ture koju želiš pogledati", 1, Tura.Count) - 1];
             double? razlikaKM = odabrani.Prijedeni_Km - odabrani.Udaljenost;
             double? gorivoPros = odabrani.Prijedeni_Km / (odabrani.Potrosnja_Goriva / 10);
             double? razlikaGorivo = gorivoPros - odabrani.Kamion.Prosjecna_Potrosnja_Goriva;
+            double? index = razlikaKM + razlikaGorivo;
 
-            Console.WriteLine("Tura " + odabrani.Relacija + ", odrađena dana " + odabrani.Datum_Pocetak?.ToString("yyyy.MM.dd") +
-                ", sa vozačem " + odabrani.Vozac.Ime + " " + odabrani.Vozac.Prezime + ": ");
-            Console.WriteLine("Razlika između udaljenosti i prijeđenih kilometara je " + razlikaKM?.ToString("#.##") + " km.");
-            Console.WriteLine("Potrošeno je " + gorivoPros?.ToString("#.##") + " litara goriva, kamionom registracija " + odabrani.Kamion.Reg_Oznaka + 
-                " marke " + odabrani.Kamion.Marka + ", koji troši " + odabrani.Kamion.Prosjecna_Potrosnja_Goriva?.ToString("#.##") + 
-                " litara goriva, što je razlika " + razlikaGorivo?.ToString("#.##") + " litara goriva");
+            Console.WriteLine();
+            Console.Write("Tura                        ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Relacija);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Datum                       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Datum_Pocetak?.ToString("yyyy.MM.dd"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Vozač                       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Vozac.Ime + " " + odabrani.Vozac.Prezime);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Razlika kilometara          ");
+            if (razlikaKM < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(razlikaKM?.ToString("#.##"));
+                
+            }
+            if (razlikaKM > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(razlikaKM?.ToString("#.##"));
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" km");
+            Console.Write("Potrošeno                   ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(gorivoPros?.ToString("#.##"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" litara");
+            Console.Write("Kamion marka                ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Kamion.Marka);
+            Console.ForegroundColor = ConsoleColor.White;   
+            Console.Write("Registracija                ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Kamion.Reg_Oznaka);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Prosječna potrošnja goriva  ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(odabrani.Kamion.Prosjecna_Potrosnja_Goriva?.ToString("#.##"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" litara");
+            Console.Write("Razlika goriva              ");
+            if (razlikaGorivo < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(razlikaGorivo?.ToString("#.##"));
+            }
+            if (razlikaGorivo > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(razlikaGorivo?.ToString("#.##"));
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" litara");
+            Console.Write("Index efikasnosti           ");
+            if (index < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(index?.ToString("#.##"));
+            }
+            if (index > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(index?.ToString("#.##"));
+            }
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
 
         }
