@@ -31,40 +31,66 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziIzbornik()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za rad sa turama");
-            Console.WriteLine("1. Pregled svih tura");
-            Console.WriteLine("2. Unos nove ture");
-            Console.WriteLine("3. Promjena podataka postojeće ture");
-            Console.WriteLine("4. Brisanje ture");
-            Console.WriteLine("5. Povratak na glavni izbornik");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("1.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pregled svih tura");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("2.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Pregled odabrane ture");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("3.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Unos nove ture");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("4.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Promjena podataka postojeće ture");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("5.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Brisanje ture");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("6.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Povratak na glavni izbornik");
+            Console.WriteLine();
+
             OdabirOpcijeIzbornika();
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika", 1, 5))
+            switch (Pomocno.UcitajRasponBroja("Odaberi stavku izbornika", 1, 6))
             {
                 case 1:
                     PrikaziTure();
                     PrikaziIzbornik();
                     break;
-
                 case 2:
+                    PregledOdabraneTure();
+                    PrikaziIzbornik();
+                    break;
+                case 3:
                     UnosNoveTure();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 3:
+                case 4:
                     PromjeniPodatkeTure();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 4:
+                case 5:
                     ObrisiTuru();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 5:
+                case 6:
                     Console.Clear();
                    SpremiPodatke();
                     break;
@@ -73,7 +99,57 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             }
         }
 
-       private void SpremiPodatke()
+        private void PregledOdabraneTure()
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.Write("**************           ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Pregled odabrane ture");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("           **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
+            PrikaziTure();
+
+            var odabrani = Tura[Pomocno.UcitajRasponBroja("Odaberi redni broj ture koju želiš vidjeti", 1, Tura.Count-1)];
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Tura ID     ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Tura_ID);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Relacija    ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Relacija);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Početak     ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Datum_Pocetak?.ToString("yyyy.MM.dd"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Završetak   ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Datum_Zavsetak?.ToString("yyyy.MM.dd"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Udaljenost  ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(odabrani.Udaljenost?.ToString("###.##"));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" km");
+            Console.Write("Vozač       ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Vozac.Ime + " " + odabrani.Vozac.Prezime);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Kamion      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(odabrani.Kamion.Marka);
+            Console.WriteLine();
+        }
+
+        private void SpremiPodatke()
         {
             string docPath =
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -84,7 +160,19 @@ namespace KucaVjezbanje.ZavrsniAplikacija
        
         private void ObrisiTuru()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.Write("**************               ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Izbriši turu");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("                **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
             PrikaziTure();
+
             var odabrani = Tura[Pomocno.UcitajRasponBroja
                 ("Unesi redni broj ture za brisanje", 1, Tura.Count) - 1];
             if (Pomocno.UcitajBool("Sigurno obrisati turu" + odabrani.Tura_ID + "? (DA/NE)", "da"))
@@ -96,7 +184,19 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PromjeniPodatkeTure()
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.Write("**************           ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Promjeni podatke ture");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("           **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
             PrikaziTure();
+
             var odabrani = Tura[Pomocno.UcitajRasponBroja
                 ("Odaberi redni broj ture", 1, Tura.Count) - 1];
             odabrani.Tura_ID = Pomocno.UcitajRasponBroja("Unesi ID ture",
@@ -164,8 +264,17 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         private void UnosNoveTure()
         {
-            Console.WriteLine("******************************************");
-            Console.WriteLine("****  Unesite tražene podatke o turi  ****");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("**********************************************************************");
+            Console.Write("**************              ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Unos nove ture");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("              **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
             Ture g = new Ture();
 
             g.Tura_ID = KontrolaSifre("Unesi ID ture", 1, int.MaxValue);
@@ -187,15 +296,41 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziTure()
         {
-            Console.WriteLine("***********************");
-            Console.WriteLine("** Ture u aplikaciji **");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.Write("**************             ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Ture u aplikaciji");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("             **************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
             int rb = 0;
+
             foreach (var s in Tura)
             {
-                Console.WriteLine(++rb + ". " + "Tura ID: " + s.Tura_ID + "  Relacija: " + s.Relacija + "  datum početka: " + s.Datum_Pocetak
-                    );
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(++rb + ". ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Tura ID: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(s.Tura_ID);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("  Relacija: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(s.Relacija);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("  datum početka: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(s.Datum_Pocetak?.ToString("yyyy.MM.dd"));
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.WriteLine("***********************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("***********************************************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
     }
 }
