@@ -28,19 +28,38 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziIzbornik()
         {
-            Console.WriteLine("Glavni izbornik");
-            Console.WriteLine("1. Ture");
-            Console.WriteLine("2. Vozači");
-            Console.WriteLine("3. Kamioni");
-            Console.WriteLine("4. Statistika");
-            Console.WriteLine("5. Izađi iz programa");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("GLAVNI IZBORNIK");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("1.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Ture");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("2.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Vozači");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("3.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Kamioni");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("4.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Statistika");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("5.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" Izađi iz programa");
+            Console.WriteLine();
             OdabirOpcijeIzbornika();
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,5))
+            switch (Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,5))
             {
+                
                 case 1:
                     Console.Clear();
                     ObradaTure.PrikaziIzbornik();
@@ -61,6 +80,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     ObradaStatistika.PrikaziIzbornik();
                     break;
                 case 5:
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
                     break;
             }
@@ -68,9 +88,40 @@ namespace KucaVjezbanje.ZavrsniAplikacija
        
         private void PozdravnaPoruka()
         {
-            Console.WriteLine("****************************");
-            Console.WriteLine("****  Vozač Efikasnost  ****");
-            Console.WriteLine("*******  Aplikacija  *******");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("*************************************************");
+            Console.Write("********");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.Write("                                 ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("********");
+            Console.Write("********");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.Write("           ");
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write("APLIKACIJA");
+            Console.Write("            ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("********");
+            Console.Write("********");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.Write("        ");
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write("VOZAČ EFIKASNOST");
+            Console.Write("         ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("********");
+            Console.Write("********");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.Write("                                 ");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("********");
+            Console.WriteLine("*************************************************");
+            Console.ForegroundColor= ConsoleColor.White;
+            Console.WriteLine();
         }
 
         private void UcitajPodatke()
