@@ -107,10 +107,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             Console.WriteLine("********");
             Console.Write("********");
             Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.Write("        ");
+            Console.Write("      ");
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write("VOZAČ EFIKASNOST");
-            Console.Write("         ");
+            Console.Write("EFIKASNOST PRIJEVOZA");
+            Console.Write("       ");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("********");
