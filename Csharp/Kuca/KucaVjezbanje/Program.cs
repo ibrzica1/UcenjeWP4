@@ -5,9 +5,9 @@
 
 using KucaVjezbanje;
 
-//new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
+new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
 //new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
-GeneratorLozinki.Izvedi();
+//GeneratorLozinki.Izvedi();
 //LjubavniKalkulator_SusjedniBrojevi.Izvedi();
 //LjubavniKalkulator_Petlja.Izvedi();
 //Ljubavni_KalkulatorRekurzija.Izvedi();
