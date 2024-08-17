@@ -10,60 +10,54 @@ namespace KucaVjezbanje
     {
         public static void Izvedi()
         {
-            /* Console.WriteLine("Unesi broj redaka: ");
-            int redak = int.Parse(Console.ReadLine());
-            Console.WriteLine("Unesi broj stupaca: ");
-            int stupac = int.Parse(Console.ReadLine()); */
-            int stupac = int.Parse(Console.ReadLine());
-            int redak = int.Parse(Console.ReadLine());
-            int redovi = redak * redak;
-            int[,] tablica = new int[stupac,redak];
+            
+            int redak = UnosBroj("Unesi prvi cijeli broj: ", 2, 50);
+            int stupac = UnosBroj("Unesi drugi cijeli broj: ", 2, 50);
+            int redovi = redak * stupac;
+            int[,] tablica = new int[redak,stupac];
             int minRedak = 0;
             int maxRedak = redak - 1;
             int minStupac = 0;
             int maxStupac = stupac - 1;
             int broj = 1;
+            
 
             while (broj <= redovi)
             {
 
-                for (int i = maxRedak; i >= minRedak; i--)
-                {
-                    if (tablica[maxStupac, i] == 0)
-                    {
-                        tablica[maxStupac, i] = broj++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                maxStupac--;
-
                 for (int i = maxStupac; i >= minStupac; i--)
                 {
-                    if (tablica[i, minRedak] == 0)
-                    {
-                        tablica[i, minRedak] = broj++;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                        tablica[maxRedak, i] = broj++;
                 }
+                if (broj > redovi)
+                {
+                    break;
+                }
+                maxRedak--;
+
+                for (int i = maxRedak; i >= minRedak; i--)
+                {
+                        tablica[i, minStupac] = broj++;
+                }
+                if (broj > redovi)
+                {
+                    break;
+                }
+                minStupac++;
+                for (int i =minStupac; i <= maxStupac; i++)
+                {
+                   
+                        tablica[minRedak, i] = broj++;
+                    
+                }
+              
                 minRedak++;
 
                 for (int i = minRedak; i <= maxRedak; i++)
                 {
-                    if (tablica[i, maxStupac] == 0)
-                    {
                         tablica[i, maxStupac] = broj++;
-                    }
-                    else
-                    {
-                        break;
-                    }
                 }
+                
                 maxStupac--;
             }
             for (int i = 0; i < redak; i++)
@@ -74,17 +68,62 @@ namespace KucaVjezbanje
                 }
                 Console.WriteLine();
             }
-
-            /*for (int i = 0; i < stupac; i++)
+            bool ponoviti = Ponavljanje("Želiš li napraviti još jednu cikličnu matricu? (DA/NE)","da","ne");
+            if (ponoviti == true)
             {
+                Izvedi();
+            }
+        }
 
-                 Console.Write("\n");
-                for (int j = 0;j < redak; j++)
+        private static bool Ponavljanje(string poruka, string positive, string negative)
+        {
+            while (true)
+            {
+                try
                 {
-                    tablica[i,j] = niz+=1;
-                    Console.Write(tablica[i,j]);
-                } 
-            }*/
+                    Console.WriteLine(poruka);
+                    string unos = Console.ReadLine();
+                    if (unos.Trim().ToLower() == positive)
+                    {
+                        return true;
+                    }
+                    if (unos.Trim().ToLower() == negative)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, unos mora biti {0} ili {1}.",positive,negative);
+                }
+            }
+        }
+
+        private static int UnosBroj(string poruka, int min, int max)
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka);
+                    int broj = int.Parse(Console.ReadLine());
+                    if (broj < min || broj > max)
+                    {
+                        throw new Exception();
+                    }
+                    return broj;
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti " +
+                        "u rasponu {0} do {1}.",min,max);
+                }
+            }
 
         }
     }
