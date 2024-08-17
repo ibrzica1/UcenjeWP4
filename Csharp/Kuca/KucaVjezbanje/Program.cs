@@ -5,7 +5,7 @@
 
 using KucaVjezbanje;
 
-new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
+//new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
 //new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
 //GeneratorLozinki.Izvedi();
 //LjubavniKalkulator_SusjedniBrojevi.Izvedi();
@@ -13,6 +13,13 @@ new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
 //Ljubavni_KalkulatorRekurzija.Izvedi();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
+CT_GoreLijevo_KKS.Izvedi();
+//CT_GoreDesno_KKS.Izvedi();
+//CT_DonjeDesno_KKS.Izvedi();
+//CT_DoljeLijevo__KKS.Izvedi();
+//CT_GoreDesno_SKS.Izvedi();
+//CT_GoreLijevo_SKS.Izvedi();
+//CT_DoljeLijevo_SKS.Izvedi();
 //CiklicnaTablica.Izvedi();  
 //Vj23.Izvedi();
 /* Vj21.Izvedi(); */
