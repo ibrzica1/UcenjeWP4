@@ -30,11 +30,12 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         {
             Console.WriteLine("Izbornik za rad s grupama");
             Console.WriteLine("1. Pregled svih grupa");
-            Console.WriteLine("2. Unos nove grupe");
-            Console.WriteLine("3. Promjena podataka postojeće grupe");
-            Console.WriteLine("4. Brisanje grupe");
-            Console.WriteLine("5. Brisanje Polaznika grupe");
-            Console.WriteLine("6. Povratak na glavni izbornik");
+            Console.WriteLine("2. Prikaži pojedinu grupu");
+            Console.WriteLine("3. Unos nove grupe");
+            Console.WriteLine("4. Promjena podataka postojeće grupe");
+            Console.WriteLine("5. Brisanje grupe");
+            Console.WriteLine("6. Brisanje Polaznika grupe");
+            Console.WriteLine("7. Povratak na glavni izbornik");
             
             OdabirOpcijeIzbornika();
 
@@ -49,26 +50,30 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                     PrikaziIzbornik();
                     break;
                 case 2:
+                    PrikaziPojedinuGrupu();
+                    PrikaziIzbornik();
+                    break;
+                case 3:
                     UnosNoveGrupe();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 3:
+                case 4:
                     PromjeniPodatkeGrupe();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 4:
+                case 5:
                     ObrisiGrupu();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 5:
+                case 6:
                     ObrisiPolaznikaGrupe();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 6:
+                case 7:
                     Console.Clear();
                     SpremiPodatke();
                     break;
@@ -88,6 +93,25 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
             outputFile.WriteLine(JsonConvert.SerializeObject(Grupa));
             outputFile.Close();
+        }
+
+        private void PrikaziPojedinuGrupu()
+        {
+            PrikaziGrupe();
+            var odabrani = Grupa[Pomocno.UcitajRasponBroja("Odaberi redni broj vozača kojeg želiš vidjeti", 1, Grupa.Count) - 1];
+            Console.WriteLine();
+            Console.WriteLine("Šifra:                " + odabrani.Sifra);
+            Console.WriteLine("Naziv:                " + odabrani.Naziv);
+            Console.WriteLine("Smjer:                " + odabrani.Smjer.Naziv);
+            Console.WriteLine("Predavač:             " + odabrani.Predavac);
+            Console.WriteLine("Maksimalno polaznika: " + odabrani.MaksimalnoPolaznika);
+            Console.WriteLine("Polaznici: ");
+            int rb = 0;
+            foreach (var polaznik in odabrani.Polaznici)
+            {
+                Console.WriteLine(++rb + ": " + polaznik.Ime + " " + polaznik.Prezime);
+            }
+            Console.WriteLine("\t");
         }
 
         private void ObrisiPolaznikaGrupe()
