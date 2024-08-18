@@ -97,6 +97,7 @@ namespace KucaVjezbanje
                 }
 
                 string final = sb.ToString();
+                
                 num = Convert.ToInt32(final);
                 niz = num.ToString().Select(t => int.Parse(t.ToString())).ToArray();
                 broj = ((int[])niz).ToList();
