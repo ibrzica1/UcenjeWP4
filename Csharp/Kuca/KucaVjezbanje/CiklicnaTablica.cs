@@ -100,6 +100,7 @@ namespace KucaVjezbanje
                 {
                     Console.WriteLine("Unos nije dobar, unos mora biti {0} ili {1}.",positive,negative);
                 }
+                
             }
         }
 
