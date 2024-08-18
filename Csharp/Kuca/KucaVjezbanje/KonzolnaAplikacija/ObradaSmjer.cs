@@ -35,38 +35,43 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         {
             Console.WriteLine("Izbornik za rad s smjerovima");
             Console.WriteLine("1. Pregled svih smjerova");
-            Console.WriteLine("2. Unos novog smjera");
-            Console.WriteLine("3. Promjena podataka postojećeg smjera");
-            Console.WriteLine("4. Brisanje smjera");
-            Console.WriteLine("5. Povratak na glavni izbornik");
+            Console.WriteLine("2. Prikaži pojedini smjer");
+            Console.WriteLine("3. Unos novog smjera");
+            Console.WriteLine("4. Promjena podataka postojećeg smjera");
+            Console.WriteLine("5. Brisanje smjera");
+            Console.WriteLine("6. Povratak na glavni izbornik");
             OdabirOpcijeIzbornika();
 
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberi stavku izbornika",1,5))
+            switch(Pomocno.UcitajRasponBroja("Odaberi stavku izbornika",1,6))
             {
                 case 1:
                     PrikaziSmjerove();
                     PrikaziIzbornik();
                     break;
                 case 2:
+                    PrikaziPojediniSmjer();
+                    PrikaziIzbornik();
+                    break;
+                case 3:
                     UnosNovogSmjera();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 3:
+                case 4:
                     PromjeniPostojeciSmjer();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 4:
+                case 5:
                     ObrisiPostojeciSmjer();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                case 5:
+                case 6:
                     Console.Clear();
                     SpremiPodatke();
                     break;
@@ -135,6 +140,19 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             }
             Console.WriteLine("******************************");
         }
+        private void PrikaziPojediniSmjer()
+        {
+            PrikaziSmjerove();
+            var odabrani = Smjerovi[Pomocno.UcitajRasponBroja("Odaberi redni broj vozača kojeg želiš vidjeti", 1, Smjerovi.Count) - 1];
+            Console.WriteLine();
+            Console.WriteLine("Šifra:        " + odabrani.Sifra);
+            Console.WriteLine("Naziv:        " + odabrani.Naziv);
+            Console.WriteLine("Izvodi se od: " + odabrani.IzvodiSeOd?.ToString("yyyy.MM.dd"));
+            Console.WriteLine("Trajanje:     " + odabrani.Trajanje);
+            Console.WriteLine("Cijena:       " + odabrani.Cijena);
+            Console.WriteLine("Verificiran:  " + odabrani.Verificiran);
+            Console.WriteLine("\t");
+        }
 
         private void UnosNovogSmjera()
         {
@@ -142,7 +160,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("*** Unesite tražene podatke o smjeru ***");
             Smjerovi.Add(new Smjer()
             {
-                Sifra = Pomocno.UcitajRasponBroja("Unesi šifru smjera",1,int.MaxValue),
+                Sifra = KontrolaSifre("Unesi šifru smjera",1,int.MaxValue),
                 Naziv = Pomocno.UcitajString("Unesi naziv smjera", 50,true),
                 Trajanje = Pomocno.UcitajRasponBroja("Unesi trajanje smjera",1,500),
                 Cijena = Pomocno.UcitajDecimalniBroj("Unesi cijenu smjera",0,10000),
@@ -150,6 +168,39 @@ namespace KucaVjezbanje.KonzolnaAplikacija
                 Verificiran = Pomocno.UcitajBool("Da li je smjer verificiran (DA/NE)","da")
             });
 
+        }
+        private int? KontrolaSifre(string poruka, int min, int max)
+        {
+            int b;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka + ": ");
+                    b = int.Parse(Console.ReadLine());
+                    var staro = Smjerovi[b];
+
+                    if (b < min || b > max)
+                    {
+                        throw new Exception();
+                    }
+                    foreach (var p in Smjerovi)
+                    {
+                        if (p.Sifra == b)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    return b;
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti u rasponu " +
+                        "{0} do {1} ili već postoji", min, max);
+                }
+
+            }
         }
     }
 }
