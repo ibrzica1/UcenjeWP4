@@ -40,38 +40,43 @@ namespace KucaVjezbanje.KonzolnaAplikacija
         {
             Console.WriteLine("Izbornik za rad sa polaznicima");
             Console.WriteLine("1. Pregled svih polaznika");
-            Console.WriteLine("2. Unos novog polaznika");
-            Console.WriteLine("3. Promjena podataka postojećeg polaznika");
-            Console.WriteLine("4. Brisanje polaznika");
-            Console.WriteLine("5. Povratak na glavni izbornik");
+            Console.WriteLine("2. Prikaži pojedinog polaznika");
+            Console.WriteLine("3. Unos novog polaznika");
+            Console.WriteLine("4. Promjena podataka postojećeg polaznika");
+            Console.WriteLine("5. Brisanje polaznika");
+            Console.WriteLine("6. Povratak na glavni izbornik");
             OdabirOpcijeIzbornika();
 
         }
 
         private void OdabirOpcijeIzbornika()
         {
-            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 5))
+            switch(Pomocno.UcitajRasponBroja("Odaberite stavku izbornika", 1, 6))
             {
                 case 1:
                     PrikaziPolaznike();
                     PrikaziIzbornik();
                     break;
-                    case 2:
+                case 2:
+                    PrikaziPojedinogPolaznika();
+                    PrikaziIzbornik();
+                    break;
+                    case 3:
                     UnosNovogPolaznika();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                    case 3:
+                    case 4:
                     PromjeniPodatkePolaznika();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                    case 4:
+                    case 5:
                     ObrisiPolaznika();
                     SpremiPodatke();
                     PrikaziIzbornik();
                     break;
-                    case 5:
+                    case 6:
                     Console.Clear();
                     SpremiPodatke();
                     break;
@@ -137,7 +142,7 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             Console.WriteLine("Unesite tražene podatke o polazniku");
             Polaznici.Add(new()
             {
-                Sifra = Pomocno.UcitajRasponBroja("Unesi šiftu smjera", 1, int.MaxValue),
+                Sifra = KontrolaSifre("Unesi šiftu polaznika", 1, int.MaxValue),
                 Ime = Pomocno.UcitajString("Unesi ime polaznika", 50, true),
                 Prezime = Pomocno.UcitajString("Unesi prezime polaznika", 50, true),
                 Email = Pomocno.UcitajString("Unesi email polaznika", 50, true),
@@ -145,9 +150,19 @@ namespace KucaVjezbanje.KonzolnaAplikacija
 
             });
 
+        }
 
-
-
+        private void PrikaziPojedinogPolaznika()
+        {
+            PrikaziPolaznike();
+            var odabrani = Polaznici[Pomocno.UcitajRasponBroja("Odaberi redni broj vozača kojeg želiš vidjeti", 1, Polaznici.Count)-1];
+            Console.WriteLine();
+            Console.WriteLine("Šifra:   " + odabrani.Sifra);
+            Console.WriteLine("Ime:     " + odabrani.Ime);
+            Console.WriteLine("Prezime: " + odabrani.Prezime);
+            Console.WriteLine("Email:   " + odabrani.Email);
+            Console.WriteLine("OIB:     " + odabrani.OIB);
+            Console.WriteLine("\t");
         }
 
         public void PrikaziPolaznike()
@@ -161,6 +176,38 @@ namespace KucaVjezbanje.KonzolnaAplikacija
             }
             Console.WriteLine("****************************");
         }
+        private int? KontrolaSifre(string poruka, int min, int max)
+        {
+            int b;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka + ": ");
+                    b = int.Parse(Console.ReadLine());
+                    var staro = Polaznici[b];
 
+                    if (b < min || b > max)
+                    {
+                        throw new Exception();
+                    }
+                    foreach (var p in Polaznici)
+                    {
+                        if (p.Sifra == b)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    return b;
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unos nije dobar, broj mora biti u rasponu " +
+                        "{0} do {1} ili već postoji", min, max);
+                }
+
+            }
+        }
     }
 }
