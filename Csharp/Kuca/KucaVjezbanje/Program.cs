@@ -10,10 +10,11 @@ using KucaVjezbanje;
 //GeneratorLozinki.Izvedi();
 //LjubavniKalkulator_SusjedniBrojevi.Izvedi();
 //LjubavniKalkulator_Petlja.Izvedi();
-//Ljubavni_KalkulatorRekurzija.Izvedi();
+LjubavniKalkulator_Rekurzija.Izvedi();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
-CT_GoreLijevo_KKS.Izvedi();
+//CT_SredinaLijevo_SKS.Izvedi();
+//CT_GoreLijevo_KKS.Izvedi();
 //CT_GoreDesno_KKS.Izvedi();
 //CT_DonjeDesno_KKS.Izvedi();
 //CT_DoljeLijevo__KKS.Izvedi();
