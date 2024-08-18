@@ -10,6 +10,7 @@ namespace KucaVjezbanje
     {
         public static void Izvedi()
         {
+            // Lijevo kontra
             int redak = UnosBroj("Unesi prvi cijeli broj: ", 2, 50);
             int stupac = UnosBroj("Unesi drugi cijeli broj: ", 2, 50);
             int redovi = redak * stupac;
