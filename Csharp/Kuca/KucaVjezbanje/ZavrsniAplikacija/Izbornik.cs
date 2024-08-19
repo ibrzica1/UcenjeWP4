@@ -18,46 +18,61 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         public Izbornik() 
         {
             ObradaStatistika = new ObradaStatistika(this);  
-            ObradaKamioni = new ObradaKamioni();
-            ObradaVozaci = new ObradaVozaci();
+            ObradaKamioni = new ObradaKamioni(this);
+            ObradaVozaci = new ObradaVozaci(this);
             ObradaTure = new ObradaTure(this);
             UcitajPodatke();
             PozdravnaPoruka();
-            PrikaziIzbornik();
-        }
-
-        public void PrikaziIzbornik()
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("GLAVNI IZBORNIK");
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("1.");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" Ture");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("2.");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" Vozači");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("3.");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" Kamioni");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("4.");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" Statistika");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("5.");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" Izađi iz programa");
-            Console.WriteLine();
             OdabirOpcijeIzbornika();
         }
-
-        private void OdabirOpcijeIzbornika()
+        
+        public int PrikaziIzbornik()
         {
-            switch (Pomocno.UcitajRasponBroja("Odaberite stavku izbornika",1,5))
+            int opcija = 1;
+            bool izabrano = false;
+            ConsoleKeyInfo key;
+            (int left, int top) = Console.GetCursorPosition();
+            string boja = "\u001b[32m¤ ";
+            Console.CursorVisible = false;
+            
+            while (izabrano==false)
+            {
+                Console.SetCursorPosition(left, top);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("    Glavni Izbornik");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.WriteLine($"{(opcija == 1 ? boja : "   ")} Ture \u001b[0m");
+                Console.WriteLine($"{(opcija == 2 ? boja : "   ")} Vozaci \u001b[0m");
+                Console.WriteLine($"{(opcija == 3 ? boja : "   ")} Kamioni \u001b[0m");
+                Console.WriteLine($"{(opcija == 4 ? boja : "   ")} Statistika \u001b[0m");
+                Console.WriteLine($"{(opcija == 5 ? boja : "   ")} Izlaz iz programa \u001b[0m");
+                Console.WriteLine();
+
+                key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        opcija = (opcija == 5 ? 1 : opcija + 1);
+                        break;
+
+                    case ConsoleKey.UpArrow:
+                        opcija = (opcija == 1 ? 5 : opcija - 1);
+                        break;
+
+                    case ConsoleKey.Enter:
+                        izabrano = true;
+                        break;
+                }
+            }
+            return opcija;
+            
+        }
+
+        public void OdabirOpcijeIzbornika()
+        {
+            switch (PrikaziIzbornik())
             {
                 
                 case 1:
@@ -80,8 +95,10 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     ObradaStatistika.PrikaziIzbornik();
                     break;
                 case 5:
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("Hvala na korištenju aplikacije, doviđenja");
+                    Console.ResetColor();
+                    Console.WriteLine();
                     break;
             }
         }
