@@ -1,4 +1,5 @@
-﻿using KucaVjezbanje.ZavrsniAplikacija.Model;
+﻿using KucaVjezbanje.KonzolnaAplikacija;
+using KucaVjezbanje.ZavrsniAplikacija.Model;
 using Newtonsoft.Json;
 
 namespace KucaVjezbanje.ZavrsniAplikacija
@@ -6,14 +7,18 @@ namespace KucaVjezbanje.ZavrsniAplikacija
     internal class ObradaKamioni
     {
         public List<Kamioni> Kamion { get; set; }
-
+        public Izbornik Izbornik { get; set; }
         public ObradaKamioni()
         {
             Kamion = new List<Kamioni>();
         }
-
+        public ObradaKamioni(Izbornik izbornik) : this()
+        {
+            this.Izbornik = izbornik;
+        }
         public void PrikaziIzbornik()
         {
+            Console.CursorVisible = true;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za rad sa kamionima");
             Console.WriteLine();
@@ -75,6 +80,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 case 6:
                     Console.Clear();
                     SpremiPodatke();
+                    Izbornik.OdabirOpcijeIzbornika();
                     break;
 
 
