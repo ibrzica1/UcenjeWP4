@@ -31,6 +31,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 
         public void PrikaziIzbornik()
         {
+            Console.CursorVisible = true;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za rad sa turama");
             Console.WriteLine();
@@ -92,7 +93,8 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 6:
                     Console.Clear();
-                   SpremiPodatke();
+                    SpremiPodatke();
+                    Izbornik.OdabirOpcijeIzbornika();
                     break;
 
 
