@@ -30,6 +30,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         }
         public void PrikaziIzbornik()
         {
+            Console.CursorVisible = true;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za statistiku");
             Console.WriteLine();
@@ -96,7 +97,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     break;
                 case 7:
                     Console.Clear();
-                    Izbornik.PrikaziIzbornik();
+                    Izbornik.OdabirOpcijeIzbornika();
                     break;
             }
         }
