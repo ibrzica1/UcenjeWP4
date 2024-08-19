@@ -10,6 +10,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
 {
     internal class ObradaVozaci
     {
+        public Izbornik Izbornik { get; set; }
         internal List<Vozaci> Vozac { get; set; }
 
         internal ObradaVozaci() 
@@ -17,9 +18,14 @@ namespace KucaVjezbanje.ZavrsniAplikacija
          Vozac = new List<Vozaci>();
         
         }
+        public ObradaVozaci(Izbornik izbornik) : this()
+        {
+            this.Izbornik = izbornik;
+        }
 
         public void PrikaziIzbornik()
         {
+            Console.CursorVisible = true;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Izbornik za rad sa vozačima");
             Console.WriteLine();
@@ -83,6 +89,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                 case 6:
                     Console.Clear();
                     SpremiPodatke();
+                    Izbornik.OdabirOpcijeIzbornika();
                     break;
 
 
