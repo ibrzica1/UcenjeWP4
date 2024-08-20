@@ -10,7 +10,7 @@ using Ucenjecs;
 //new Ucenjecs.E13Nasljedivanje.Program();
 
 
-new Ucenjecs.E18KonzolnaAplikacija.Izbornik();
+//new Ucenjecs.E18KonzolnaAplikacija.Izbornik();
 //Ucenjecs.E13KlasaObjekt.Program.Izvedi();
 //E12Rekurzija.Izvedi();
 //E11Z1.Izvedi();
