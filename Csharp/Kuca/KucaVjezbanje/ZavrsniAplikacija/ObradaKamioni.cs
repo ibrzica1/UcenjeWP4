@@ -48,6 +48,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
             Console.WriteLine(" Povratak na glavni izbornik");
             Console.WriteLine();
             OdabirOpcijeIzbornika();
+            
         }
 
         private void OdabirOpcijeIzbornika()
