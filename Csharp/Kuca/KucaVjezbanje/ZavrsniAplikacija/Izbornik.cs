@@ -100,6 +100,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
                     Console.ResetColor();
                     Console.WriteLine();
                     break;
+                    
             }
         }
        
