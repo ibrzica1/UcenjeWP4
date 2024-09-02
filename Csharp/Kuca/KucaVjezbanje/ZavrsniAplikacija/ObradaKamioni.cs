@@ -92,7 +92,7 @@ namespace KucaVjezbanje.ZavrsniAplikacija
         private void PregledPojedinogKamiona()
         {
             PrikaziKamione();
-            var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj vozača kojeg želiš vidjeti", 1, Kamion.Count-1)];
+            var odabrani = Kamion[Pomocno.UcitajRasponBroja("Odaberi redni broj kamiona kojeg želiš vidjeti", 1, Kamion.Count)-1];
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Kamion ID:      ");
