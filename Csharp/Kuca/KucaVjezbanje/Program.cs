@@ -5,12 +5,12 @@
 
 using KucaVjezbanje;
 
-new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
+//new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
 //new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
 //GeneratorLozinki.Izvedi();
 //LjubavniKalkulator_SusjedniBrojevi.Izvedi();
 //LjubavniKalkulator_Petlja.Izvedi();
-//LjubavniKalkulator_Rekurzija.Izvedi();
+LjubavniKalkulator_Rekurzija.Izvedi();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
 //CT_SredinaLijevo_SKS.Izvedi();
