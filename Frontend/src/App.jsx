@@ -1,19 +1,23 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import { useState } from 'react'
-import NavBarEdunova from './components/NavBarEdunova';
+import NavBarEfikasnost from './components/NavBarEfikasnost';
+import { Route, Routes } from 'react-router-dom'
+import { RoutesNames } from './constans'
+import Pocetna from './Pages/Pocetna'
+import VozaciPregled from './Pages/Vozaci/VozaciPregled';
 
 function App() {
- 
-  const[x,setx] = useState(0);
+  
+
 
   return (
     <>
-     <NavBarEdunova></NavBarEdunova>
+     <NavBarEfikasnost />
+     <Routes>
+      <Route path={RoutesNames.HOME} element={<Pocetna/>}/>
+      <Route path={RoutesNames.VOZAC_PREGLED} element={<VozaciPregled/>}/>
+     </Routes>
     </>
   )
 }

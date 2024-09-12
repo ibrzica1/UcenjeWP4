@@ -2,24 +2,28 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
+import { RoutesNames } from '../constans';
 
 
 
 
-export default function NavBarEdunova()
+export default function NavBarEfikasnost()
 {
+
+  const navigate = useNavigate();
     return(
 <>
 <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Edunova APP</Navbar.Brand>
+        <Navbar.Brand href="#home">Efikasnost APP</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Pocetna</Nav.Link>
-            <Nav.Link href="#link">Swagger</Nav.Link>
+            <Nav.Link onClick={navigate(RoutesNames.HOME)}>Početna</Nav.Link>
+            <Nav.Link href="https://brzica-001-site1.dtempurl.com/swagger/index.html" target='_blank'>Swagger</Nav.Link>
             <NavDropdown title="Programi" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item onClick={()=>navigate(RoutesNames.VOZAC_PREGLED)}>Vozaci</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
               </NavDropdown.Item>
