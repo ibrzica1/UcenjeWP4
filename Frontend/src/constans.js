@@ -2,8 +2,10 @@
 
 export const RoutesNames = {
 
-HOME: '/',
-VOZAC_PREGLED: '/Vozaci'
+    HOME: '/',
+    VOZAC_PREGLED: '/Vozaci',
+    KAMION_PREGLED: '/Kamioni',
+    CIKLICNA_PREGLED: '/Ciklicna'
 
 
 };
