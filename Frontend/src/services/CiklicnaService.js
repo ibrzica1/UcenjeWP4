@@ -1,18 +1,20 @@
-import axios from "axios";
-import { BACKEND_URL } from "../constans";
+import { HttpService } from "./HttpService";
 
-// Pozivanje metode Metoda2 u API-ju
-const getCiklicna = async (a, b) => {
-    try {
-        const response = await axios.get(`${BACKEND_URL}/Metoda2`, {
-            params: {
-                a: a,
-                b: b
-            }
-        });
-        console.log(response.data);  // Obradite podatke ako je poziv uspješan
-        return response.data;
-    } catch (error) {
-        console.error("Error while fetching data:", error);
-    }
+// Define a function to call Metoda2 with parameters a and b
+async function getCiklicnaData(a, b) {
+    return await HttpService.get(`/Metoda2`, { 
+        params: { a: a, b: b } 
+    })
+    .then((response) => {
+        return response.data;  // The list of Ciklicna objects
+    })
+    .catch((e) => {
+        console.error(e);
+        throw e;
+    });
+}
+
+export default {
+    getCiklicnaData
 };
+

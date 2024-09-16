@@ -5,6 +5,6 @@ import { BACKEND_URL } from "../constans";
 export const HttpService = axios.create({
     baseURL: BACKEND_URL,
     headers: {
-        'Content-Type': 'aplication/json'
+        'Content-Type': 'application/json'
     }
 });

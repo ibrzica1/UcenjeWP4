@@ -20,7 +20,7 @@ function App() {
         <Route path={RoutesNames.HOME} element={<Pocetna />} />
         <Route path={RoutesNames.VOZAC_PREGLED} element={<VozaciPregled />} />
         <Route path={RoutesNames.KAMION_PREGLED} element={<KamioniPregled />} />
-        <Route path={RoutesNames.CIKLICNA_PREGLED} element={<CiklicnaPregled />} />
+        <Route path={RoutesNames.CIKLICNA_PREGLED} element={<CiklicnaPregled />} />  
       </Routes>
     </>
   )
