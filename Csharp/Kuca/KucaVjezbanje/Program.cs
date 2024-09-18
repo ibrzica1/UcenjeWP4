@@ -11,7 +11,8 @@ using KucaVjezbanje;
 //LjubavniKalkulator_SusjedniBrojevi.Izvedi();
 //LjubavniKalkulator_Petlja.Izvedi();
 //LjubavniKalkulator_Rekurzija.Izvedi();
-Vj25.Izvedi();
+Vj26.Izvedi();
+//Vj25.Izvedi();
 //Vj24.Izvedi();
 /*Vj22.Izvedi();*/
 /* LJubavni_Kalkulator.Izvedi(); */
