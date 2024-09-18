@@ -106,6 +106,7 @@ namespace KucaVjezbanje
                     }
                 }
                 Console.WriteLine();
+                Console.WriteLine();
             }
         }
     }
