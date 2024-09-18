@@ -11,7 +11,7 @@ async function getBySifra(sifra){
 }
 
 async function get() {
-    return await HttpService.get('/kamion')
+    return await HttpService.get('/Kamion')
         .then((odgovor) => {
             return odgovor.data;
         })

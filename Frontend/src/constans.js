@@ -4,11 +4,11 @@ export const RoutesNames = {
 
     HOME: '/',
     VOZAC_PREGLED: '/vozaci',
-    KAMION_PREGLED: '/kamioni',
+    KAMION_PREGLED: '/Kamioni',
     CIKLICNA_PREGLED: '/Ciklicna',
-    KAMION_NOVI: '/kamioni/dodaj',
-    VOZAC_NOVI: '/Vozaci/Dodaj',
-    KAMION_PROMJENA: '/kamioni/:sifra',
+    KAMION_NOVI: '/Kamioni/Dodaj',
+    VOZAC_NOVI: '/vozaci/dodaj',
+    KAMION_PROMJENA: '/Kamioni/:sifra',
     VOZAC_PROMJENA: '/vozaci/:sifra'
 
 

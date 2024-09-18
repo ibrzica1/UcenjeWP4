@@ -2,6 +2,7 @@ import KamionService from "../../services/KamionService";
 import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import moment from "moment";
+import { GrValidate } from "react-icons/gr";
 import { RoutesNames } from "../../constans";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,7 +16,7 @@ export default function KamioniPregled()
     async function dohvatiKamione() {
         await KamionService.get()
             .then((odgovor) => {
-                setKamioni(odgovor)
+                setKamioni(odgovor);
             })
             .catch((e) => {console.log(e)});
             
