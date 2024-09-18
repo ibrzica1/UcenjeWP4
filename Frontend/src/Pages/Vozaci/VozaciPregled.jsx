@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import VozacService from "../../services/VozacService";
 import moment from "moment";
+import { Link } from "react-router-dom";
+import { RoutesNames } from "../../constans";
 
 export default function VozaciPregled() {
 
@@ -25,8 +27,23 @@ export default function VozaciPregled() {
         return moment.utc(datum).format('DD.MM.YYYY.');
     }
 
+    async function obrisiAsync(sifra) {
+        const odgovor = await VozacService.obrisi(sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka);
+            return;
+        }
+        dohvatiVozace();
+    }
+
+    function obrisi(sifra){
+        obrisiAsync(sifra);
+    }
+
     return (
+        
         <Container>
+            <Link to={RoutesNames.VOZAC_NOVI}>Dodaj novog vozača</Link>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
@@ -46,11 +63,24 @@ export default function VozaciPregled() {
                                 {formatirajDatum(vozac.datum_rodenja)}</td>
                             <td className={'sredina'}>
                             {formatirajDatum(vozac.istek_ugovora)}</td>
-                            <td>{vozac.sifra}</td>
+                            <td>
+                            <Button
+                                variant="primary"
+                                onClick={()=>navigate(`/Vozaci/${vozac.sifra}`)}>
+                                    Promjeni
+                                </Button>
+                                &nbsp;&nbsp;&nbsp;
+                                <Button
+                                    variant="danger"
+                                    onClick={()=>obrisi(vozac.sifra)}>
+                                        Obriši
+                                </Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
+            
         </Container>
     );
 }

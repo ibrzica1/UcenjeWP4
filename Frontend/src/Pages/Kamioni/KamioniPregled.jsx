@@ -1,12 +1,16 @@
 import KamionService from "../../services/KamionService";
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import moment from "moment";
+import { RoutesNames } from "../../constans";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function KamioniPregled()
 {
     const [kamioni, setKamioni] = useState();
+
+    const navigate = useNavigate();
 
     async function dohvatiKamione() {
         await KamionService.get()
@@ -15,6 +19,20 @@ export default function KamioniPregled()
             })
             .catch((e) => {console.log(e)});
             
+    }
+    async function obrisiAsync(sifra) {
+        const odgovor = await KamionService.obrisi(sifra);
+        if(odgovor.greska)
+        {
+            alert(odgovor.poruka);
+            return;
+        }
+        dohvatiKamione();
+    }
+
+    function obrisi(sifra)
+    {
+       obrisiAsync(sifra);
     }
 
     useEffect(() => { dohvatiKamione() }, []);
@@ -28,6 +46,7 @@ export default function KamioniPregled()
 
     return (
         <Container>
+            <Link to={RoutesNames.KAMION_NOVI}>Dodaj novi kamion</Link>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
@@ -49,13 +68,25 @@ export default function KamioniPregled()
                             <td className={'sredina'}>
                             {formatirajDatum(kamion.istek_registracije)}</td>
                             <td className='desno'>{kamion.prosjecna_potrosnja_goriva}</td>
-                            <td>{kamion.sifra}</td>
+                            <td>
+                            <Button
+                                variant="primary"
+                                onClick={()=>navigate(`/Kamioni/${kamion.sifra}`)}>
+                                    Promjeni
+                                </Button>
+                                &nbsp;&nbsp;&nbsp;
+                                <Button
+                                variant="danger"
+                                onClick={()=>obrisi(kamion.sifra)}>
+                                    Obriši
+                                </Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
         </Container>
-    );
+    ); 
 
 
 

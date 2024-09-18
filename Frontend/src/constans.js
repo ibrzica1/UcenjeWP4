@@ -3,9 +3,13 @@
 export const RoutesNames = {
 
     HOME: '/',
-    VOZAC_PREGLED: '/Vozaci',
-    KAMION_PREGLED: '/Kamioni',
-    CIKLICNA_PREGLED: '/Ciklicna'
+    VOZAC_PREGLED: '/vozaci',
+    KAMION_PREGLED: '/kamioni',
+    CIKLICNA_PREGLED: '/Ciklicna',
+    KAMION_NOVI: '/kamioni/dodaj',
+    VOZAC_NOVI: '/Vozaci/Dodaj',
+    KAMION_PROMJENA: '/kamioni/:sifra',
+    VOZAC_PROMJENA: '/vozaci/:sifra'
 
 
 };
