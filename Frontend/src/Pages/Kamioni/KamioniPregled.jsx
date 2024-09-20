@@ -7,8 +7,7 @@ import { RoutesNames } from "../../constans";
 import { Link, useNavigate } from "react-router-dom";
 
 
-export default function KamioniPregled()
-{
+export default function KamioniPregled() {
     const [kamioni, setKamioni] = useState();
 
     const navigate = useNavigate();
@@ -18,32 +17,32 @@ export default function KamioniPregled()
             .then((odgovor) => {
                 setKamioni(odgovor);
             })
-            .catch((e) => {console.log(e)});
-            
+            .catch((e) => { console.log(e) });
+
     }
-    async function obrisiAsync(sifra) {
-        const odgovor = await KamionService.obrisi(sifra);
-        if(odgovor.greska)
-        {
+
+    useEffect(() => { dohvatiKamione(); }, []);
+
+    function formatirajDatum(datum) {
+        if (datum == null) {
+            return 'Nije definirano'
+        }
+        return moment.utc(datum).format('DD.MM.YYYY.');
+    }
+
+    async function obrisiAsync(kamion_id) {
+        const odgovor = await KamionService.obrisi(kamion_id);
+        if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
         }
         dohvatiKamione();
     }
 
-    function obrisi(sifra)
-    {
-       obrisiAsync(sifra);
+    function obrisi(kamion_id) {
+        obrisiAsync(kamion_id);
     }
 
-    useEffect(() => { dohvatiKamione() }, []);
-
-    function formatirajDatum(datum){
-        if(datum==null){
-            return 'Nije definirano'
-        }
-        return moment.utc(datum).format('DD.MM.YYYY.');
-    }
 
     return (
         <Container>
@@ -67,18 +66,18 @@ export default function KamioniPregled()
                             <td className={'desno'}>
                                 {kamion.godina_proizvodnje}</td>
                             <td className={'sredina'}>
-                            {formatirajDatum(kamion.istek_registracije)}</td>
+                                {formatirajDatum(kamion.istek_registracije)}</td>
                             <td className='desno'>{kamion.prosjecna_potrosnja_goriva}</td>
                             <td>
-                            <Button
-                                variant="primary"
-                                onClick={()=>navigate(`/Kamioni/${kamion.sifra}`)}>
+                                <Button
+                                    variant="primary"
+                                    onClick={() => navigate(`/Kamioni/${kamion.kamion_id}`)}>
                                     Promjeni
                                 </Button>
                                 &nbsp;&nbsp;&nbsp;
                                 <Button
-                                variant="danger"
-                                onClick={()=>obrisi(kamion.sifra)}>
+                                    variant="danger"
+                                    onClick={() => obrisi(kamion.kamion_id)}>
                                     Obriši
                                 </Button>
                             </td>
@@ -87,8 +86,6 @@ export default function KamioniPregled()
                 </tbody>
             </Table>
         </Container>
-    ); 
-
-
+    )
 
 }

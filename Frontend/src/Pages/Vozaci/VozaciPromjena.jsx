@@ -11,7 +11,7 @@ export default function VozaciPromjena() {
     const { vozac, setVozac } = useState({});
 
     async function dohvatiVozace() {
-        const odgovor = await VozacService.getBySifra(routeParams.sifra);
+        const odgovor = await VozacService.getBySifra(routeParams.vozac_id);
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
@@ -23,10 +23,10 @@ export default function VozaciPromjena() {
 
     useEffect(() => {
         dohvatiVozace();
-    });
+    },[]);
 
     async function promjena(vozac) {
-        const odgovor = await VozacService.promjena(routeParams.sifra, vozac);
+        const odgovor = await VozacService.promjena(routeParams.vozac_id, vozac);
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
@@ -56,26 +56,26 @@ export default function VozaciPromjena() {
                 <Form.Group controlId="ime">
                     <FormLabel>Ime</FormLabel>
                     <Form.Control type="text" name="ime"
-                    defaultValue={vozac.ime} />
+                    defaultValue={vozac?.ime} />
                 </Form.Group>
 
                 <Form.Group controlId="prezime">
                     <FormLabel>Prezime</FormLabel>
                     <Form.Control type="text" name="prezime" 
-                    defaultValue={vozac.prezime}/>
+                    defaultValue={vozac?.prezime}/>
                 </Form.Group>
 
 
                 <Form.Group controlId="datum_rodenja">
                     <FormLabel>Datum rodenja</FormLabel>
                     <Form.Control type="date" name="datum_rodenja"
-                    defaultValue={vozac.datum_rodenja} />
+                    defaultValue={vozac?.datum_rodenja} />
                 </Form.Group>
 
                 <Form.Group controlId="istek_ugovora">
                     <FormLabel>Istek ugovora</FormLabel>
                     <Form.Control type="date" name="istek_ugovora"
-                    defaultValue={vozac.istek_ugovora} />
+                    defaultValue={vozac?.istek_ugovora} />
                 </Form.Group>
 
                 <hr />

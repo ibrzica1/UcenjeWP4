@@ -1,7 +1,7 @@
 import { HttpService } from "./HttpService"
 
-async function getBySifra(sifra){
-    return await HttpService.get('/vozac/' + sifra)
+async function getBySifra(vozac_id){
+    return await HttpService.get('/vozac/' + vozac_id)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}
     })
@@ -18,8 +18,8 @@ async function get() {
         .catch((e)=>{console.error(e)})
 }
 
-async function obrisi(sifra) {
-    return await HttpService.delete('/vozac/' + sifra)
+async function obrisi(vozac_id) {
+    return await HttpService.delete('/vozac/' + vozac_id)
     .then((odgovor)=>{
         return{greska: false, poruka: odgovor.data}
     })
@@ -38,8 +38,8 @@ async function dodaj(vozac) {
     })
 }
 
-async function promjena(sifra,vozac) {
-    return await HttpService.put('/vozac/' + sifra,vozac)
+async function promjena(vozac_id,vozac) {
+    return await HttpService.put('/vozac/' + vozac_id,vozac)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}
     })
