@@ -3,19 +3,17 @@ import { Container, Table, Button, Form } from "react-bootstrap";
 import CiklicnaService from "../../services/CiklicnaService";
 
 export default function CiklicnaPregled() {
-    const [ciklicnaData, setCiklicnaData] = useState([]); // Initialize as an empty array
-    const [a, setA] = useState(2);  // Default values for a and b
+    const [ciklicnaData, setCiklicnaData] = useState([]); 
+    const [a, setA] = useState(2);  
     const [b, setB] = useState(2);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Function to fetch data from the backend
     async function fetchData() {
         setLoading(true);
-        setError(null);  // Reset error state
+        setError(null);  
         try {
             const data = await CiklicnaService.getCiklicnaData(a, b);
-            // Ensure data is an array before setting it
             if (Array.isArray(data)) {
                 setCiklicnaData(data);
             } else {
@@ -30,7 +28,6 @@ export default function CiklicnaPregled() {
         
     }
 
-    // Handle form submission to fetch data
     const handleSubmit = (event) => {
         event.preventDefault();
         fetchData();
@@ -40,7 +37,6 @@ export default function CiklicnaPregled() {
         <Container>
             <h2>Ciklicna Tablica</h2>
             
-            {/* Form to enter a and b */}
             <Form onSubmit={handleSubmit} className="mb-3">
                 <Form.Group className="mb-2">
                     <Form.Label>Redak (a):</Form.Label>
@@ -61,13 +57,10 @@ export default function CiklicnaPregled() {
                 <Button type="submit" variant="primary">Fetch Data</Button>
             </Form>
 
-            {/* Show loading indicator */}
             {loading && <p>Loading...</p>}
 
-            {/* Show error message if there's an error */}
             {error && <p className="text-danger">{error}</p>}
 
-            {/* Render table if there's data */}
             {ciklicnaData.length > 0 && (
                 <Table striped bordered hover>
                     <thead>
@@ -95,7 +88,6 @@ export default function CiklicnaPregled() {
                 </Table>
             )}
 
-            {/* Show message if no data is available */}
             {!loading && ciklicnaData.length === 0 && !error && (
                 <p>No data available. Please enter values for a and b to fetch data.</p>
             )}
