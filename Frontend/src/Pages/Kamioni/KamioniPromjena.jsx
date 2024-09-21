@@ -1,30 +1,35 @@
 import { Button, Col, Container, Form, FormLabel, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { RoutesNames } from "../../constans";
 import moment from "moment";
 import KamionService from "../../services/KamionService";
 import { useEffect, useState } from "react";
+import { RoutesNames } from "../../constans";
 
 
 export default function KamioniPromjena() {
 
     const navigate = useNavigate();
     const routeParams = useParams();
-    const { kamion, setKamion } = useState({});
+    const [ kamion, setKamion ] = useState({});
 
-    async function dohvatiKamione() {
+
+   async function dohvatiKamion() {
+    
         const odgovor = await KamionService.getBySifra(routeParams.kamion_id);
         if (odgovor.greska) {
+            
             alert(odgovor.poruka);
             return;
         }
         odgovor.poruka.istek_registracije = moment.utc(odgovor.poruka.istek_registracije).format('yyyy-MM-DD');
+        //console.log(odgovor.poruka)
         setKamion(odgovor.poruka);
     }
 
-    useEffect(() => {
-        dohvatiKamione();
-    },[]);
+    useEffect(()=>{
+        dohvatiKamion();
+},[]);
+
 
     async function promjena(kamion) {
         const odgovor = await KamionService.promjena(routeParams.kamion_id, kamion);
@@ -58,31 +63,31 @@ export default function KamioniPromjena() {
                 <Form.Group controlId="reg_oznaka">
                     <FormLabel>Registarska oznaka</FormLabel>
                     <Form.Control type="text" name="reg_oznaka" required
-                    defaultValue={kamion?.reg_oznaka} />
+                    defaultValue={kamion.reg_oznaka} />
                 </Form.Group>
 
                 <Form.Group controlId="marka">
                     <FormLabel>Marka</FormLabel>
                     <Form.Control type="text" name="marka" 
-                    defaultValue={kamion?.marka}/>
+                    defaultValue={kamion.marka}/>
                 </Form.Group>
 
                 <Form.Group controlId="godina_proizvodnje">
                     <FormLabel>Godina proizvodnje</FormLabel>
                     <Form.Control type="number" name="godina_proizvodnje" 
-                    defaultValue={kamion?.godina_proizvodnje}/>
+                    defaultValue={kamion.godina_proizvodnje}/>
                 </Form.Group>
 
                 <Form.Group controlId="istek_registracije">
                     <FormLabel>Istek registracije</FormLabel>
                     <Form.Control type="date" name="istek_registracije"
-                    defaultValue={kamion?.istek_registracije} />
+                    defaultValue={kamion.istek_registracije} />
                 </Form.Group>
 
                 <Form.Group controlId="prosjecna_potrosnja_goriva">
                     <FormLabel>Prosjecna potrosnja goriva</FormLabel>
                     <Form.Control type="number" name="prosjecna_potrosnja_goriva" step={0.01} 
-                    defaultValue={kamion?.prosjecna_potrosnja_goriva}/>
+                    defaultValue={kamion.prosjecna_potrosnja_goriva}/>
                 </Form.Group>
 
                 <hr />
