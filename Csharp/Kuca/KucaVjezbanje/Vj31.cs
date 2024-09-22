@@ -10,7 +10,7 @@ namespace KucaVjezbanje
     {
         public static void Izvedi()
         {
-            Console.WriteLine("Alice i Bob igraju tenis, prva servira Alice. Samo tko osvoji na svom servisu" +
+            Console.WriteLine("Alice i Bob igraju Blobby Volley, prva servira Alice. Samo tko osvoji na svom servisu" +
                 "dobiva bod. Unosi se string koji sadržava 'A' i 'B', koje predstavljaju pobjede Alice i Bob" +
                 ", program izračunava pobjednika ");
 
