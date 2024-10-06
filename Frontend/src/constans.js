@@ -9,7 +9,10 @@ export const RoutesNames = {
     KAMION_NOVI: '/Kamioni/Dodaj',
     VOZAC_NOVI: '/vozaci/dodaj',
     KAMION_PROMJENA: '/Kamioni/:kamion_id',
-    VOZAC_PROMJENA: '/Vozaci/:vozac_id'
+    VOZAC_PROMJENA: '/Vozaci/:vozac_id',
+    TURA_PREGLED: '/ture',
+    TURA_NOVI: '/ture/dodaj',
+    TURA_PROMJENA: '/ture/:tura_id',
 
 
 };

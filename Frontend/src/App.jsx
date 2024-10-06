@@ -12,6 +12,7 @@ import KamioniDodaj from './Pages/Kamioni/KamioniDodaj';
 import VozaciDodaj from './Pages/Vozaci/VozaciDodaj';
 import KamioniPromjena from './Pages/Kamioni/KamioniPromjena';
 import VozaciPromjena from './Pages/Vozaci/VozaciPromjena';
+import TurePregled from './Pages/Ture/TuraPregled';
 
 function App() {
 
@@ -29,6 +30,9 @@ function App() {
         <Route path={RoutesNames.VOZAC_NOVI} element={<VozaciDodaj />} /> 
         <Route path={RoutesNames.KAMION_PROMJENA} element={<KamioniPromjena />} /> 
         <Route path={RoutesNames.VOZAC_PROMJENA} element={<VozaciPromjena />} /> 
+        <Route path={RoutesNames.TURA_PREGLED} element={<TurePregled />} />
+        <Route path={RoutesNames.TURA_NOVI} element={<TureDodaj />} />
+        <Route path={RoutesNames.TURA_PROMJENA} element={<TuraPromjena />} />
       </Routes>
     </>
   )

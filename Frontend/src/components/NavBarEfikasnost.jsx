@@ -25,6 +25,7 @@ export default function NavBarEfikasnost() {
                 <NavDropdown.Item onClick={() => navigate(RoutesNames.VOZAC_PREGLED)}>Vozaci</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => navigate(RoutesNames.KAMION_PREGLED)}>Kamioni</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => navigate(RoutesNames.CIKLICNA_PREGLED)}>Ciklicna</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => navigate(RoutesNames.TURA_PREGLED)}>Ture</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
