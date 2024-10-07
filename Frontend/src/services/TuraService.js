@@ -31,7 +31,7 @@ async function obrisi(tura_id) {
     })
 }
 
-async function dodaj(Grupa) {
+async function dodaj(Tura) {
     return await HttpService.post('/Tura',Tura)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}

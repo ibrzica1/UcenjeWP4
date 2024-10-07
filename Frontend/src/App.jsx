@@ -13,6 +13,8 @@ import VozaciDodaj from './Pages/Vozaci/VozaciDodaj';
 import KamioniPromjena from './Pages/Kamioni/KamioniPromjena';
 import VozaciPromjena from './Pages/Vozaci/VozaciPromjena';
 import TurePregled from './Pages/Ture/TuraPregled';
+import TureDodaj from './Pages/Ture/TureDodaj';
+import TuraPromjena from './Pages/Ture/TurePromjena';
 
 function App() {
 

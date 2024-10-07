@@ -1,9 +1,8 @@
 import { Button, Col, Container, Form, Row} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Service from '../../services/TureService';
-import SmjerService from '../../services/TureService';
-import { RoutesNames } from '../../constants';
+import TuraService from '../../services/TuraService';
+import { RoutesNames } from '../../constans';
 import KamionService from '../../services/KamionService';
 import VozacService from '../../services/VozacService';
 
@@ -13,14 +12,15 @@ export default function TureDodaj() {
 
   const [kamion, setKamion] = useState([]);
   const [kamion_id, setKamion_id] = useState(0);
+  const [vozac, setVozac] = useState([]);
+  const [vozac_id, setVozac_id] = useState(0);
 
   async function dohvatiKamion(){
     const odgovor = await KamionService.get();
     setKamion(odgovor);
     setKamion_id(odgovor[0].kamion_id);
-
-    const [vozac, setVozac] = useState([]);
-  const [vozac_id, setVozac_id] = useState(0);
+  }
+  
 
   async function dohvatiVozac(){
     const odgovor = await VozacService.get();
@@ -28,7 +28,7 @@ export default function TureDodaj() {
     setVozac_id(odgovor[0].vozac_id_id);
   }
 
-
+  
 
   useEffect(()=>{
     dohvatiKamion();
@@ -40,7 +40,7 @@ export default function TureDodaj() {
   },[]);
 
   async function dodaj(e) {
-    const odgovor = await Service.dodaj(e);
+    const odgovor = await TuraService.dodaj(e);
     if(odgovor.greska){
       alert(odgovor.poruka);
       return;
@@ -55,63 +55,91 @@ export default function TureDodaj() {
 
 
     dodaj({
-      naziv: podaci.get('naziv'),
-      smjerSifra: parseInt(smjerSifra),
-      predavac: podaci.get('predavac'),
-      maksimalnopolaznika: parseInt(podaci.get('maksimalnopolaznika'))
+      
+      relacija: podaci.get('relacija'),
+      udaljenost: podaci.get('udaljenost'),
+      prijedeni_km: podaci.get('prijedeni_km'),
+      potrosnja_goriva: podaci.get('potrosnja_goriva'),
+      kamion_id: parseInt(kamion_id),
+      vozac_id: parseInt(vozac_id),
+      datum_pocetak: podaci.get('datum_pocetak'),
+      datum_zavsetak: podaci.get('podaci_zavrsetak')
+
     });
   }
 
   return (
       <>
-      Dodavanje nove grupe
+      Dodavanje nove ture
       
       <Form onSubmit={obradiSubmit}>
-          <Form.Group controlId="naziv">
-              <Form.Label>Naziv</Form.Label>
-              <Form.Control type="text" name="naziv" required />
+          <Form.Group controlId="relacija">
+              <Form.Label>Relacija</Form.Label>
+              <Form.Control type="text" name="relacija" required />
           </Form.Group>
-
-          <Form.Group className='mb-3' controlId='smjer'>
-            <Form.Label>Smjer</Form.Label>
+          <Form.Group controlId="udaljenost">
+              <Form.Label>Udaljenost</Form.Label>
+              <Form.Control type="decimal" name="udaljenost" required />
+          </Form.Group>
+          <Form.Group controlId="prijedeni_km">
+              <Form.Label>Prijeđeni kilometri</Form.Label>
+              <Form.Control type="decimal" name="prijedeni_km" required />
+          </Form.Group>
+          <Form.Group controlId="potrosnja_goriva">
+              <Form.Label>Potrošnja goriva</Form.Label>
+              <Form.Control type="decimal" name="potrosnja_goriva" required />
+          </Form.Group>
+          <Form.Group className='mb-3' controlId='kamion'>
+            <Form.Label>Kamion</Form.Label>
             <Form.Select 
-            onChange={(e)=>{setSmjerSifra(e.target.value)}}
+            onChange={(e)=>{setKamion_id(e.target.value)}}
             >
-            {smjerovi && smjerovi.map((s,index)=>(
-              <option key={index} value={s.sifra}>
-                {s.naziv}
+            {kamion && kamion.map((s,index)=>(
+              <option key={index} value={s.kamion_id}>
+                {s.reg_oznaka}
               </option>
             ))}
             </Form.Select>
           </Form.Group>
-
-          <Form.Group controlId="predavac">
-              <Form.Label>Predavač</Form.Label>
-              <Form.Control type="text" name="predavac" required />
+          <Form.Group className='mb-3' controlId='vozac'>
+            <Form.Label>Vozač</Form.Label>
+            <Form.Select 
+            onChange={(e)=>{setVozac_id(e.target.value)}}
+            >
+            {vozac && vozac.map((s,index)=>(
+              <option key={index} value={s.vozac_id}>
+                {s.prezime}
+              </option>
+            ))}
+            </Form.Select>
+          </Form.Group>
+          <Form.Group controlId="datum_pocetak">
+              <Form.Label>Datum Početak</Form.Label>
+              <Form.Control type="date" name="datum_pocetak" required />
           </Form.Group>
 
 
-          <Form.Group controlId="maksimalnopolaznika">
-              <Form.Label>Maksimalno polaznika</Form.Label>
-              <Form.Control type="number" name="maksimalnopolaznika" min={5} max={30} />
+          <Form.Group controlId="datum_zavrsetak">
+              <Form.Label>Datum zavšetak</Form.Label>
+              <Form.Control type="date" name="datum_zavrsetak" required />
           </Form.Group>
 
 
           <hr />
           <Row>
               <Col xs={6} sm={6} md={3} lg={6} xl={6} xxl={6}>
-              <Link to={RoutesNames.GRUPA_PREGLED}
+              <Link to={RoutesNames.TURA_PREGLED}
               className="btn btn-danger siroko">
               Odustani
               </Link>
               </Col>
               <Col xs={6} sm={6} md={9} lg={6} xl={6} xxl={6}>
               <Button variant="primary" type="submit" className="siroko">
-                  Dodaj novu grupu
+                  Dodaj novu turu
               </Button>
               </Col>
           </Row>
       </Form>
   </>
   );
-}
+  }

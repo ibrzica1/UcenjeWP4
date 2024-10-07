@@ -5,8 +5,9 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Service from "../../services/TuraService"; // primjetite promjenu naziva
-import { RoutesNames } from "../../constants";
+import Service from "../../services/TuraService"; 
+import { RoutesNames } from "../../constans";
+
 
 export default function TurePregled(){
     const [ture,setTure] = useState();
@@ -16,7 +17,7 @@ export default function TurePregled(){
         await Service.get()
         .then((odgovor)=>{
             //console.log(odgovor);
-            setGrupe(odgovor);
+            setTure(odgovor);
         })
         .catch((e)=>{console.log(e)});
     }
@@ -58,16 +59,20 @@ export default function TurePregled(){
                     </tr>
                 </thead>
                 <tbody>
-                    {Ture && Ture.map((entitet,index)=>(
+                    {ture && ture.map((entitet,index)=>(
                         <tr key={index}>
-                            <td>{entitet.}</td>
-                            <td>{entitet.smjerNaziv}</td>
-                            <td>{entitet.predavac}</td>
-                            <td>{entitet.maksimalnoPolaznika}</td>
+                            <td>{entitet.relacija}</td>
+                            <td>{entitet.udaljenost}</td>
+                            <td>{entitet.prijedeni_km}</td>
+                            <td>{entitet.potrosnja_goriva}</td>
+                            <td>{entitet.kamion_reg}</td>
+                            <td>{entitet.vozac_prezime}</td>
+                            <td>{entitet.datum_pocetak}</td>
+                            <td>{entitet.datum_zavrsetak}</td>
                             <td className="sredina">
                                     <Button
                                         variant='primary'
-                                        onClick={()=>{navigate(`/grupe/${entitet.sifra}`)}}
+                                        onClick={()=>{navigate(`/ture/${entitet.tura_id}`)}}
                                     >
                                         <FaEdit 
                                     size={25}
@@ -78,7 +83,7 @@ export default function TurePregled(){
                                     &nbsp;&nbsp;&nbsp;
                                     <Button
                                         variant='danger'
-                                        onClick={() => obrisiGrupu(entitet.sifra)}
+                                        onClick={() => obrisiTuru(entitet.tura_id)}
                                     >
                                         <FaTrash
                                         size={25}/>
