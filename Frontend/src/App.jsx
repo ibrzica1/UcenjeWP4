@@ -15,6 +15,7 @@ import VozaciPromjena from './Pages/Vozaci/VozaciPromjena';
 import TurePregled from './Pages/Ture/TuraPregled';
 import TureDodaj from './Pages/Ture/TureDodaj';
 import TuraPromjena from './Pages/Ture/TurePromjena';
+import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+    <LoadingSpinner/>
       <NavBarEfikasnost />
       <Routes>
         <Route path={RoutesNames.HOME} element={<Pocetna />} />

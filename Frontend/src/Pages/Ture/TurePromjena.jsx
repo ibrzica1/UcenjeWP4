@@ -5,11 +5,14 @@ import { RoutesNames } from '../../constans';
 import KamionService from '../../services/KamionService';
 import VozacService from '../../services/VozacService';
 import TuraService from '../../services/TuraService';
+import moment from 'moment';
+import useLoading from '../../Hooks/useLoading';
 
 
 export default function TuraPromjena() {
   const navigate = useNavigate();
   const routeParams = useParams();
+  const { showLoading, hideLoading } = useLoading();
 
   const [kamioni, setKamioni] = useState([]);
   const [kamion_id, setKamion_id] = useState(0);
@@ -18,36 +21,45 @@ export default function TuraPromjena() {
 
   const [tura, setTura] = useState({});
 
-  const typeaheadRef = useRef(null);
+ 
 
   async function dohvatiKamion(){
+    showLoading();
     const odgovor = await KamionService.get();
+    hideLoading();
     setKamioni(odgovor);
   }
 
   async function dohvatiTura() {
+    showLoading();
     const odgovor = await TuraService.getBySifra(routeParams.tura_id);
+    hideLoading();
     if(odgovor.greska){
       alert(odgovor.poruka);
       return;
   }
     let tura = odgovor.poruka;
+    odgovor.poruka.datum_pocetak = moment.utc(odgovor.poruka.datum_pocetak).format('yyyy-MM-DD');
+    odgovor.poruka.datum_zavsetak = moment.utc(odgovor.poruka.datum_zavsetak).format('yyyy-MM-DD');
     setTura(tura);
     setKamion_id(tura.kamion_id); 
+    setVozac_id(tura.vozac_id);
   }
   async function dohvatiVozac(){
+    showLoading();
     const odgovor = await VozacService.get();
+    hideLoading();
     setVozaci(odgovor);
   }
   
 
 
   async function dohvatiInicijalnePodatke() {
-    
+    showLoading();
     await dohvatiKamion();
     await dohvatiTura();
     await dohvatiVozac();
-    
+    hideLoading();
   }
 
 
@@ -73,13 +85,13 @@ export default function TuraPromjena() {
 
     promjena({
       relacija: podaci.get('relacija'),
-      udaljenost: podaci.get('udaljenost'),
-      prijedeni_km: podaci.get('prijedeni_km'),
-      potrosnja_goriva: podaci.get('potrosnja_goriva'),
+      udaljenost: parseFloat(podaci.get('udaljenost')),
+      prijedeni_km: parseFloat(podaci.get('prijedeni_km')),
+      potrosnja_goriva: parseFloat(podaci.get('potrosnja_goriva')),
       kamion_id: parseInt(kamion_id),
       vozac_id: parseInt(vozac_id),
-      datum_pocetak: podaci.get('datum_pocetak'),
-      datum_zavsetak: podaci.get('podaci_zavrsetak')
+      datum_pocetak: moment.utc(podaci.get('datum_pocetak')),
+      datum_zavsetak: moment.utc(podaci.get('datum_zavrsetak'))
     });
   }
 
@@ -96,17 +108,17 @@ export default function TuraPromjena() {
               
               <Form.Group controlId="udaljenost">
                   <Form.Label>Udaljenost</Form.Label>
-                  <Form.Control type="decimal" name="udaljenost" required defaultValue={tura.udaljenost}/>
+                  <Form.Control type="number" name="udaljenost" step={0.01} required defaultValue={tura.udaljenost}/>
               </Form.Group>
 
               <Form.Group controlId="prijedeni_km">
                   <Form.Label>Prijeđeni kilometri</Form.Label>
-                  <Form.Control type="decimal" name="prijedeni_km" required defaultValue={tura.prijedeni_km}/>
+                  <Form.Control type="number" name="prijedeni_km" step={0.01} required defaultValue={tura.prijedeni_km}/>
               </Form.Group>
 
               <Form.Group controlId="potrosnja_goriva">
                   <Form.Label>Potrošnja goriva</Form.Label>
-                  <Form.Control type="decimal" name="potrosnja_goriva" required defaultValue={tura.potrosnja_goriva}/>
+                  <Form.Control type="number" name="potrosnja_goriva" step={0.01} required defaultValue={tura.potrosnja_goriva}/>
               </Form.Group>
 
               <Form.Group className='mb-3' controlId='kamion'>
@@ -163,15 +175,6 @@ export default function TuraPromjena() {
                   </Col>
               </Row>
           </Form>
-        </Col>
-        <Col key='2' sm={12} lg={6} md={6}>
-        <div style={{overflow: 'auto', maxHeight:'400px'}}>
-        
-          <Table striped bordered hover>
-           
-            
-          </Table>
-          </div>
         </Col>
         </Row>
         </>

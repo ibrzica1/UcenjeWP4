@@ -32,6 +32,7 @@ async function obrisi(tura_id) {
 }
 
 async function dodaj(Tura) {
+  
     return await HttpService.post('/Tura',Tura)
     .then((odgovor)=>{
         return {greska: false, poruka: odgovor.data}
@@ -56,6 +57,9 @@ async function promjena(tura_id,Tura) {
         return {greska: false, poruka: odgovor.data}
     })
     .catch((e)=>{
+        if (e.response) {
+            console.error('Validation Errors:', e.response.data.errors);  
+         }
         switch (e.status) {
             case 400:
                 let poruke='';

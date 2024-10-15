@@ -3,12 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { RoutesNames } from "../../constans";
 import moment from "moment";
 import VozacService from "../../services/VozacService";
+import useLoading from "../../Hooks/useLoading";
 
 export default function VozaciDodaj() {
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dodaj(vozac) {
+        showLoading();
         const odgovor = await VozacService.dodaj(vozac);
+        hideLoading();
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;

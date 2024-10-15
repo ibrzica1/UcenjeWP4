@@ -3,13 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { RoutesNames } from "../../constans";
 import moment from "moment";
 import KamionService from "../../services/KamionService";
-
+import useLoading from "../../Hooks/useLoading";
 
 export default function KamioniDodaj() {
 
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
     async function dodaj(kamion) {
+        showLoading();
         const odgovor = await KamionService.dodaj(kamion);
+        hideLoading();
         if(odgovor.greska)
         {
             alert(odgovor.poruka);

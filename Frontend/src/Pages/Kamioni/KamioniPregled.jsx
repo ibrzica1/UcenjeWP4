@@ -5,23 +5,31 @@ import moment from "moment";
 import { GrValidate } from "react-icons/gr";
 import { RoutesNames } from "../../constans";
 import { Link, useNavigate } from "react-router-dom";
+import useLoading from "../../Hooks/useLoading";
 
 
 export default function KamioniPregled() {
     const [kamioni, setKamioni] = useState();
 
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiKamione() {
+        showLoading();
         await KamionService.get()
             .then((odgovor) => {
                 setKamioni(odgovor);
             })
             .catch((e) => { console.log(e) });
+            hideLoading();
 
     }
 
-    useEffect(() => { dohvatiKamione(); }, []);
+    useEffect(() => {
+        showLoading(); 
+        dohvatiKamione();
+        hideLoading();
+    }, []);
 
     function formatirajDatum(datum) {
         if (datum == null) {
@@ -31,7 +39,9 @@ export default function KamioniPregled() {
     }
 
     async function obrisiAsync(kamion_id) {
+        showLoading();
         const odgovor = await KamionService.obrisi(kamion_id);
+        hideLoading();
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;

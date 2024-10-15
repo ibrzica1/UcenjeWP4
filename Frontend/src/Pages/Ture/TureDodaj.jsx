@@ -5,10 +5,13 @@ import TuraService from '../../services/TuraService';
 import { RoutesNames } from '../../constans';
 import KamionService from '../../services/KamionService';
 import VozacService from '../../services/VozacService';
+import moment from 'moment';
+import useLoading from '../../Hooks/useLoading';
 
 
 export default function TureDodaj() {
   const navigate = useNavigate();
+  const { showLoading, hideLoading } = useLoading();
 
   const [kamion, setKamion] = useState([]);
   const [kamion_id, setKamion_id] = useState(0);
@@ -16,16 +19,20 @@ export default function TureDodaj() {
   const [vozac_id, setVozac_id] = useState(0);
 
   async function dohvatiKamion(){
+    showLoading();
     const odgovor = await KamionService.get();
     setKamion(odgovor);
     setKamion_id(odgovor[0].kamion_id);
+    hideLoading();
   }
   
 
   async function dohvatiVozac(){
+    showLoading();
     const odgovor = await VozacService.get();
     setVozac(odgovor);
-    setVozac_id(odgovor[0].vozac_id_id);
+    setVozac_id(odgovor[0].vozac_id);
+    hideLoading();
   }
 
   
@@ -40,13 +47,18 @@ export default function TureDodaj() {
   },[]);
 
   async function dodaj(e) {
+    showLoading();
     const odgovor = await TuraService.dodaj(e);
+    hideLoading();
     if(odgovor.greska){
       alert(odgovor.poruka);
+   
       return;
     }
     navigate(RoutesNames.TURA_PREGLED);
   }
+   
+
 
   function obradiSubmit(e) {
     e.preventDefault();
@@ -57,16 +69,18 @@ export default function TureDodaj() {
     dodaj({
       
       relacija: podaci.get('relacija'),
-      udaljenost: podaci.get('udaljenost'),
-      prijedeni_km: podaci.get('prijedeni_km'),
-      potrosnja_goriva: podaci.get('potrosnja_goriva'),
+      udaljenost: parseFloat(podaci.get('udaljenost')),
+      prijedeni_km: parseFloat(podaci.get('prijedeni_km')),
+      potrosnja_goriva: parseFloat(podaci.get('potrosnja_goriva')),
       kamion_id: parseInt(kamion_id),
       vozac_id: parseInt(vozac_id),
-      datum_pocetak: podaci.get('datum_pocetak'),
-      datum_zavsetak: podaci.get('podaci_zavrsetak')
+      datum_pocetak: moment.utc(podaci.get('datum_pocetak')),
+      datum_zavsetak: moment.utc(podaci.get('datum_zavrsetak'))
 
     });
-  }
+  } 
+
+    
 
   return (
       <>
@@ -79,15 +93,15 @@ export default function TureDodaj() {
           </Form.Group>
           <Form.Group controlId="udaljenost">
               <Form.Label>Udaljenost</Form.Label>
-              <Form.Control type="decimal" name="udaljenost" required />
+              <Form.Control type="number" name="udaljenost" step={0.01} required />
           </Form.Group>
           <Form.Group controlId="prijedeni_km">
               <Form.Label>Prijeđeni kilometri</Form.Label>
-              <Form.Control type="decimal" name="prijedeni_km" required />
+              <Form.Control type="number" name="prijedeni_km" step={0.01} required />
           </Form.Group>
           <Form.Group controlId="potrosnja_goriva">
               <Form.Label>Potrošnja goriva</Form.Label>
-              <Form.Control type="decimal" name="potrosnja_goriva" required />
+              <Form.Control type="number" name="potrosnja_goriva" step={0.01} required />
           </Form.Group>
           <Form.Group className='mb-3' controlId='kamion'>
             <Form.Label>Kamion</Form.Label>

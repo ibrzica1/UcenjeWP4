@@ -4,6 +4,7 @@ import moment from "moment";
 import KamionService from "../../services/KamionService";
 import { useEffect, useState } from "react";
 import { RoutesNames } from "../../constans";
+import useLoading from "../../Hooks/useLoading";
 
 
 export default function KamioniPromjena() {
@@ -11,11 +12,13 @@ export default function KamioniPromjena() {
     const navigate = useNavigate();
     const routeParams = useParams();
     const [ kamion, setKamion ] = useState({});
+    const { showLoading, hideLoading } = useLoading();
 
 
    async function dohvatiKamion() {
-    
+        showLoading();
         const odgovor = await KamionService.getBySifra(routeParams.kamion_id);
+        hideLoading();
         if (odgovor.greska) {
             
             alert(odgovor.poruka);
@@ -32,7 +35,9 @@ export default function KamioniPromjena() {
 
 
     async function promjena(kamion) {
+        showLoading();
         const odgovor = await KamionService.promjena(routeParams.kamion_id, kamion);
+        hideLoading();
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;

@@ -4,32 +4,45 @@ import { IoIosAdd } from "react-icons/io";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import moment from "moment";
 import Service from "../../services/TuraService"; 
 import { RoutesNames } from "../../constans";
-
+import TuraService from "../../services/TuraService";
+import useLoading from "../../Hooks/useLoading";
 
 export default function TurePregled(){
     const [ture,setTure] = useState();
     let navigate = useNavigate(); 
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiTure(){
-        await Service.get()
+        showLoading();
+        await TuraService.get()
         .then((odgovor)=>{
             //console.log(odgovor);
             setTure(odgovor);
         })
         .catch((e)=>{console.log(e)});
+        hideLoading();
     }
 
     async function obrisiTuru(tura_id) {
-        const odgovor = await Service.obrisi(tura_id);
+        showLoading();
+        const odgovor = await TuraService.obrisi(tura_id);
+        hideLoading();
         //console.log(odgovor);
         if(odgovor.greska){
             alert(odgovor.poruka);
             return;
         }
         dohvatiTure();
+    }
+
+    function formatirajDatum(datum) {
+        if (datum == null) {
+            return 'Nije definirano';
+        }
+        return moment.utc(datum).format('DD.MM.YYYY.');
     }
 
     useEffect(()=>{
@@ -67,8 +80,8 @@ export default function TurePregled(){
                             <td>{entitet.potrosnja_goriva}</td>
                             <td>{entitet.kamion_reg}</td>
                             <td>{entitet.vozac_prezime}</td>
-                            <td>{entitet.datum_pocetak}</td>
-                            <td>{entitet.datum_zavrsetak}</td>
+                            <td>{formatirajDatum(entitet.datum_pocetak)}</td>
+                            <td>{formatirajDatum(entitet.datum_zavrsetak)}</td>
                             <td className="sredina">
                                     <Button
                                         variant='primary'

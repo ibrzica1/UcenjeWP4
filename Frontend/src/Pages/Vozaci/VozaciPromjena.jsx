@@ -4,15 +4,19 @@ import { RoutesNames } from "../../constans";
 import moment from "moment";
 import VozacService from "../../services/VozacService";
 import { useEffect, useState } from "react";
+import useLoading from "../../Hooks/useLoading";
 
 export default function VozaciPromjena() {
     const navigate = useNavigate();
     const routeParams = useParams();
     const [vozac, setVozac] = useState({});
+    const { showLoading, hideLoading } = useLoading();
 
 
     async function dohvatiVozac(){
+        showLoading();
         const odgovor = await VozacService.getBySifra(routeParams.vozac_id);
+        hideLoading();
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
@@ -31,7 +35,9 @@ export default function VozaciPromjena() {
     
 
     async function promjena(vozac) {
+        showLoading();
         const odgovor = await VozacService.promjena(routeParams.vozac_id, vozac);
+        hideLoading();
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;

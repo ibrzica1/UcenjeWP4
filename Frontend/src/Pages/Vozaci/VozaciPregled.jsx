@@ -5,12 +5,14 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constans";
 import { useNavigate } from "react-router-dom";
+import useLoading from "../../Hooks/useLoading";
 
 export default function VozaciPregled() {
 
     const [vozaci, setVozaci] = useState();
 
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiVozace() {
         await VozacService.get()
@@ -21,7 +23,11 @@ export default function VozaciPregled() {
 
     }
 
-    useEffect(() => { dohvatiVozace(); }, []);
+    useEffect(() => {
+        showLoading(); 
+        dohvatiVozace();
+        hideLoading();
+    }, []);
 
     function formatirajDatum(datum) {
         if (datum == null) {
@@ -31,7 +37,9 @@ export default function VozaciPregled() {
     }
 
     async function obrisiAsync(vozac_id) {
+        showLoading();
         const odgovor = await VozacService.obrisi(vozac_id);
+        hideLoading();
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
