@@ -57,7 +57,7 @@ export default function TurePregled(){
             <Link to={RoutesNames.TURA_NOVI} className="btn btn-success siroko">
                 <IoIosAdd
                 size={25}
-                /> Dodaj
+                /> Dodaj novu turu
             </Link>
             <Table striped bordered hover responsive>
                 <thead>

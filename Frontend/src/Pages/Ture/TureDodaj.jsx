@@ -84,8 +84,8 @@ export default function TureDodaj() {
 
   return (
       <>
+      <Container>
       Dodavanje nove ture
-      
       <Form onSubmit={obradiSubmit}>
           <Form.Group controlId="relacija">
               <Form.Label>Relacija</Form.Label>
@@ -154,6 +154,7 @@ export default function TureDodaj() {
               </Col>
           </Row>
       </Form>
+      </Container>
   </>
   );
   }

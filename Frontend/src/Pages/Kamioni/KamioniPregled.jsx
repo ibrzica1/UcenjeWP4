@@ -2,6 +2,7 @@ import KamionService from "../../services/KamionService";
 import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import moment from "moment";
+import { IoIosAdd } from "react-icons/io";
 import { GrValidate } from "react-icons/gr";
 import { RoutesNames } from "../../constans";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,13 +16,29 @@ export default function KamioniPregled() {
     const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiKamione() {
-        showLoading();
+       /* showLoading();
         await KamionService.get()
             .then((odgovor) => {
                 setKamioni(odgovor);
             })
             .catch((e) => { console.log(e) });
-            hideLoading();
+            hideLoading(); */
+            showLoading();
+            await KamionService.get()
+                .then((odgovor) => {
+                    console.log('API odgovor:', odgovor);
+                    // Ensure odgovor is an array before setting the state
+                    if (Array.isArray(odgovor)) {
+                        setKamioni(odgovor);
+                    } else {
+                        setKamioni([]); // Set an empty array if the response is not as expected
+                    }
+                })
+                .catch((e) => {
+                    console.log(e);
+                    setKamioni([]); // Handle error by setting kamioni as an empty array
+                });
+            hideLoading();  
 
     }
 
@@ -56,7 +73,10 @@ export default function KamioniPregled() {
 
     return (
         <Container>
-            <Link to={RoutesNames.KAMION_NOVI}>Dodaj novi kamion</Link>
+            <Link to={RoutesNames.KAMION_NOVI} className="btn btn-success siroko">
+            < IoIosAdd
+                size={25}
+                /> Dodaj novi kamion</Link>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>

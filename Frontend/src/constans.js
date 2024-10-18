@@ -16,5 +16,5 @@ export const RoutesNames = {
 
 
 };
-
-export const BACKEND_URL = 'https://brzica-001-site1.dtempurl.com/api/v1';
+export const APP_URL = 'https://brzica-001-site1.dtempurl.com';
+export const BACKEND_URL = APP_URL + '/api/v1';

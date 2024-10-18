@@ -14,6 +14,7 @@ export default function CiklicnaPregled() {
         setError(null);  
         try {
             const data = await CiklicnaService.getCiklicnaData(a, b);
+            console.log("API Response:", data);
             if (Array.isArray(data)) {
                 setCiklicnaData(data);
             } else {

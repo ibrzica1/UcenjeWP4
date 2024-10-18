@@ -48,10 +48,35 @@ async function promjena(vozac_id,vozac) {
     })
 }
 
+async function traziVozac(uvjet){
+    return await HttpService.get('/vozac/trazi/'+uvjet)
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return {greska: false, poruka: odgovor.data}
+    })
+    .catch((e)=>{return {greska: true, poruka: 'Problem kod traženja vozača'}})
+}
+
+
+async function getStranicenje(stranica,uvjet){
+    return await HttpService.get('/vozac/traziStranicenje/'+stranica + '?uvjet=' + uvjet)
+    .then((odgovor)=>{return  {greska: false, poruka: odgovor.data};})
+    .catch((e)=>{ return {greska: true, poruka: 'Problem kod traženja vozača '}});
+  }
+
+  async function postaviSliku(vozac_id, slika) {
+    return await HttpService.put('/Polaznik/postaviSliku/' + vozac_id, slika)
+    .then((odgovor)=>{return  {greska: false, poruka: odgovor.data};})
+    .catch((e)=>{ return {greska: true, poruka: 'Problem kod postavljanja slike vozača '}});
+  }
+
 export default {
     get,
     obrisi,
     getBySifra,
     promjena,
-    dodaj
+    dodaj,
+    traziVozac,
+    getStranicenje,
+    postaviSliku
 }
