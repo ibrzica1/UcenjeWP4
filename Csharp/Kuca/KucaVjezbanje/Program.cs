@@ -5,13 +5,13 @@
 
 using KucaVjezbanje;
 
-//new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
+new KucaVjezbanje.ZavrsniAplikacija.Izbornik();
 //new KucaVjezbanje.KonzolnaAplikacija.Izbornik();
 //GeneratorLozinki.Izvedi();
 //LjubavniKalkulator_SusjedniBrojevi.Izvedi();
 //LjubavniKalkulator_Petlja.Izvedi();
 //LjubavniKalkulator_Rekurzija.Izvedi();
-Vj39.Izvedi();
+//Vj39.Izvedi();
 //Vj38.Izvedi();
 //Vj37.Izvedi();
 //Vj36.Izvedi();
